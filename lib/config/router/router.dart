@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_2_drive/presentation/home_screen.dart';
 import 'package:more_2_drive/presentation/splash_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
@@ -11,7 +12,8 @@ class RouterApp {
       switch (settings.name) {
         case RouteName.splash:
           return MaterialPageRoute(builder: (_) => const SplashScreen());
-        case RouteName.loginScreen:
+        case RouteName.homeScreen:
+          return MaterialPageRoute(builder: (_) => const HomeScreen());
 
 
         default:

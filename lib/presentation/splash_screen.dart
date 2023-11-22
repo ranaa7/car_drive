@@ -1,9 +1,10 @@
 import 'dart:async';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/components/custom_image_view.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _loading() {
     Timer(const Duration(seconds: 3), () {
-
+      Navigator.pushNamedAndRemoveUntil(
+          context, RouteName.homeScreen, (route) => false);
     });
   }
 
@@ -38,8 +40,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: CustomImageView(),
+    return Scaffold(
+      body: CustomImageView(
+        imagePath: Assets.imagesSplash,
+      ),
     );
   }
 }
