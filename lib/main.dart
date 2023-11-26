@@ -8,6 +8,7 @@ import 'package:more_2_drive/config/router/router.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/local/cache_helper.dart';
+import 'package:more_2_drive/presentation/onboarding/onboarding_screen.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'presentation/splash_screen.dart';
@@ -41,9 +42,9 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Themes.defaultTheme,
-            color: AppColors.blue,
+            color: AppColors.white,
             title: 'Speech',
-            home: const SplashScreen(),
+            home: OnboardingScreen(),
             onGenerateRoute: RouterApp.generateRoute,
             navigatorKey: RouterKeys.mainNavigatorKey,
             localizationsDelegates: const [
