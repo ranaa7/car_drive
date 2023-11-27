@@ -65,6 +65,14 @@ class AppTextStyle {
   cairoSemiBold.merge(fontSize17).copyWith(color: AppColors.white);
   static final TextStyle cairoSemiBold16white =
   cairoSemiBold.merge(fontSize16).copyWith(color: AppColors.white);
+
+  static final TextStyle cairoSemiBold16black =
+  cairoSemiBold.merge(fontSize16).copyWith(color: AppColors.black);
+
+  static final TextStyle cairoSemiBold16DarkBlue =
+  cairoSemiBold.merge(fontSize16).copyWith(color: AppColors.darkBlue);
+
+
   static final TextStyle cairoSemiBold24white =
   cairoSemiBold.merge(fontSize24).copyWith(color: AppColors.white);
 

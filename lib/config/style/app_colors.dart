@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color blue = Color(0xff62C3E3);
   static const Color blueButton = Color(0xff1B7BEB);
+  static const Color blueCielButton = Color(0xff0083CC);
+  static const Color darkBlue = Color(0xff1B4E89);
+  static const Color deepDarkBlue = Color(0xff053B6A);
+
 
   static const Color black = Color(0xff000000);
   static const Color white = Color(0xffFFFFFF);
@@ -18,10 +22,12 @@ class AppColors {
   static const Color grey7 = Color(0xffBEBEBE);
 
   static const Color orange1 = Color(0xffFD8700);
+  static const Color orangeBorder = Color(0xffFF0000);
   static const Color green1 = Color(0xff00D400);
   static const Color purple = Color(0xff6773FF);
   static const Color midNight = Color(0xff2C3D55);
   static const Color red = Color(0xffFF0000);
+  static const Color darkRed = Color(0xffD62C2C);
 
   static const Color shadow = Color(0x0A000000);
   static const Color error = Colors.red;

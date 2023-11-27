@@ -4,14 +4,15 @@ class Assets {
 
   static const String fontCairoRegular = 'assets/font/Cairo-Regular.ttf';
   static const String fontDINRegular = 'assets/font/DIN-Regular.ttf';
-
+  static const String imagesImage = 'assets/images/image.jpg';
+  static const String imagesLoginLogo = 'assets/images/login_logo.png';
+  static const String imagesLoginTire = 'assets/images/login_tire.png';
+  static const String imagesMaleMechanicWorkingShopCar = 'assets/images/male-mechanic-working-shop-car.jpg';
   static const String imagesMore2driveLogo = 'assets/images/more2drive_logo.png';
   static const String imagesServiceNow = 'assets/images/serviceNow.jpg';
-  static const String imagesmale = 'assets/images/male-mechanic-working-shop-car.jpg';
-  static const String imagesimage = 'assets/images/image.jpg';
-  static const String imagesw = 'assets/images/w.jpg';
   static const String imagesSplash = 'assets/images/splash.gif';
-
+  static const String imagesW = 'assets/images/w.jpg';
+  static const String imagesLoginText = 'assets/images/تسجيل_الدخول.png';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';
 

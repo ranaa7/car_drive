@@ -11,17 +11,17 @@ class onbordingContent {
 List<onbordingContent> contents = [
   onbordingContent(
       title: 'موجودين في اكثر ',
-      image: Assets.imagesimage,
+      image: Assets.imagesImage,
       discription: "من ٢٠ محطة في ٤ محافظات "
   ),
   onbordingContent(
       title: 'أكثر من',
-      image: Assets.imagesw,
+      image: Assets.imagesW,
       discription: " 20 محطة في 4 محافظات"
   ),
   onbordingContent(
       title: 'احجز الآن',
-      image: Assets.imagesmale,
+      image: Assets.imagesMaleMechanicWorkingShopCar,
       discription: "مع More2drive "
   ),
   onbordingContent(

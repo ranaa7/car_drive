@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
-import 'package:more_2_drive/presentation/onboarding/widgets/onboarding_list_screen.dart';
+import 'package:more_2_drive/presentation/onboarding/view/widgets/onboarding_list_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
