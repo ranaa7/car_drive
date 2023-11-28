@@ -1,3 +1,11 @@
 {
-  "hello": "اهلا"
+  "category": "الفئات",
+  "home": "الصفحة الرئيسية",
+  "notification": "الاشعارات",
+  "profile": "البروفايل",
+  "searchForAllNeeds": "دور علي احتياجات عربيتك عندنا ",
+  "search": "بحث",
+  "specialProduct": "المنتجات المميزة",
+  "english": "اللغة الانجليزية",
+  "arabic": "اللغة العربية"
 }

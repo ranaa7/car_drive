@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/blocobserve.dart';
 import 'package:more_2_drive/config/router/router.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/local/cache_helper.dart';
+import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:oktoast/oktoast.dart';
 
-import 'presentation/splash_screen.dart';
+import 'presentation/view/splash_screen/splash_screen.dart';
 import 'utils/variables/routerkeys.dart';
 
 
@@ -18,6 +19,7 @@ import 'utils/variables/routerkeys.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  await AppLocalization.init();
   Bloc.observer = MyBlocObserver();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.dark,
@@ -34,28 +36,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (_, child) {
-        return OKToast(
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: Themes.defaultTheme,
-            color: AppColors.blue,
-            title: 'Speech',
-            home: const SplashScreen(),
-            onGenerateRoute: RouterApp.generateRoute,
-            navigatorKey: RouterKeys.mainNavigatorKey,
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [Locale('ar', ''), Locale('en', '')],
-            locale: const Locale('ar'),
-          ),
-        );
-      },
+    return LocalizedApp(
+      child: ScreenUtilInit(
+        designSize: const Size(430, 932),
+        builder: (_, child) {
+          return OKToast(
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: Themes.defaultTheme,
+              color: AppColors.white,
+              title: 'Speech',
+              home: const SplashScreen(),
+              onGenerateRoute: RouterApp.generateRoute,
+              navigatorKey: RouterKeys.mainNavigatorKey,
+              localizationsDelegates: context.delegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+            ),
+          );
+        },
+      ),
     );
   }
 }

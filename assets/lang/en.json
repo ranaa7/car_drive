@@ -1,3 +1,11 @@
 {
-  "hello": "Hello"
+  "category": "Category",
+  "home": "Home",
+  "notification": "Notification",
+  "profile": "Profile",
+  "searchForAllNeeds": "Search For All Needs",
+  "search": "Search",
+  "specialProduct": "SpecialProduct",
+  "english": "English",
+  "arabic": "Arabic"
 }

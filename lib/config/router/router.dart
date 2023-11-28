@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:more_2_drive/presentation/home_screen.dart';
-import 'package:more_2_drive/presentation/splash_screen.dart';
+import 'package:more_2_drive/presentation/view/cart_screen/cart_screen.dart';
+import 'package:more_2_drive/presentation/view/categories_screen/categories_screen.dart';
+import 'package:more_2_drive/presentation/view/home_screen/home_screen.dart';
+import 'package:more_2_drive/presentation/view/notification_screen/notification_screen.dart';
+import 'package:more_2_drive/presentation/view/profile_screen/profile_screen.dart';
+import 'package:more_2_drive/presentation/view/splash_screen/splash_screen.dart';
+import 'package:more_2_drive/presentation/widgets/custom_bottom_navigation/nav_bar.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 
@@ -14,8 +19,16 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const SplashScreen());
         case RouteName.homeScreen:
           return MaterialPageRoute(builder: (_) => const HomeScreen());
-
-
+        case RouteName.profileScreen:
+          return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        case RouteName.notificationScreen:
+          return MaterialPageRoute(builder: (_) => const NotificationScreen());
+        case RouteName.categoriesScreen:
+          return MaterialPageRoute(builder: (_) => const CategoriesScreen());
+        case RouteName.cartScreen:
+          return MaterialPageRoute(builder: (_) => const CartScreen());
+        case RouteName.navBar:
+          return MaterialPageRoute(builder: (_) => const NavBar());
         default:
           return _errorRoute();
       }

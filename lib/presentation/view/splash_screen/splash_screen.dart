@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _loading() {
     Timer(const Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
-          context, RouteName.homeScreen, (route) => false);
+          context, RouteName.navBar, (route) => false);
     });
   }
 
