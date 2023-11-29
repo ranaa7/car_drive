@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             theme: Themes.defaultTheme,
             color: AppColors.white,
             title: 'Speech',
-            home: RegisterScreen(),
+            home: LoginScreen(),
             onGenerateRoute: RouterApp.generateRoute,
             navigatorKey: RouterKeys.mainNavigatorKey,
             localizationsDelegates: const [

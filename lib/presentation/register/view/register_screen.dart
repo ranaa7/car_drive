@@ -5,7 +5,12 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/config/validationform.dart';
 import 'package:more_2_drive/generated/assets.dart';
+import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
+import 'package:more_2_drive/presentation/register/view/widgets/privacy_row_component.dart';
 import 'package:more_2_drive/presentation/widgets/button_component.dart';
+import 'package:more_2_drive/presentation/widgets/form_field/first_name_formfield.dart';
+import 'package:more_2_drive/presentation/widgets/form_field/last_name_formfield.dart';
+import 'package:more_2_drive/presentation/widgets/form_field/phone_formfield.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -33,25 +38,7 @@ class RegisterScreen extends StatelessWidget {
                     children: [],
                   ),
                 )),
-            Positioned(
-                //left: 100,
-                top: -32.h,
-                left: 24.w,
-                height: 291.h,
-                width: 400.w,
-                child: Image.asset(Assets.imagesLoginTire)),
-            Positioned(
-                top: 80.h,
-                left: 35.w,
-                height: 122.h,
-                width: 318.w,
-                child: Image.asset(Assets.imagesLoginLogo)),
-            Positioned(
-                top: 184.h,
-                left: 120.w,
-                height: 58.h,
-                width: 147.w,
-                child: Image.asset(Assets.imagesLoginText)),
+            ImageComponent(),
             Positioned(
               left: 20.w,
               right: 20.w,
@@ -92,26 +79,7 @@ class RegisterScreen extends StatelessWidget {
                        SizedBox(
                         height: 12.h,
                       ),
-                      TextFormField(
-                        controller: _email,
-                        validator: (value) {
-                          if (ValidationForm.emailValidator(value) != null) {
-                            return "Please enter your email";
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding:  EdgeInsets.symmetric(
-                              vertical: 6.h, horizontal: 3.w),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(7.r),
-                            borderSide: const BorderSide(
-                              color: AppColors.orangeBorder,
-                            ),
-                          ),
-                        ),
-                      ),
+                      FirstNameFormfield(),
                        SizedBox(
                         height: 15.h,
                       ),
@@ -125,26 +93,7 @@ class RegisterScreen extends StatelessWidget {
                        SizedBox(
                         height: 12.h,
                       ),
-                      TextFormField(
-                        controller: _email,
-                        validator: (value) {
-                          if (ValidationForm.emailValidator(value) != null) {
-                            return "Please enter your email";
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding:  EdgeInsets.symmetric(
-                              vertical: 6.h, horizontal: 3.w),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(7.r),
-                            borderSide: const BorderSide(
-                              color: AppColors.orangeBorder,
-                            ),
-                          ),
-                        ),
-                      ),
+                      LastNameFormfield(),
                       SizedBox(
                         height: 15.h,
                       ),
@@ -158,57 +107,8 @@ class RegisterScreen extends StatelessWidget {
                        SizedBox(
                         height: 12.h,
                       ),
-                      IntlPhoneField(
-                        dropdownDecoration:
-                            const BoxDecoration(color: AppColors.white),
-                        focusNode: FocusNode(),
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding:  EdgeInsets.symmetric(
-                              vertical: 5.h, horizontal: 3.w),
-                          // labelText: 'Phone Number',
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(
-                              7.r,
-                            ),
-                            borderSide: BorderSide(
-                              color: AppColors.orangeBorder,
-                            ),
-                          ),
-                        ),
-                        initialCountryCode: 'EG',
-                        onChanged: (phone) {
-                          print(phone.completeNumber);
-                        },
-                      ),
-                      Row(
-                       // mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.check_box,
-                                color: AppColors.darkRed,
-                              ),
-                            ),
-                          ),
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "أوافق على ",
-                                  style: AppTextStyle.cairoSemiBold12DarkBlue,
-                                ),
-                                TextSpan(
-                                  text: "الشروط والأحكام و سياسة الخصوصية",
-                                  style: AppTextStyle.cairoSemiBold12DarkRed,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                      PhoneFormfield(),
+                      PrivacyRoComponent(),
 
 
 
