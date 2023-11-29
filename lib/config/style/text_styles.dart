@@ -37,6 +37,8 @@ class AppTextStyle {
   static final TextStyle fontSize14 = TextStyle(fontSize: 14.sp);
   static final TextStyle fontSize13 = TextStyle(fontSize: 13.sp);
 
+  static final TextStyle fontSize12 = TextStyle(fontSize: 12.sp);
+
   ///FontsColors
 
   static final TextStyle cairoMedium40green1 =
@@ -71,6 +73,13 @@ class AppTextStyle {
 
   static final TextStyle cairoSemiBold16DarkBlue =
   cairoSemiBold.merge(fontSize16).copyWith(color: AppColors.darkBlue);
+
+  static final TextStyle cairoSemiBold12DarkBlue =
+  cairoSemiBold.merge(fontSize12).copyWith(color: AppColors.darkBlue);
+
+  static final TextStyle cairoSemiBold12DarkRed =
+  cairoSemiBold.merge(fontSize12).copyWith(color: AppColors.darkRed);
+
 
 
   static final TextStyle cairoSemiBold24white =

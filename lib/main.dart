@@ -10,6 +10,7 @@ import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/local/cache_helper.dart';
 import 'package:more_2_drive/presentation/login/view/login_screen.dart';
 import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
+import 'package:more_2_drive/presentation/register/view/register_screen.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'presentation/splash_screen.dart';
@@ -45,10 +46,11 @@ class MyApp extends StatelessWidget {
             theme: Themes.defaultTheme,
             color: AppColors.white,
             title: 'Speech',
-            home: LoginScreen(),
+            home: RegisterScreen(),
             onGenerateRoute: RouterApp.generateRoute,
             navigatorKey: RouterKeys.mainNavigatorKey,
             localizationsDelegates: const [
+
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

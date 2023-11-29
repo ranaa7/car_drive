@@ -16,18 +16,13 @@ class TextfieldLoginComponent extends StatelessWidget {
     return Column(children: [
       Padding(
       padding: const EdgeInsets.only(right: 0 , left: 130),
-      child: Text("كلمة السر" , style: AppTextStyle.cairoSemiBold16DarkBlue,),
+      child: Text(text , style: AppTextStyle.cairoSemiBold16DarkBlue,),
     ),
       SizedBox(height: 12,),
       TextFormField(
 
         controller: controller,
-        validator: (value) {
-          if (validation != null) {
-            return "Please enter your email";
-          }
-          return null;
-        },
+        validator: ValidationForm.emailValidator,
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 3),

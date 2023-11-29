@@ -15,71 +15,66 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        body: Stack(
-          children: [
-            Stack(
-              children: [
-                Positioned(
-                    top: 336,
-                    bottom: 0,
-                    child: Container(
-                      width: 430,
-                      height: 596,
-                      decoration: BoxDecoration(color: AppColors.white),
-                      child: Column(
-                        children: [],
-                      ),
-                    )),
-                Positioned(
-                    //left: 100,
-                    top: -32,
-                    left: 24,
-                    height: 291,
-                    width: 400,
-                    child: Image.asset(Assets.imagesLoginTire)),
-                Positioned(
-                    top: 80,
-                    left: 35,
-                    height: 122,
-                    width: 318,
-                    child: Image.asset(Assets.imagesLoginLogo)),
-                Positioned(
-                    top: 184,
-                    left: 120,
-                    height: 58,
-                    width: 147,
-                    child: Image.asset(Assets.imagesLoginText)),
-              ],
-            ),
-            Positioned(
-              left: 30,
-              right: 30,
-              bottom: 20,
-              top: 259,
-              //di bntl3 el container el abyd l fo2
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(
+              top: 336,
+              bottom: 0,
               child: Container(
-                padding:
-                    EdgeInsets.only(left: 34, right: 30, top: 10, bottom: 10),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey, //New
-                      blurRadius: 10,
-                    )
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                    bottomLeft: Radius.circular(40),
-                    bottomRight: Radius.circular(40),
-                  ),
+                width: 430,
+                height: 596,
+                decoration: BoxDecoration(color: AppColors.white),
+                child:   Container(),
+              )),
+          Positioned(
+              //left: 100,
+              top: -32,
+              left: 24,
+              height: 291,
+              width: 400,
+              child: Image.asset(Assets.imagesLoginTire)),
+          Positioned(
+              top: 80,
+              left: 35,
+              height: 122,
+              width: 318,
+              child: Image.asset(Assets.imagesLoginLogo)),
+          Positioned(
+              top: 184,
+              left: 120,
+              height: 58,
+              width: 147,
+              child: Image.asset(Assets.imagesLoginText)),
+
+
+          Positioned(
+            left: 30,
+            right: 30,
+            bottom: 20,
+            top: 259,
+            child: Container(
+              padding:
+                  EdgeInsets.only(left: 34, right: 30, top: 10, bottom: 10),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey, //New
+                    blurRadius: 10,
+                  )
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40),
                 ),
-                child:
-                (Column(
+              ),
+              child:
+              SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(),
+                child: (Column(
                   children: [
 
                     SizedBox(height: 12,),
@@ -179,8 +174,8 @@ class LoginScreen extends StatelessWidget {
                 )),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
