@@ -3,17 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:more_2_drive/blocobserve.dart';
 import 'package:more_2_drive/config/router/router.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
-import 'package:more_2_drive/data/local/cache_helper.dart';
+import 'package:more_2_drive/core/network/local/cache_helper.dart';
 import 'package:more_2_drive/presentation/login/view/login_screen.dart';
-import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
-import 'package:more_2_drive/presentation/register/view/register_screen.dart';
+import 'package:more_2_drive/presentation/login/view_models/login_cubit.dart';
 import 'package:oktoast/oktoast.dart';
-
-import 'presentation/splash_screen.dart';
+import 'core/network/remote/dio_helper.dart';
 import 'utils/variables/routerkeys.dart';
 
 
@@ -21,6 +20,7 @@ import 'utils/variables/routerkeys.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  DioHelper.init();
   Bloc.observer = MyBlocObserver();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.dark,
@@ -37,29 +37,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (_, child) {
-        return OKToast(
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: Themes.defaultTheme,
-            color: AppColors.white,
-            title: 'Speech',
-            home: LoginScreen(),
-            onGenerateRoute: RouterApp.generateRoute,
-            navigatorKey: RouterKeys.mainNavigatorKey,
-            localizationsDelegates: const [
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LoginCubit()),
 
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [Locale('ar', ''), Locale('en', '')],
-            locale: const Locale('ar'),
-          ),
-        );
-      },
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        builder: (_, child) {
+          return OKToast(
+            child: GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: Themes.defaultTheme,
+              color: AppColors.white,
+              title: 'Speech',
+              home: LoginScreen(),
+              onGenerateRoute: RouterApp.generateRoute,
+              navigatorKey: RouterKeys.mainNavigatorKey,
+              localizationsDelegates: const [
+
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [Locale('ar', ''), Locale('en', '')],
+              locale: const Locale('ar'),
+            ),
+          );
+        },
+      ),
     );
   }
 }

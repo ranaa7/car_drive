@@ -4,13 +4,13 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/validationform.dart';
 
 class PasswordFormField extends StatelessWidget {
- PasswordFormField({super.key});
-  var _password = TextEditingController();
+ PasswordFormField({super.key , required this.password});
+  var password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return TextFormField(
 
-      controller: _password,
+      controller: password,
       validator: ValidationForm.passwordValidator,
       decoration: InputDecoration(
         isDense: true,

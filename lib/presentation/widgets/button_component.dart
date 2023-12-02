@@ -3,9 +3,10 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 
 class ButtonComponent extends StatelessWidget {
-  ButtonComponent({super.key , required this.text , required this.colors});
+  ButtonComponent({super.key , required this.text , required this.colors,    });
  String text;
  Color colors;
+
   @override
   Widget build(BuildContext context) {
     return    ElevatedButton(
@@ -15,8 +16,8 @@ class ButtonComponent extends StatelessWidget {
         backgroundColor: colors,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
-      ),
-      onPressed: () {},
+      ), onPressed: () {  },
+      //onPressed: isLoading ? null : function ,
     );
   }
 }
