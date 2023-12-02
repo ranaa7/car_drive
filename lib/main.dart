@@ -9,6 +9,9 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/local/cache_helper.dart';
 import 'package:more_2_drive/data/localization/localization_helper.dart';
+import 'package:more_2_drive/presentation/login/view/login_screen.dart';
+import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
+import 'package:more_2_drive/presentation/register/view/register_screen.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'presentation/cubits/app_cubit/app_cubit.dart';
@@ -56,6 +59,29 @@ class MyApp extends StatelessWidget {
               ),
             )),
       ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (_, child) {
+        return OKToast(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: Themes.defaultTheme,
+            color: AppColors.white,
+            title: 'Speech',
+            home: LoginScreen(),
+            onGenerateRoute: RouterApp.generateRoute,
+            navigatorKey: RouterKeys.mainNavigatorKey,
+            localizationsDelegates: const [
+
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [Locale('ar', ''), Locale('en', '')],
+            locale: const Locale('ar'),
+          ),
+        );
+      },
     );
   }
 }

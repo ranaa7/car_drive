@@ -54,6 +54,10 @@ dependencies:
   cached_network_image: ^3.3.0
   carousel_slider: ^4.2.1
   localize_and_translate: ^5.1.2
+  flutter_onboarding_screen: ^2.0.2
+  page_view_indicators: ^2.0.0
+  smooth_page_indicator: ^1.1.0
+  intl_phone_field: ^3.2.0
 
 
 
