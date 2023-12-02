@@ -9,6 +9,8 @@ class RouteName {
   static const String notificationScreen='/notificationScreen';
   static const String cartScreen='/cartScreen';
   static const String navBar='/navBar';
+  static const String mainScreen='/mainScreen';
+  static const String productScreen='/productScreen';
 
 
 

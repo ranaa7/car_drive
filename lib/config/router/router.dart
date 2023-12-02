@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:more_2_drive/presentation/view/cart_screen/cart_screen.dart';
-import 'package:more_2_drive/presentation/view/categories_screen/categories_screen.dart';
-import 'package:more_2_drive/presentation/view/home_screen/home_screen.dart';
-import 'package:more_2_drive/presentation/view/notification_screen/notification_screen.dart';
-import 'package:more_2_drive/presentation/view/profile_screen/profile_screen.dart';
-import 'package:more_2_drive/presentation/view/splash_screen/splash_screen.dart';
-import 'package:more_2_drive/presentation/widgets/custom_bottom_navigation/nav_bar.dart';
+import 'package:more_2_drive/presentation/screens/cart_screen/cart_screen.dart';
+import 'package:more_2_drive/presentation/screens/categories_screen/categories_screen.dart';
+import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
+import 'package:more_2_drive/presentation/screens/main_screen.dart';
+import 'package:more_2_drive/presentation/screens/notification_screen/notification_screen.dart';
+import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
+import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 
@@ -27,8 +28,10 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const CategoriesScreen());
         case RouteName.cartScreen:
           return MaterialPageRoute(builder: (_) => const CartScreen());
-        case RouteName.navBar:
-          return MaterialPageRoute(builder: (_) => const NavBar());
+        case RouteName.mainScreen:
+          return MaterialPageRoute(builder: (_) => const MainScreen());
+        case RouteName.productScreen:
+          return MaterialPageRoute(builder: (_) => const ProductScreen());
         default:
           return _errorRoute();
       }

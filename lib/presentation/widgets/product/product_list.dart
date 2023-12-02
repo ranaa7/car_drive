@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/app_shadows.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
@@ -10,7 +11,7 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: EdgeInsets.only(right:20.0.w),
+      padding: context.isRTL?EdgeInsets.only(right:17.0.w):EdgeInsets.only(left:17.0.w),
       child: Container(
         decoration: const BoxDecoration(
           boxShadow: [AppShadows.shadow3]),

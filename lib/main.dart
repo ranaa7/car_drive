@@ -11,10 +11,9 @@ import 'package:more_2_drive/data/local/cache_helper.dart';
 import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:oktoast/oktoast.dart';
 
-import 'presentation/view/splash_screen/splash_screen.dart';
+import 'presentation/cubits/app_cubit/app_cubit.dart';
+import 'presentation/screens/splash_screen/splash_screen.dart';
 import 'utils/variables/routerkeys.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,22 +38,23 @@ class MyApp extends StatelessWidget {
     return LocalizedApp(
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
-        builder: (_, child) {
-          return OKToast(
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: Themes.defaultTheme,
-              color: AppColors.white,
-              title: 'Speech',
-              home: const SplashScreen(),
-              onGenerateRoute: RouterApp.generateRoute,
-              navigatorKey: RouterKeys.mainNavigatorKey,
-              localizationsDelegates: context.delegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-            ),
-          );
-        },
+        builder: (_, child) => MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => AppCubit())],
+            child: OKToast(
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: Themes.defaultTheme,
+                color: AppColors.white,
+                title: 'Speech',
+                home: const SplashScreen(),
+                onGenerateRoute: RouterApp.generateRoute,
+                builder: LocalizeAndTranslate.directionBuilder,
+                navigatorKey: RouterKeys.mainNavigatorKey,
+                localizationsDelegates: context.delegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+              ),
+            )),
       ),
     );
   }

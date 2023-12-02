@@ -23,7 +23,7 @@ class SettingRadioButton extends StatelessWidget {
       child: Text(
         text,
         style: value == (selectedValue??0)
-            ? AppTextStyle.cairoMedium14
+            ? AppTextStyle.cairoMedium14Grey
             : AppTextStyle.cairoThin11Grey,
       ),
     );

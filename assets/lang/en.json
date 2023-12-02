@@ -5,7 +5,11 @@
   "profile": "Profile",
   "searchForAllNeeds": "Search For All Needs",
   "search": "Search",
-  "specialProduct": "SpecialProduct",
+  "specialCategories": "Special Categories",
   "english": "English",
-  "arabic": "Arabic"
+  "arabic": "Arabic",
+  "specialProduct": "Special Product",
+  "orderNumber": "Order Number",
+  "orderDetails": "Order Details",
+  "orderDate": "Order Date"
 }

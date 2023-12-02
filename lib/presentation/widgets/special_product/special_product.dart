@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/widgets/product/product_list.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class SpecialProduct extends StatelessWidget {
   const SpecialProduct({super.key});
@@ -18,8 +19,8 @@ class SpecialProduct extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(right:30.0.w),
-            child: Text("منتجات مميزة",style: AppTextStyle.cairoMedium14,),
+            padding: EdgeInsets.symmetric(horizontal:17.0.w),
+            child: Text(AppStrings.specialProduct,style: AppTextStyle.cairoSemiBold17White,),
           ),
           SizedBox(height: 10.h,),
          const ProductList(),

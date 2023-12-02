@@ -4,15 +4,25 @@ class Assets {
 
   static const String fontCairoRegular = 'assets/font/Cairo-Regular.ttf';
   static const String fontDINRegular = 'assets/font/DIN-Regular.ttf';
+  static const String imagesBanner = 'assets/images/banner.jpg';
   static const String imagesNew = 'assets/images/new.png';
+  static const String imagesProduct = 'assets/images/product.jpg';
   static const String imagesSplash = 'assets/images/splash.gif';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';
   static const String svgBack = 'assets/svg/back.svg';
   static const String svgCart = 'assets/svg/cart.svg';
   static const String svgCategory = 'assets/svg/category.svg';
+  static const String svgCoins = 'assets/svg/coins.svg';
   static const String svgHome = 'assets/svg/home.svg';
+  static const String svgLike = 'assets/svg/like.svg';
+  static const String svgMinus = 'assets/svg/minus.svg';
+  static const String svgMinus2 = 'assets/svg/minus2.svg';
   static const String svgNotification = 'assets/svg/notification.svg';
+  static const String svgPlus = 'assets/svg/plus.svg';
   static const String svgProfile = 'assets/svg/profile.svg';
+  static const String svgShare = 'assets/svg/share.svg';
+  static const String svgShoppingCart = 'assets/svg/shopping_cart.svg';
+  static const String svgStar = 'assets/svg/star.svg';
 
 }

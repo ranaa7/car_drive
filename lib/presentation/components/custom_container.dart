@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:more_2_drive/config/style/app_colors.dart';
+import 'package:more_2_drive/config/style/text_styles.dart';
+
+class CustomContainer extends StatelessWidget {
+  final int height;
+  final  color;
+  final int width;
+  final  Widget child;
+  const CustomContainer({super.key, required this.child, required this.height, required this.width, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width.w,
+      height: height.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: color,
+      ),
+      child:child,
+    );
+  }
+}
