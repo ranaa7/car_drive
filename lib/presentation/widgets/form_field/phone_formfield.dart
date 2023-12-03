@@ -4,15 +4,15 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 
 class PhoneFormfield extends StatelessWidget {
-  PhoneFormfield({super.key});
+  PhoneFormfield({super.key , required this.phone});
 
-  var _phone = TextEditingController();
+  var phone = TextEditingController();
 
 
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
-      controller: _phone ,
+      controller: phone ,
       dropdownDecoration:
       const BoxDecoration(color: AppColors.white),
       focusNode: FocusNode(),

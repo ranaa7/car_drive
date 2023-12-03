@@ -11,6 +11,7 @@ import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/core/network/local/cache_helper.dart';
 import 'package:more_2_drive/presentation/login/view/login_screen.dart';
 import 'package:more_2_drive/presentation/login/view_models/login_cubit.dart';
+import 'package:more_2_drive/presentation/register/view_models/phone_register_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 import 'core/network/remote/dio_helper.dart';
 import 'utils/variables/routerkeys.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => PhoneRegisterCubit()),
 
       ],
       child: ScreenUtilInit(
