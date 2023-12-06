@@ -6,11 +6,13 @@ import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/components/image_container.dart';
 import 'package:more_2_drive/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/categories_cubit/categories_state.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/categories_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class CategoriesGridView extends StatelessWidget {
+  final bool isLoading;
 
-  const CategoriesGridView({super.key});
+  const CategoriesGridView({super.key, required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CategoriesGridView extends StatelessWidget {
                 style: AppTextStyle.cairoSemiBold17Black,),
             ),
             SizedBox(height: 15.h,),
-            SizedBox(
+            isLoading?const CategoriesShimmer():SizedBox(
               height: 290.h,
               child: Row(
                 children: [

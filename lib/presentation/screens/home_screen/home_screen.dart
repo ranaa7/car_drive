@@ -11,9 +11,27 @@ import 'package:more_2_drive/presentation/widgets/default_appbar/sliver_appbar.d
 import 'package:more_2_drive/presentation/widgets/product/product_list.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/special_product.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 10)).then((_) {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +51,11 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 35.h,
             ),
-            const CustomOrderContainer(
+             CustomOrderContainer(
                 image: Assets.imagesBanner,
                 orderNumber: "orderNumber",
                 orderDetails: "orderDetails",
-                orderDate: "orderDate"),
+                orderDate: "orderDate", isLoading: isLoading,),
             SizedBox(
               height: 4.h,
             ),
@@ -48,15 +66,11 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 4.h,
             ),
-            BlocBuilder<CategoriesCubit, CategoriesState>(
-              builder: (context, state) {
-                return const CategoriesGridView();
-              },
-            ),
+            CategoriesGridView(isLoading: isLoading,),
             SizedBox(
               height: 4.h,
             ),
-            const FeaturedProduct(),
+             FeaturedProduct(isLoading: isLoading,),
             SizedBox(
               height: 4.h,
             ),
@@ -65,7 +79,11 @@ class HomeScreen extends StatelessWidget {
                 final CategoriesCubit topCategories = CategoriesCubit.get(context);
 
                 final  topCategory = topCategories.topCategory;
-                return CustomImageView(
+                return topCategory.isEmpty?CustomImageView(
+                  height: 157.h,
+                  imagePath: Assets.imagesEmpty,
+                  fit: BoxFit.cover,
+                ):CustomImageView(
                   height: 157.h,
                   url: topCategory[2].banner,
                   fit: BoxFit.cover,
@@ -75,7 +93,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 15.h,
             ),
-            const ProductList(),
+             ProductList(isLoading: isLoading,),
             SizedBox(
               height: 15.h,
             ),
@@ -84,7 +102,11 @@ class HomeScreen extends StatelessWidget {
                 final CategoriesCubit topCategories = CategoriesCubit.get(context);
 
                 final  topCategory = topCategories.topCategory;
-                return CustomImageView(
+                return topCategory.isEmpty?CustomImageView(
+                  height: 157.h,
+                  imagePath: Assets.imagesEmpty,
+                  fit: BoxFit.cover,
+                ):CustomImageView(
                   height: 157.h,
                   url: topCategory[1].banner,
                   fit: BoxFit.cover,
@@ -94,7 +116,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 15.h,
             ),
-            const ProductList(),
+             ProductList(isLoading: isLoading,),
             SizedBox(
               height: 15.h,
             ),
@@ -103,7 +125,11 @@ class HomeScreen extends StatelessWidget {
                 final CategoriesCubit topCategories = CategoriesCubit.get(context);
 
                 final  topCategory = topCategories.topCategory;
-                return CustomImageView(
+                return topCategory.isEmpty?CustomImageView(
+                  height: 157.h,
+                  imagePath: Assets.imagesEmpty,
+                  fit: BoxFit.cover,
+                ):CustomImageView(
                   height: 157.h,
                   url: topCategory[0].banner,
                   fit: BoxFit.cover,
@@ -113,7 +139,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 15.h,
             ),
-            const ProductList(),
+             ProductList(isLoading: isLoading,),
           ],
         ),
       ),

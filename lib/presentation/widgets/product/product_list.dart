@@ -7,10 +7,12 @@ import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
 import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/product_list_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
 
 class ProductList extends StatelessWidget {
-  const ProductList({super.key});
+  final bool isLoading;
+  const ProductList({super.key,  required this.isLoading });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class ProductList extends StatelessWidget {
                 boxShadow: [AppShadows.shadow3]),
             height: 300.h,
             width: double.infinity,
-            child: ListView.separated(
+            child: isLoading?const ProductListShimmer():ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) =>

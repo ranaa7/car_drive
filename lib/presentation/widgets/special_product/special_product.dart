@@ -6,7 +6,8 @@ import 'package:more_2_drive/presentation/widgets/product/product_list.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class FeaturedProduct extends StatelessWidget {
-  const FeaturedProduct({super.key});
+  final bool isLoading;
+  const FeaturedProduct({super.key, required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class FeaturedProduct extends StatelessWidget {
             child: Text(AppStrings.specialProduct,style: AppTextStyle.cairoSemiBold17White,),
           ),
           SizedBox(height: 10.h,),
-         const ProductList(),
+          ProductList(isLoading: isLoading,),
         ],
       ),
     );
