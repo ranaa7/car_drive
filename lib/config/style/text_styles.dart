@@ -27,6 +27,7 @@ class AppTextStyle {
   ///FontsSize
   static final TextStyle fontSize40 = TextStyle(fontSize: 40.sp);
   static final TextStyle fontSize28 = TextStyle(fontSize: 28.sp);
+  static final TextStyle fontSize25 = TextStyle(fontSize: 25.sp);
   static final TextStyle fontSize24 = TextStyle(fontSize: 24.sp);
 
   static final TextStyle fontSize23 = TextStyle(fontSize: 23.sp);
@@ -56,6 +57,9 @@ class AppTextStyle {
       cairo.merge(fontSize20).copyWith(color: AppColors.white);
   static final TextStyle cairoBold20white =
       cairoBold.merge(fontSize20).copyWith(color: AppColors.white);
+
+  static final TextStyle cairoBold25white =
+  cairoBold.merge(fontSize25).copyWith(color: AppColors.white);
   static final TextStyle cairoBold20black =
   cairoBold.merge(fontSize20).copyWith(color: AppColors.black);
   static final TextStyle cairoBold20blue =

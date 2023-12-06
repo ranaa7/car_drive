@@ -9,6 +9,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/config/validationform.dart';
 import 'package:more_2_drive/generated/assets.dart';
+import 'package:more_2_drive/presentation/otp/view/otp_screen.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/privacy_row_component.dart';
 import 'package:more_2_drive/presentation/register/view_models/phone_register_cubit.dart';
@@ -45,8 +46,8 @@ class RegisterScreen extends StatelessWidget {
           bcColor: Colors.green);
       token = state.phoneLoginModel.token!;
 
-      CacheHelper.saveDate(key: 'token', value: state.phoneLoginModel.token)
-          .then((value) => {Get.to(() => const homeScreen())});
+      CacheHelper.saveDate(key: 'access_token', value: state.phoneLoginModel.token)
+          .then((value) => {Get.to(() =>  OtpScreen())});
     } else if (state is PhoneRegisterFailureState) {
       showToast(message: state.errMessage, bcColor: Colors.red);
     }
@@ -165,10 +166,12 @@ class RegisterScreen extends StatelessWidget {
                         await PhoneRegisterCubit.get(context).phoneLogin(fname: fname.text, secname: sname.text, phone: phone.text);
 
                         String? token =
-                        CacheHelper.getData(key: 'token');
+                        CacheHelper.getData(key: 'access_token');
                         if (kDebugMode) {
                           print('UserTOOK $token');
                         }
+
+
                       }
                     },
 

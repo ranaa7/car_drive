@@ -5,8 +5,8 @@ import 'dart:async';
 class CacheHelper {
   static SharedPreferences? sharedPreferences;
 
-  static Future<SharedPreferences> init() async {
-    return sharedPreferences = await SharedPreferences.getInstance();
+  static Future<void> init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
   }
 
 

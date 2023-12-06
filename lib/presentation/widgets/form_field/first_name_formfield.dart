@@ -12,6 +12,7 @@ class FirstNameFormfield extends StatelessWidget {
     return TextFormField(
       controller: fname,
       validator: ValidationForm.nameValidator,
+       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         isDense: true,
         contentPadding:  EdgeInsets.symmetric(

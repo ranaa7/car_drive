@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/generated/assets.dart';
 
-class ImageComponent extends StatelessWidget {
-  const ImageComponent({super.key});
+class ImageOtpComponent extends StatelessWidget {
+  const ImageOtpComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +18,17 @@ class ImageComponent extends StatelessWidget {
             width: 400.w,
             child: Image.asset(Assets.imagesLoginTire)),
         Positioned(
-            top: 80.h,
+            top: 30.h,
             left: 35.w,
             height: 122.h,
             width: 318.w,
-            child: Image.asset(Assets.imagesLoginLogo)),
+            child: Image.asset(Assets.imagesTextotpLogo)),
         Positioned(
-            top: 184.h,
-            left: 120.w,
-            height: 58.h,
-            width: 147.w,
-            child: Image.asset(Assets.imagesLoginLogo)),
+            top: 120.h,
+            left: 60.w,
+            height: 260.h,
+            width: 260.w,
+            child: Image.asset(Assets.imagesOtpLogo)),
       ],
     );
   }

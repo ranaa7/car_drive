@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/presentation/home/home_screen.dart';
+import 'package:more_2_drive/presentation/login/data/models/login_model.dart';
 import 'package:more_2_drive/presentation/login/view_models/login_cubit.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
 import 'package:more_2_drive/presentation/widgets/button_component.dart';
@@ -31,21 +32,21 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is LoginSuccessState) {
-          if (kDebugMode) {
-            print('TOOKKEEN ${state.loginModel.token}');
-          }
-          showToast(
-              message: state.loginModel.message ?? 'Successfully logged in',
-              bcColor: Colors.green);
-          token = state.loginModel.token!;
+          if (state is LoginSuccessState) {
+            if (kDebugMode) {
+              print('TOOKKEEN ${state.loginModel.token}');
+            }
+            showToast(
+                message: state.loginModel.message ?? 'Successfully logged in',
+                bcColor: Colors.green);
+            token = state.loginModel.token!;
+            print('Token before saving: $token');
 
-          CacheHelper.saveDate(key: 'token', value: state.loginModel.token)
-              .then((value) => {Get.to(() => const homeScreen())});
-        } else if (state is LoginFailureState) {
-          showToast(message: state.errMessage, bcColor: Colors.red);
-        }
-      },
+            CacheHelper.saveDate(key: 'access_token', value: state.loginModel.token)
+                .then((value) => {Get.to(() => const homeScreen())});
+          }
+
+        },
       child: Scaffold(
         body: Stack(
           children: [
@@ -127,34 +128,50 @@ class LoginScreen extends StatelessWidget {
                           height: 15,
                         ),
 
-                           ElevatedButton(
-                              child: Text(
-                                "تسجيل دخول",
-                                style: AppTextStyle.cairoSemiBold16white,
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: Size(332, 46),
-                                backgroundColor: AppColors.deepDarkBlue,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                              ),
-                              onPressed: () async {
-                                if (_key.currentState!.validate()) {
-                                  await LoginCubit.get(context).userLogin(
-                                      email: emailcontroller.text,
-                                      password: passwordcontroller.text);
-                                  print(emailcontroller);
-                                  print(passwordcontroller);
-                                  String? token =
-                                      CacheHelper.getData(key: 'token');
-                                  if (kDebugMode) {
-                                    print('UserTOOK $token');
-                                  }
-                                }
-                              },
+                           BlocBuilder<LoginCubit, LoginState>(
+                             buildWhen: (previous, current) =>
+                             current is LoginLoadingState ||
+                                 current is LoginFailureState ||
+                                 current is LoginSuccessState,
+                           builder: (context, state) {
 
-                            ),
+                                 return ElevatedButton(
+                                   child: Text(
+                                     "تسجيل دخول",
+                                     style: AppTextStyle.cairoSemiBold16white,
+                                   ),
+                                   style: ElevatedButton.styleFrom(
+                                     minimumSize: Size(332, 46),
+                                     backgroundColor: AppColors.deepDarkBlue,
+                                     shape: RoundedRectangleBorder(
+                                         borderRadius:
+                                         BorderRadius.all(Radius.circular(10))),
+                                   ),
+                                   onPressed: state is LoginLoadingState ? null : () async {
+                                     if (_key.currentState!.validate()) {
+                                       await LoginCubit.get(context).userLogin(
+                                           email: emailcontroller.text,
+                                           password: passwordcontroller.text);
+                                       print(emailcontroller);
+                                       print(passwordcontroller);
+                                       //await CacheHelper.saveDate(key: 'access_token', value: token);
+
+                                       String? token =
+                                       CacheHelper.getData(key:'access_token');
+                                       print('Retrieved Token: $token');
+                                       if (kDebugMode) {
+                                         print('UserTOOK $token');
+                                       }
+
+                                     }
+                                   },
+
+                                 );
+
+
+
+  },
+),
 
                         SizedBox(
                           height: 4.h,

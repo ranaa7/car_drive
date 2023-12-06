@@ -60,6 +60,7 @@ dependencies:
   sign_in_with_apple: ^5.0.0
   get: ^4.6.6
   country_code_picker: ^3.0.0
+  pinput: ^3.0.1
 
 
 

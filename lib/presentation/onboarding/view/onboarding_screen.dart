@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
+import 'package:more_2_drive/core/network/local/cache_helper.dart';
 import 'package:more_2_drive/generated/assets.dart';
+import 'package:more_2_drive/presentation/login/view/login_screen.dart';
 import 'package:more_2_drive/presentation/onboarding/view/widgets/onboarding_list_screen.dart';
+import 'package:more_2_drive/presentation/register/view/register_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -110,7 +114,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 SizedBox(
 
-                  child: OutlinedButton(onPressed: (){}, child:
+                  child: OutlinedButton(onPressed: (){
+
+                    CacheHelper.saveDate(key: "onboarding", value: true).then((value) {
+                      if ((value)) {
+                        Get.to(() =>  LoginScreen());
+                      }
+                    });
+
+                  }, child:
 
                   Text('انشاء حساب' , style: AppTextStyle.cairoSemiBold16white ,),
 
@@ -133,10 +145,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+
+                    CacheHelper.saveDate(key: "onboarding", value: true).then((value) {
+                      if ((value)) {
+                        Get.to(() =>  LoginScreen());
+
+                      }
+                    });
+                  },
                 ),
 
-                 TextButton(onPressed: (){}, child:Text('تخطي' , style: AppTextStyle.cairoSemiBold16white ,) )
+                 TextButton(onPressed: (){
+                   CacheHelper.saveDate(key: "onboarding", value: true).then((value) {
+                     if ((value)) {
+                       Get.to(() =>  LoginScreen());
+
+                     }
+                   });
+
+                 }, child:Text('تخطي' , style: AppTextStyle.cairoSemiBold16white ,) )
               ],
             ),
 
