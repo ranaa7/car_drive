@@ -26,7 +26,7 @@ class DefaultSliverAppBar extends StatelessWidget {
       )),
       collapsedHeight: height.h,
       backgroundColor: isHome ? AppColors.red2 : AppColors.white,
-      expandedHeight: 380.h,
+      expandedHeight: 420.h,
       title: isHome
           ? const SizedBox()
           : Row(

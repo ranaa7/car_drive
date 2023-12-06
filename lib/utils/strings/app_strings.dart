@@ -14,5 +14,13 @@ class AppStrings{
   static String get orderNumber => "orderNumber".tr();
   static String get orderDetails => "orderDetails".tr();
   static String get orderDate => "orderDate".tr();
+  static String get pointsString => "pointsString".tr();
+  static String get sellerLogo => "sellerLogo".tr();
+  static String get sellerString => "sellerString".tr();
+  static String get detailsString => "detailsString".tr();
+  static String get suggestProduct => "suggestProduct".tr();
+  static String get availableProduct => "availableProduct".tr();
+  static String get emptyNotification => "emptyNotification".tr();
+  static String get shopNow => "shopNow".tr();
 
 }

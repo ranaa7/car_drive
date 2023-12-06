@@ -30,8 +30,8 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const CartScreen());
         case RouteName.mainScreen:
           return MaterialPageRoute(builder: (_) => const MainScreen());
-        case RouteName.productScreen:
-          return MaterialPageRoute(builder: (_) => const ProductScreen());
+        // case RouteName.productScreen:
+        //   return MaterialPageRoute(builder: (_) => const ProductScreen());
         default:
           return _errorRoute();
       }

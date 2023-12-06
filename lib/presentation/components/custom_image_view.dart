@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:more_2_drive/generated/assets.dart';
 
 class CustomImageView extends StatelessWidget {
   ///[url] is required parameter for fetching network image
@@ -119,12 +120,14 @@ class CustomImageView extends StatelessWidget {
       );
     } else if (url != null && url!.isNotEmpty) {
       return CachedNetworkImage(
+        fadeInDuration: const Duration(microseconds: 0),
+        fadeOutDuration: const Duration(microseconds: 0),
         height: height,
         width: width,
         fit: fit,
         imageUrl: url!,
         color: color,
-        placeholder: (context, url) => const SizedBox(),
+        placeholder: (context, url) =>  Image.asset(Assets.imagesEmpty,fit: fit,),
         errorWidget: (context, url, error) => const Icon(Icons.error_outline),
       );
     } else if (imagePath != null && imagePath!.isNotEmpty) {

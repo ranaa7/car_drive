@@ -8,7 +8,7 @@ import 'package:more_2_drive/domain/models/response_model.dart';
 
 class DioHelper {
   static const String kBaseUrl =
-      "https://dev.more2drive.com";
+      "https://dev.more2drive.com/api/v2/";
 
   final Dio _dio = Dio(BaseOptions(
     baseUrl: kBaseUrl,
@@ -31,7 +31,7 @@ class DioHelper {
     } on DioException catch (error) {
       if (error.response != null) {
         if (error.response!.data != null) {
-          throw ResponseModel.fromJson(error.response!.data);
+        throw ResponseModel.fromJson(error.response!.data);
         }
         throw Failure(error.response!.statusMessage!);
       } else {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
-import 'package:more_2_drive/generated/assets.dart';
-import 'package:more_2_drive/presentation/components/custom_circle_container.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
