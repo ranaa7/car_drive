@@ -5,6 +5,7 @@ class EndPoints {
 
   static const String loginPhone = 'api/v2/auth/loginphone';
   static const String confirmOtp = 'api/v2/auth/enterotp';
+  static const String resendOtp = 'api/v2/auth/resendotp';
   static const String logOut = 'api/v2/auth/logout';
 
   // static const String signup = 'api/delivery/auth/register';

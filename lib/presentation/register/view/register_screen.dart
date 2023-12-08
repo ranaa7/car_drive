@@ -9,6 +9,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/config/validationform.dart';
 import 'package:more_2_drive/generated/assets.dart';
+import 'package:more_2_drive/presentation/otp/data/models/otp_model.dart';
 import 'package:more_2_drive/presentation/otp/view/otp_screen.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/privacy_row_component.dart';
@@ -33,6 +34,9 @@ class RegisterScreen extends StatelessWidget {
   var sname = TextEditingController();
   var phone = TextEditingController();
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<PhoneRegisterCubit, PhoneRegisterState>(
@@ -47,7 +51,7 @@ class RegisterScreen extends StatelessWidget {
       token = state.phoneLoginModel.token!;
 
       CacheHelper.saveDate(key: 'access_token', value: state.phoneLoginModel.token)
-          .then((value) => {Get.to(() =>  OtpScreen())});
+          .then((value) => {Get.to(() =>  OtpScreen(id: state.phoneLoginModel.id,))});
     } else if (state is PhoneRegisterFailureState) {
       showToast(message: state.errMessage, bcColor: Colors.red);
     }

@@ -28,7 +28,7 @@ class ImageComponent extends StatelessWidget {
             left: 120.w,
             height: 58.h,
             width: 147.w,
-            child: Image.asset(Assets.imagesLoginLogo)),
+            child: Image.asset(Assets.imageLogin)),
       ],
     );
   }

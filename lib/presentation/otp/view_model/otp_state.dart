@@ -17,3 +17,17 @@ class OtpFailure extends OtpInitial {
 
   OtpFailure({required this.errMessage});
 }
+class ResendLoading extends OtpInitial {}
+class ResendSuccess extends OtpInitial {
+
+
+  final ResendModel resendModel;
+  ResendSuccess(this.resendModel);
+}
+class ResendFailure extends OtpInitial {
+
+
+  final String errMessage;
+
+  ResendFailure({required this.errMessage});
+}

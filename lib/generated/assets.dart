@@ -4,6 +4,7 @@ class Assets {
 
   static const String fontCairoRegular = 'assets/font/Cairo-Regular.ttf';
   static const String fontDINRegular = 'assets/font/DIN-Regular.ttf';
+  static const String imagesCallCenterIcon = 'assets/images/call_center_icon.png';
   static const String imagesImage = 'assets/images/image.jpg';
   static const String imagesLoginLogo = 'assets/images/login_logo.png';
   static const String imagesLoginTire = 'assets/images/login_tire.png';
@@ -14,7 +15,7 @@ class Assets {
   static const String imagesSplash = 'assets/images/splash.gif';
   static const String imagesTextotpLogo = 'assets/images/textotp_logo.png';
   static const String imagesW = 'assets/images/w.jpg';
-  static const String imagesloginlogo = 'assets/images/تسجيل_الدخول.png';
+  static const String imageLogin= 'assets/images/تسجيل_الدخول.png';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';
 

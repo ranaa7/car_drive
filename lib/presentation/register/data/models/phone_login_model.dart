@@ -12,13 +12,13 @@ class PhoneLoginModel {
     error: json['result'] as bool?,
     message: json['message'] as String?,
     token: json['access_token'] as String?,
-    id: json['id'] as int?
+    id: json['user_id'] as int?
   );
 
   Map<String, dynamic> toJson() => {
     'result':error,
     'message':message,
     'access_token': token,
-    'id': id,
+    'user_id': id,
   };
 }

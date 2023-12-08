@@ -18,13 +18,13 @@ class ImageOtpComponent extends StatelessWidget {
             width: 400.w,
             child: Image.asset(Assets.imagesLoginTire)),
         Positioned(
-            top: 30.h,
+            top: 4.h,
             left: 35.w,
             height: 122.h,
             width: 318.w,
             child: Image.asset(Assets.imagesTextotpLogo)),
         Positioned(
-            top: 120.h,
+            top: 90.h,
             left: 60.w,
             height: 260.h,
             width: 260.w,
