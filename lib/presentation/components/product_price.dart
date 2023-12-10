@@ -28,7 +28,7 @@ class ProductPrice extends StatelessWidget {
           style: AppTextStyle.cairoThin13Grey,
           textAlign: context.isRTL ? TextAlign.end : TextAlign.start,
           overflow: TextOverflow.ellipsis,
-          maxLines: 2,
+          maxLines: 1,
         ),
         hasDiscount
             ? Text(

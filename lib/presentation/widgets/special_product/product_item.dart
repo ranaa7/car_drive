@@ -8,6 +8,9 @@ import 'package:more_2_drive/presentation/components/custom_image_view.dart';
 import 'package:more_2_drive/presentation/components/product_price.dart';
 
 class ProductItem extends StatelessWidget {
+  final int imageHeight;
+  final int containerHeight;
+  final int imageWidth;
   final bool hasDiscount;
   final String details;
   final String price;
@@ -20,14 +23,14 @@ class ProductItem extends StatelessWidget {
       required this.details,
       required this.price,
       required this.image,
-      required this.discount, required this.hasDiscount, required this.strokedPrice});
+      required this.discount, required this.hasDiscount, required this.strokedPrice, required this.imageHeight, required this.imageWidth, required this.containerHeight});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: AppColors.white),
-      height: 268.h,
+      height: containerHeight.h,
       width: 150.w,
       child: Column(
         crossAxisAlignment: context.isRTL?CrossAxisAlignment.end:CrossAxisAlignment.start,
@@ -35,15 +38,15 @@ class ProductItem extends StatelessWidget {
           Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10)),
-              height: 160.h,
-              width: 163.w,
+              height: imageHeight.h,
+              width: imageWidth.w,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Stack(
                   alignment: context.isRTL?Alignment.topRight:Alignment.topLeft,
                   children: [
                     CustomImageView(
-                      width: 163.w,
+                      width: imageWidth.w,
                       url: image,
                       fit: BoxFit.cover,
                     ),

@@ -11,20 +11,36 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List notification=[] ;
-    return  Scaffold(
-      appBar: DefaultAppBar(title:AppStrings.notification ,),
-      body: notification.isEmpty?Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomImageView(svgPath: Assets.svgEmptyNotificaion,fit: BoxFit.contain,height: 280.h,width: 260.w,),
-           SizedBox(height: 30.h,),
-            SizedBox(width:330.w,child: Text(AppStrings.emptyNotification,style: AppTextStyle.cairoMedium20Grey,textAlign: TextAlign.center,))
-          ],
+    List notification = [];
+    return Scaffold(
+        appBar: DefaultAppBar(
+          title: AppStrings.notification,
         ),
-      ):const SizedBox()
-    );
+        body: notification.isEmpty
+            ? Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomImageView(
+                      svgPath: Assets.svgEmptyNotificaion,
+                      fit: BoxFit.contain,
+                      height: 280.h,
+                      width: 260.w,
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    SizedBox(
+                        width: 330.w,
+                        child: Text(
+                          AppStrings.emptyNotification,
+                          style: AppTextStyle.cairoMedium20Grey,
+                          textAlign: TextAlign.center,
+                        ))
+                  ],
+                ),
+              )
+            : const SizedBox());
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:intl/intl.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
@@ -14,9 +16,9 @@ class ProductDetails extends StatelessWidget {
   final String productName;
   final String productPrice;
   final String discount;
-  final String availableProduct;
+  final int availableProduct;
   final String pointsString;
-  final String pointsNumber;
+  final int pointsNumber;
   final String sellerLogo;
   final String sellerString;
   final String sellerName;
@@ -43,6 +45,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegExp exp = RegExp(r'<[^>]*>|&[^;]+;',multiLine: true,caseSensitive: true);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -103,7 +106,7 @@ class ProductDetails extends StatelessWidget {
         Row(
           children: [
             Text(
-              "(${"${AppStrings.availableProduct} 8"})",
+              "(${"${AppStrings.availableProduct} ""$availableProduct"})",
               style: AppTextStyle.cairoMedium16White,
             ),
             SizedBox(
@@ -135,7 +138,7 @@ class ProductDetails extends StatelessWidget {
                     style: AppTextStyle.cairoBold15White,
                   ),
                   Text(
-                    pointsNumber,
+                    "$pointsNumber",
                     style: AppTextStyle.cairoBold15White,
                   )
                 ],
@@ -168,9 +171,16 @@ class ProductDetails extends StatelessWidget {
             ),
             DetailsRow(
                 details: AppStrings.detailsString,
-                child: Text(
-                  details,
-                  style: AppTextStyle.cairoSemiBold16,
+                child: SizedBox(
+                  height: 100.h,
+                  width: 300.w,
+                  child: Text(
+                    details.replaceAll(exp, ""),
+                    style: AppTextStyle.cairoSemiBold16,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.end,
+                    maxLines: 3,
+                  ),
                 )),
             SizedBox(
               height: 11.h,
@@ -232,6 +242,7 @@ class DetailsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "$details : ",

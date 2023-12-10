@@ -8,7 +8,7 @@ import 'package:more_2_drive/domain/models/response_model.dart';
 
 class DioHelper {
   static const String kBaseUrl =
-      "https://dev.more2drive.com/api/v2/";
+      "https://more2drive.com/api/v2/";
 
   final Dio _dio = Dio(BaseOptions(
     baseUrl: kBaseUrl,

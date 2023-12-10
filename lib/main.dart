@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AppCubit()),
           BlocProvider(create: (_) => BannerCubit(sl<BannerRepo>())..getBanner()),
           BlocProvider(create: (_) => CategoriesCubit(sl<CategoriesRepo>())..getAllCategories()..getTopCategories()),
-          BlocProvider(create: (_) => ProductCubit(sl<ProductRepo>())..getAllProduct()..getFeaturedProduct()..getDetailsOfProduct()),
+          BlocProvider(create: (_) => ProductCubit(sl<ProductRepo>())..getAllProduct()..getFeaturedProduct()),
         ],
         child: ScreenUtilInit(
         designSize: const Size(430, 932),

@@ -22,5 +22,6 @@ class AppStrings{
   static String get availableProduct => "availableProduct".tr();
   static String get emptyNotification => "emptyNotification".tr();
   static String get shopNow => "shopNow".tr();
+  static String get loadMoreProduct => "loadMoreProduct".tr();
 
 }

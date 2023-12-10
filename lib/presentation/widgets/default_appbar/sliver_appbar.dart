@@ -4,6 +4,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/components/custom_circle_container.dart';
+import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/carousel/banner_carousel.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
@@ -101,6 +102,9 @@ class DefaultSliverAppBar extends StatelessWidget {
                     style: AppTextStyle.cairoSemiBold16,
                   ),
                   InkWell(
+                    onTap: ()
+                    {ProductCubit.get(context).getSearchProduct(1);
+                      Navigator.pushNamed(context, RouteName.searchScreen);},
                     child: Container(
                       width: 334.w,
                       height: 54.h,

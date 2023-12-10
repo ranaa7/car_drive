@@ -6,6 +6,7 @@ import 'package:more_2_drive/presentation/screens/main_screen.dart';
 import 'package:more_2_drive/presentation/screens/notification_screen/notification_screen.dart';
 import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
+import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
@@ -30,8 +31,10 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const CartScreen());
         case RouteName.mainScreen:
           return MaterialPageRoute(builder: (_) => const MainScreen());
-        // case RouteName.productScreen:
-        //   return MaterialPageRoute(builder: (_) => const ProductScreen());
+        case RouteName.productScreen:
+          return MaterialPageRoute(builder: (_) => const ProductScreen());
+        case RouteName.searchScreen:
+          return MaterialPageRoute(builder: (_) => const SearchScreen());
         default:
           return _errorRoute();
       }

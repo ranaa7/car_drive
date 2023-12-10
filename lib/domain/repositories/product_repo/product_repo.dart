@@ -6,8 +6,9 @@ import 'package:more_2_drive/domain/models/response_model.dart';
 import 'package:more_2_drive/utils/strings/constants.dart';
 import 'package:more_2_drive/utils/strings/end_points.dart';
 
-class ProductRepo{
+class ProductRepo {
   final DioHelper _dio = DioHelper();
+
   Future<Either<ResponseModel, Failure>> getAllProduct() async {
     try {
       Response response = await _dio.get(
@@ -21,6 +22,7 @@ class ProductRepo{
       return Right(failure);
     }
   }
+
   Future<Either<ResponseModel, Failure>> getFeaturedProduct() async {
     try {
       Response response = await _dio.get(
@@ -34,11 +36,12 @@ class ProductRepo{
       return Right(failure);
     }
   }
-  Future<Either<ResponseModel, Failure>> getDetailsOfProduct() async {
+
+  Future<Either<ResponseModel, Failure>> getDetailsOfProduct(int? id) async {
     try {
       Response response = await _dio.get(
-        endPoint: EndPoints.getAllProducts,
-        query: {'id': Constants.productId},
+        endPoint: EndPoints.getAllProducts + id.toString(),
+        query: {'id': id},
       );
 
       return Left(ResponseModel.fromJson(response.data));
@@ -48,6 +51,18 @@ class ProductRepo{
       return Right(failure);
     }
   }
+  Future<Either<ResponseModel, Failure>> getSearchProduct(int? page) async {
+    try {
+      Response response = await _dio.get(
+        endPoint: EndPoints.getSearchProducts ,
+        query: {'page':page},
+      );
 
-
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
 }

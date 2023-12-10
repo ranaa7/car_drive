@@ -18,5 +18,6 @@
   "suggestProduct": "Products you may also like",
   "availableProduct": "Available",
   "emptyNotification": "You don't have any notifications now, come back later",
-  "shopNow": "Shop now ➝"
+  "shopNow": "Shop now ➝",
+  "loadMoreProduct": "Loading More Products"
 }

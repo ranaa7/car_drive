@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 10)).then((_) {
+    Future.delayed(const Duration(seconds: 2)).then((_) {
       if (mounted) {
         setState(() {
           isLoading = false;
