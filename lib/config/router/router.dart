@@ -8,6 +8,9 @@ import 'package:more_2_drive/presentation/screens/product_screen/product_screen.
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
+import 'package:more_2_drive/presentation/home_screen.dart';
+import 'package:more_2_drive/presentation/register/view/register_screen.dart';
+import 'package:more_2_drive/presentation/splash_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 
@@ -35,6 +38,9 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const ProductScreen());
         case RouteName.searchScreen:
           return MaterialPageRoute(builder: (_) => const SearchScreen());
+
+
+
         default:
           return _errorRoute();
       }

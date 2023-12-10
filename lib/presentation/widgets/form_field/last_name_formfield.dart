@@ -4,14 +4,14 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/validationform.dart';
 
 class LastNameFormfield extends StatelessWidget {
-   LastNameFormfield({super.key});
-  var _lname = TextEditingController();
+   LastNameFormfield({super.key , required this.lname});
+  var lname = TextEditingController();
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: _lname,
+      controller: lname,
       validator: ValidationForm.nameValidator,
       decoration: InputDecoration(
         isDense: true,

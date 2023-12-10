@@ -6,6 +6,14 @@ class ValidationForm {
     return null;
   }
 
+
+  static String? otpValidator(value) {
+    if (value.isEmpty) {
+      return "برجاء ادخال الكود";
+    }
+    return null;
+  }
+
   static String? nameValidator(value) {
     if (value.isEmpty) {
       return "برجاء ادخال الاسم";
