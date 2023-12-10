@@ -12,6 +12,13 @@ import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:more_2_drive/presentation/login/view/login_screen.dart';
 import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
 import 'package:more_2_drive/presentation/register/view/register_screen.dart';
+import 'package:more_2_drive/domain/repositories/banner_repo/banner_repo.dart';
+import 'package:more_2_drive/domain/repositories/categories_repo/categories_repo.dart';
+import 'package:more_2_drive/domain/repositories/product_repo/product_repo.dart';
+import 'package:more_2_drive/locator.dart';
+import 'package:more_2_drive/presentation/cubits/banner_cubit/banner_cubit.dart';
+import 'package:more_2_drive/presentation/cubits/categories_cubit/categories_cubit.dart';
+import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'presentation/cubits/app_cubit/app_cubit.dart';
@@ -21,6 +28,7 @@ import 'utils/variables/routerkeys.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  ServiceLocator.init();
   await AppLocalization.init();
   Bloc.observer = MyBlocObserver();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -39,11 +47,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LocalizedApp(
-      child: ScreenUtilInit(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => AppCubit()),
+          BlocProvider(create: (_) => BannerCubit(sl<BannerRepo>())..getBanner()),
+          BlocProvider(create: (_) => CategoriesCubit(sl<CategoriesRepo>())..getAllCategories()..getTopCategories()),
+          BlocProvider(create: (_) => ProductCubit(sl<ProductRepo>())..getAllProduct()..getFeaturedProduct()),
+        ],
+        child: ScreenUtilInit(
         designSize: const Size(430, 932),
-        builder: (_, child) => MultiBlocProvider(
-            providers: [BlocProvider(create: (_) => AppCubit())],
-            child: OKToast(
+        builder: (_, child) => OKToast(
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: Themes.defaultTheme,

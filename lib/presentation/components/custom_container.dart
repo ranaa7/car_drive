@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:more_2_drive/config/style/app_colors.dart';
-import 'package:more_2_drive/config/style/text_styles.dart';
 
 class CustomContainer extends StatelessWidget {
   final int height;

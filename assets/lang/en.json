@@ -11,5 +11,13 @@
   "specialProduct": "Special Product",
   "orderNumber": "Order Number",
   "orderDetails": "Order Details",
-  "orderDate": "Order Date"
+  "pointsString": "Points",
+  "sellerLogo": "Seller Logo",
+  "sellerString": "Seller",
+  "detailsString": "Details",
+  "suggestProduct": "Products you may also like",
+  "availableProduct": "Available",
+  "emptyNotification": "You don't have any notifications now, come back later",
+  "shopNow": "Shop now ➝",
+  "loadMoreProduct": "Loading More Products"
 }

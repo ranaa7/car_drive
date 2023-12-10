@@ -4,7 +4,9 @@ class Assets {
 
   static const String fontCairoRegular = 'assets/font/Cairo-Regular.ttf';
   static const String fontDINRegular = 'assets/font/DIN-Regular.ttf';
+  static const String imagesBackground = 'assets/images/background.jpg';
   static const String imagesBanner = 'assets/images/banner.jpg';
+  static const String imagesEmpty = 'assets/images/empty.jpg';
   static const String imagesNew = 'assets/images/new.png';
   static const String imagesProduct = 'assets/images/product.jpg';
   static const String imagesImage = 'assets/images/image.jpg';
@@ -22,6 +24,7 @@ class Assets {
   static const String svgCart = 'assets/svg/cart.svg';
   static const String svgCategory = 'assets/svg/category.svg';
   static const String svgCoins = 'assets/svg/coins.svg';
+  static const String svgEmptyNotificaion = 'assets/svg/emptyNotificaion.svg';
   static const String svgHome = 'assets/svg/home.svg';
   static const String svgLike = 'assets/svg/like.svg';
   static const String svgMinus = 'assets/svg/minus.svg';

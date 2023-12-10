@@ -11,5 +11,17 @@
   "specialProduct": "منتجات مميزة",
   "orderNumber": "رقم الطلب",
   "orderDetails": "تفاصيل الطلب",
-  "orderDate": "تاريخ الطلب"
+  "orderDate": "تاريخ الطلب",
+  "pointsString": "النقاط",
+  "sellerLogo": "العلامة التجارية",
+  "sellerString": "البائع",
+  "detailsString": "الوصف",
+  "suggestProduct": "منتجات قد تعجبك ايضا",
+  "availableProduct": "متاح",
+  "emptyNotification": "ليس لديك أي إشعارات الآن، عد لاحقًا",
+  "shopNow": "تسوق الان ⬅",
+  "loadMoreProduct": "عرض المزيد من المنتجات"
+
+
+
 }

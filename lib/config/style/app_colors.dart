@@ -5,6 +5,7 @@ class AppColors {
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
   static const Color appbarBackGround = Color(0xffC20C0C);
+  static const Color grey4= Color(0xe0e0e0ff);
   static const Color grey3 = Color(0xffD9D9D9);
   static  Color grey2 = const Color(0xff7C7C7C);
   static  Color grey = const Color(0xff656565);
@@ -48,4 +49,6 @@ class AppColors {
   static const Color error = Colors.red;
   static const Color error2 = Color.fromRGBO(239, 0, 0, .5);
   static const Color error3 = Color.fromRGBO(239, 0, 0, .1);
+  static  Color get lightGray =>const Color(0xff232F3E);
+
 }

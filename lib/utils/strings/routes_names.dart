@@ -11,6 +11,7 @@ class RouteName {
   static const String navBar='/navBar';
   static const String mainScreen='/mainScreen';
   static const String productScreen='/productScreen';
+  static const String searchScreen='/searchScreen';
 
 
 

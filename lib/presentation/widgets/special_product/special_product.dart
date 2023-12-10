@@ -5,14 +5,15 @@ import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/widgets/product/product_list.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
-class SpecialProduct extends StatelessWidget {
-  const SpecialProduct({super.key});
+class FeaturedProduct extends StatelessWidget {
+  final bool isLoading;
+  const FeaturedProduct({super.key, required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image:DecorationImage(image: AssetImage(Assets.imagesNew,),fit: BoxFit.cover)
+        image:DecorationImage(image: AssetImage(Assets.imagesBackground,),fit: BoxFit.cover)
       ),
       height: 365.h,
       child: Column(
@@ -23,7 +24,7 @@ class SpecialProduct extends StatelessWidget {
             child: Text(AppStrings.specialProduct,style: AppTextStyle.cairoSemiBold17White,),
           ),
           SizedBox(height: 10.h,),
-         const ProductList(),
+          ProductList(isLoading: isLoading,),
         ],
       ),
     );

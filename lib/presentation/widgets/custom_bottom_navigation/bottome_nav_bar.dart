@@ -17,7 +17,7 @@ class AppBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       shape:const CircularNotchedRectangle(),
-      notchMargin: 5,
+      notchMargin: 2,
       color: AppColors.white,
       height: 70.h,
       child: Row(
@@ -42,22 +42,21 @@ class AppBottomNavBar extends StatelessWidget {
       {required String text, required String icon, required int index}) {
     final bool isSelected = currentIndex == index;
     return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          InkWell(
-            onTap: () => onTap?.call(index),
-            child: CustomImageView(
+      child: InkWell(
+        onTap: () => onTap?.call(index),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CustomImageView(
               svgPath: icon,
               width: 24.w,
               height: 24.h,
               fit: BoxFit.contain,
             ),
-          ),
 
-          // if (isSelected) SizedBox(height: 4.h,),
-            Text(text, style: AppTextStyle.cairoSemiBold17Red).animate().fade()
-        ],
+              Text(text, style: isSelected?AppTextStyle.cairoSemiBold15Red:AppTextStyle.cairoSemiBold15Grey).animate().fade()
+          ],
+        ),
       ),
     );
   }

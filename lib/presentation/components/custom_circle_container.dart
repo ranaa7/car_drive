@@ -15,7 +15,7 @@ class CustomCircleContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){},
-      child: CircleAvatar(child: CustomImageView(svgPath: image,fit:BoxFit.contain,height:imageHeight.h,width:imageWidth.w),backgroundColor: AppColors.white,),
+      child: CircleAvatar(backgroundColor: AppColors.white,child: CustomImageView(svgPath: image,fit:BoxFit.contain,height:imageHeight.h,width:imageWidth.w),),
     );
   }
 }

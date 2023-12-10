@@ -14,9 +14,14 @@ import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.
 import 'package:more_2_drive/presentation/widgets/custom_bottom_navigation/bottome_nav_bar.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final AppCubit appCubit = AppCubit.get(context);

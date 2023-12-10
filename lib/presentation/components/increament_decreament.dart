@@ -12,11 +12,11 @@ class IncreamentDecreament extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomCircleContainer(image: Assets.svgMinus2, imageHeight: 23, imageWidth: 23, containerWidth: 33, containerHeight: 33),
+        const CustomCircleContainer(image: Assets.svgMinus2, imageHeight: 23, imageWidth: 23, containerWidth: 33, containerHeight: 33),
         SizedBox(width: 17.w,),
         Text(counter,style: AppTextStyle.cairoMedium36White,),
         SizedBox(width: 17.w,),
-        CustomCircleContainer(image: Assets.svgPlus, imageHeight: 23, imageWidth: 23, containerWidth: 33, containerHeight: 33),
+        const CustomCircleContainer(image: Assets.svgPlus, imageHeight: 23, imageWidth: 23, containerWidth: 33, containerHeight: 33),
 
       ],
     );

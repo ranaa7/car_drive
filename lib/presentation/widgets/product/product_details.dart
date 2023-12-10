@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:intl/intl.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
@@ -7,20 +9,23 @@ import 'package:more_2_drive/presentation/components/custom_container.dart';
 import 'package:more_2_drive/presentation/components/custom_image_view.dart';
 import 'package:more_2_drive/presentation/components/increament_decreament.dart';
 import 'package:more_2_drive/presentation/widgets/suggest_product/suggest_product.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class ProductDetails extends StatelessWidget {
+  final bool hasDiscount;
   final String productName;
   final String productPrice;
   final String discount;
-  final String availableProduct;
+  final int availableProduct;
   final String pointsString;
-  final String pointsNumber;
+  final int pointsNumber;
   final String sellerLogo;
   final String sellerString;
   final String sellerName;
   final String sellerImage;
   final String detailsString;
   final String details;
+  final int productCount;
 
   const ProductDetails(
       {super.key,
@@ -35,10 +40,12 @@ class ProductDetails extends StatelessWidget {
       required this.sellerName,
       required this.detailsString,
       required this.details,
-      required this.sellerImage});
+      required this.sellerImage,
+      this.productCount = 0, required this.hasDiscount});
 
   @override
   Widget build(BuildContext context) {
+    RegExp exp = RegExp(r'<[^>]*>|&[^;]+;',multiLine: true,caseSensitive: true);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -56,15 +63,20 @@ class ProductDetails extends StatelessWidget {
           height: 15.h,
         ),
         CustomContainer(
-            height: 52,
+            height: 55,
             width: 270,
             color: AppColors.red3,
-            child: FittedBox(child: Text(productPrice, style: AppTextStyle.cairoBlack48White,textAlign: TextAlign.center,))),
+            child: FittedBox(
+              child: Text(
+                productPrice,
+                style: AppTextStyle.cairoBlack48White,
+              ),
+            )),
         SizedBox(height: 3.h),
-        Text(
+        hasDiscount?Text(
           discount,
           style: AppTextStyle.cairoSemiBold14LineThroughWhite,
-        ),
+        ):SizedBox(height: 5.h,),
         SizedBox(
           height: 2.h,
         ),
@@ -94,7 +106,7 @@ class ProductDetails extends StatelessWidget {
         Row(
           children: [
             Text(
-              "($availableProduct)",
+              "(${"${AppStrings.availableProduct} ""$availableProduct"})",
               style: AppTextStyle.cairoMedium16White,
             ),
             SizedBox(
@@ -122,11 +134,11 @@ class ProductDetails extends StatelessWidget {
                     svgPath: Assets.svgCoins,
                   ),
                   Text(
-                    pointsString,
+                    AppStrings.pointsString,
                     style: AppTextStyle.cairoBold15White,
                   ),
                   Text(
-                    pointsNumber,
+                    "$pointsNumber",
                     style: AppTextStyle.cairoBold15White,
                   )
                 ],
@@ -136,20 +148,20 @@ class ProductDetails extends StatelessWidget {
               height: 17.h,
             ),
             DetailsRow(
-                details: sellerLogo,
+                details: AppStrings.sellerLogo,
                 child: CustomContainer(
                   height: 26,
                   width: 100,
                   color: AppColors.white,
                   child: CustomImageView(
-                    imagePath: sellerImage,
+                    url: sellerImage,
                   ),
                 )),
             SizedBox(
               height: 4.h,
             ),
             DetailsRow(
-                details: sellerString,
+                details: AppStrings.sellerString,
                 child: Text(
                   sellerName,
                   style: AppTextStyle.cairoSemiBold16,
@@ -158,26 +170,62 @@ class ProductDetails extends StatelessWidget {
               height: 4.h,
             ),
             DetailsRow(
-                details: detailsString,
-                child: Text(
-                  details,
-                  style: AppTextStyle.cairoSemiBold16,
+                details: AppStrings.detailsString,
+                child: SizedBox(
+                  height: 100.h,
+                  width: 300.w,
+                  child: Text(
+                    details.replaceAll(exp, ""),
+                    style: AppTextStyle.cairoSemiBold16,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.end,
+                    maxLines: 3,
+                  ),
                 )),
-            SizedBox(height: 11.h,),
-            Text(
-              "suggestProduct",
-              style: AppTextStyle.cairoMedium16White,
+            SizedBox(
+              height: 11.h,
             ),
-            SizedBox(height: 11.h,),
-            SuggestProduct(details: details, discount: discount, price: "price"),
-            SizedBox(height: 8.h,),
-            SuggestProduct(details: details, discount: discount, price: "price"),
-            SizedBox(height:19.h),
+            Text(
+              AppStrings.suggestProduct,
+              style: AppTextStyle.cairoBold16White,
+            ),
+            SizedBox(
+              height: 11.h,
+            ),
+            SuggestProduct(
+                details: details, strokedPrice: discount, price: "price", hasDiscount: hasDiscount,),
+            SizedBox(
+              height: 8.h,
+            ),
+            SuggestProduct(
+                details: details, strokedPrice: discount, price: "price", hasDiscount: hasDiscount,),
+            SizedBox(height: 19.h),
             Row(
               children: [
-              CustomContainer(height: 103, width: 190,color: AppColors.red3,child: Center(child: Text("Buy Now",style: AppTextStyle.cairoBold32White,textAlign: TextAlign.center,)),),
-              CustomContainer(height: 103, width: 190,color: AppColors.yellow,child: Center(child: Text("Add",style: AppTextStyle.cairoBold32White,textAlign: TextAlign.center,)),),
-            ],)
+                Container(
+                  height: 103.h,
+                  width: 190.w,
+                  color: AppColors.red3,
+                  child: Center(
+                      child: Text(
+                    "Buy Now",
+                    style: AppTextStyle.cairoBold32White,
+                    textAlign: TextAlign.center,
+                  )),
+                ),
+                Container(
+                  height: 103.h,
+                  width: 190.w,
+                  color: AppColors.yellow,
+                  child: Center(
+                      child: Text(
+                    "Add",
+                    style: AppTextStyle.cairoBold32White,
+                    textAlign: TextAlign.center,
+                  )),
+                ),
+              ],
+            )
           ],
         ),
       ],
@@ -194,6 +242,7 @@ class DetailsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "$details : ",

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
-import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/components/custom_container.dart';
 import 'package:more_2_drive/presentation/components/custom_image_view.dart';
@@ -9,14 +8,15 @@ import 'package:more_2_drive/presentation/components/product_price.dart';
 
 class SuggestProduct extends StatelessWidget {
   final String details;
-  final String discount;
+  final String strokedPrice;
   final String price;
+  final bool hasDiscount;
 
   const SuggestProduct(
       {super.key,
       required this.details,
-      required this.discount,
-      required this.price});
+      required this.strokedPrice,
+      required this.price, required this.hasDiscount});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class SuggestProduct extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 30.w,),
-                ProductPrice(details: details, discount: discount, price: price)
+                ProductPrice(details: details, strokedPrice: strokedPrice, price: price,hasDiscount: hasDiscount,)
               ],
             ))
       ],

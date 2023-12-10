@@ -5,25 +5,37 @@ import 'package:more_2_drive/config/style/text_styles.dart';
 
 class ProductPrice extends StatelessWidget {
   final String details;
-  final String discount;
+  final String strokedPrice;
   final String price;
-  const ProductPrice({super.key, required this.details, required this.discount, required this.price});
+  final bool hasDiscount;
+
+  const ProductPrice(
+      {super.key,
+      required this.details,
+      required this.strokedPrice,
+      required this.price,
+      required this.hasDiscount});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: context.isRTL?CrossAxisAlignment.end:CrossAxisAlignment.start,
+      crossAxisAlignment:
+          context.isRTL ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         Text(
           details,
-          style: AppTextStyle.cairoThin11Grey,
+          style: AppTextStyle.cairoThin13Grey,
+          textAlign: context.isRTL ? TextAlign.end : TextAlign.start,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
         ),
-
-        Text(
-          discount,
-          style: AppTextStyle.cairoSemiBold13LineThroughGrey,
-        ),
+        hasDiscount
+            ? Text(
+                strokedPrice,
+                style: AppTextStyle.cairoSemiBold13LineThroughGrey,
+              )
+            : SizedBox(height: 30.h),
         Text(
           price,
           style: AppTextStyle.cairoBold17Red,
