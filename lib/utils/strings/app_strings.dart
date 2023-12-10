@@ -23,5 +23,6 @@ class AppStrings{
   static String get emptyNotification => "emptyNotification".tr();
   static String get shopNow => "shopNow".tr();
   static String get loadMoreProduct => "loadMoreProduct".tr();
+  static String get signIn => "signIn".tr();
 
 }

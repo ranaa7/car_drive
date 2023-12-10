@@ -21,7 +21,7 @@ class FeaturedProduct extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal:17.0.w),
-            child: Text(AppStrings.specialProduct,style: AppTextStyle.cairoSemiBold17White,),
+            child: Text(AppStrings.specialProduct,style: AppTextStyle.cairoSemiBold17white,),
           ),
           SizedBox(height: 10.h,),
           ProductList(isLoading: isLoading,),

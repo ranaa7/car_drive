@@ -7,7 +7,7 @@ class OtpInitial extends OtpState {}
 class OtpLoading extends OtpInitial {}
 class OtpSuccess extends OtpInitial {
 
-  final otpModel otpmodel;
+  final OtpModel otpmodel;
   OtpSuccess(this.otpmodel);
 }
 class OtpFailure extends OtpInitial {

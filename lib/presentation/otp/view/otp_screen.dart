@@ -1,29 +1,23 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
-import 'package:more_2_drive/generated/assets.dart';
-import 'package:more_2_drive/presentation/home/home_screen.dart';
-import 'package:more_2_drive/presentation/home_screen.dart';
-import 'package:more_2_drive/presentation/otp/data/models/otp_model.dart';
 import 'package:more_2_drive/presentation/otp/view/widgets/call_button_component.dart';
 import 'package:more_2_drive/presentation/otp/view/widgets/image_otp_component.dart';
 import 'package:more_2_drive/presentation/otp/view/widgets/pin_component.dart';
 import 'package:more_2_drive/presentation/otp/view_model/otp_cubit.dart';
-import 'package:pinput/pinput.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
-import '../../../core/app_constants/constants.dart';
 import '../../../core/functions/show_toast.dart';
-import '../../../core/network/local/cache_helper.dart';
 
 class OtpScreen extends StatelessWidget {
-  OtpScreen({super.key , required this.id});
+  final int? id;
+  final pinController = TextEditingController();
 
-  int? id;
-  var pinController = TextEditingController();
+
+  OtpScreen({super.key ,  this.id});
+
 
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
@@ -35,7 +29,7 @@ class OtpScreen extends StatelessWidget {
         key: _key,
         child: Stack(children: [
 
-          ImageOtpComponent(),
+          const ImageOtpComponent(),
           ListView(
 
             children: [
@@ -77,7 +71,7 @@ class OtpScreen extends StatelessWidget {
                         message: state.otpmodel.message ??
                             'Registered successfully',
                         bcColor: Colors.green);
-                    Get.to(() => HomeScreen());
+                    Navigator.pushNamed(context, RouteName.mainScreen);
                   } else if (state is OtpFailure) {
                     showToast(message: state.errMessage, bcColor: Colors.red);
                   }
@@ -86,8 +80,6 @@ class OtpScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(25),
                     child: ElevatedButton(
-                        child: Text(
-                          "تاكيد", style: AppTextStyle.cairoSemiBold16white,),
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(332.w, 46.h),
                           backgroundColor: AppColors.darkRed,
@@ -104,7 +96,9 @@ class OtpScreen extends StatelessWidget {
                         //   print('UserTOOK $token');
                         // }
                       }
-                    }
+                    },
+                        child: Text(
+                          "تاكيد", style: AppTextStyle.cairoSemiBold16white,)
                     ),
                   );
                 },
@@ -128,27 +122,27 @@ class OtpScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is ResendFailure) {
                     // Show CallButton when there is a ResendFailure
-                    return CallButton();
+                    return const CallButton();
                   } else {
                     // Show the button for ResendSuccess and ResendLoading
                     return Padding(
-                      padding: EdgeInsets.only(left: 100, right: 100).w,
+                      padding: const EdgeInsets.only(left: 100, right: 100).w,
                       child: OutlinedButton(
                         onPressed: () {
 
-                         OtpCubit.get(context).ResendOtp(id: id );
+                         OtpCubit.get(context).resendOtp(id: id );
                         },
-                        child: Text(
-                          'اعادة ارسال الرمز',
-                          style: AppTextStyle.cairoSemiBold16white,
-                        ),
                         style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(30.r),
                             ),
                           ),
-                          side: BorderSide(color: Colors.grey),
+                          side: const BorderSide(color: Colors.grey),
+                        ),
+                        child: Text(
+                          'اعادة ارسال الرمز',
+                          style: AppTextStyle.cairoSemiBold16white,
                         ),
                       ),
                     );

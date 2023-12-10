@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:intl/intl.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
@@ -135,11 +134,11 @@ class ProductDetails extends StatelessWidget {
                   ),
                   Text(
                     AppStrings.pointsString,
-                    style: AppTextStyle.cairoBold15White,
+                    style: AppTextStyle.cairoBold16White,
                   ),
                   Text(
                     "$pointsNumber",
-                    style: AppTextStyle.cairoBold15White,
+                    style: AppTextStyle.cairoBold16White,
                   )
                 ],
               ),
@@ -178,7 +177,7 @@ class ProductDetails extends StatelessWidget {
                     details.replaceAll(exp, ""),
                     style: AppTextStyle.cairoSemiBold16,
                     overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.end,
+                    textAlign: context.isRTL?TextAlign.start:TextAlign.end,
                     maxLines: 3,
                   ),
                 )),

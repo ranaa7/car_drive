@@ -11,6 +11,16 @@ class CallButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return   OutlinedButton(
       onPressed: () {},
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(332, 46),
+
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(15.r),
+          ),
+        ),
+        side: const BorderSide(color: Colors.grey),
+      ),
       child: Row(
         children: [
           Text(
@@ -20,16 +30,6 @@ class CallButton extends StatelessWidget {
           Flexible(child: Image.asset(Assets.imagesCallCenterIcon,width: 30.w,)),
 
         ],
-      ),
-      style: OutlinedButton.styleFrom(
-        minimumSize: Size(332, 46),
-
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(15.r),
-          ),
-        ),
-        side: BorderSide(color: Colors.grey),
       ),
     );
   }

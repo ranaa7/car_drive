@@ -14,7 +14,6 @@ class Themes {
         elevation: 0.0,
       ),
       scaffoldBackgroundColor: AppColors.white,
-      scaffoldBackgroundColor: AppColors.darkBlue,
       colorScheme: ColorScheme.fromSwatch()
           .copyWith(secondary: AppColors.white)
           .copyWith(background: AppColors.white));

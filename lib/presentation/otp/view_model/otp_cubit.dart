@@ -1,11 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:more_2_drive/presentation/otp/data/models/otp_model.dart';
+import 'package:more_2_drive/utils/strings/end_points.dart';
 
-import '../../../core/network/end_point/endpoints.dart';
 import '../../../core/network/remote/dio_helper.dart';
 import '../data/models/resend/resend_model.dart';
 
@@ -17,7 +15,7 @@ class OtpCubit extends Cubit<OtpState> {
   static OtpCubit get(BuildContext context) => BlocProvider.of(context);
 
 
-  otpModel otpmodel = otpModel();
+  OtpModel otpmodel = OtpModel();
   ResendModel resendModel = ResendModel();
 
   Future<void> verifyOtp(
@@ -32,7 +30,7 @@ class OtpCubit extends Cubit<OtpState> {
       );
 
       if (response.data != null) {
-        otpmodel = otpModel.fromJson(response.data);
+        otpmodel = OtpModel.fromJson(response.data);
 
 
         emit(OtpSuccess(otpmodel));
@@ -51,7 +49,7 @@ class OtpCubit extends Cubit<OtpState> {
   }
 
 
-  Future<void> ResendOtp(
+  Future<void> resendOtp(
       {required int? id}) async {
     emit(ResendLoading());
     try {

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/validationform.dart';
@@ -15,7 +17,7 @@ class PinComponent extends StatelessWidget {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: TextStyle(fontSize: 20, color: AppColors.white, fontWeight: FontWeight.w600),
+      textStyle: const TextStyle(fontSize: 20, color: AppColors.white, fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.white),
         borderRadius: BorderRadius.circular(10),

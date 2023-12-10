@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:more_2_drive/data/remote/dio_helper.dart';

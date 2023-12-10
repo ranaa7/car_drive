@@ -1,7 +1,11 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
+import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class ImageComponent extends StatelessWidget {
   const ImageComponent({super.key});
@@ -10,25 +14,19 @@ class ImageComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
-          //left: 100,
-            top: -32.h,
-            left: 24.w,
-            height: 291.h,
-            width: 400.w,
-            child: Image.asset(Assets.imagesLoginTire)),
-        Positioned(
-            top: 80.h,
-            left: 35.w,
-            height: 122.h,
-            width: 318.w,
-            child: Image.asset(Assets.imagesLoginLogo)),
-        Positioned(
-            top: 184.h,
-            left: 120.w,
-            height: 58.h,
-            width: 147.w,
-            child: Image.asset(Assets.imageLogin)),
+        Align(alignment:Alignment.topRight,child: Image.asset(Assets.imagesLoginTire,fit: BoxFit.fill,width: 486.w,height: 290.h,)),
+        Padding(
+          padding:  EdgeInsets.symmetric(vertical: 80.0.h),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Image.asset(Assets.imagesLoginLogo,fit: BoxFit.cover,height: 122.h,width: 318.w,),
+                Text(AppStrings.signIn,style: AppTextStyle.cairoSemiBold24white,),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

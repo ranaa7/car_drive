@@ -1,11 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:more_2_drive/utils/strings/end_points.dart';
 
 
-import '../../../core/network/end_point/endpoints.dart';
 import '../../../core/network/remote/dio_helper.dart';
 import '../data/models/phone_login_model.dart';
 

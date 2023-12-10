@@ -3,39 +3,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
-import 'package:more_2_drive/config/validationform.dart';
-import 'package:more_2_drive/generated/assets.dart';
-import 'package:more_2_drive/presentation/otp/data/models/otp_model.dart';
 import 'package:more_2_drive/presentation/otp/view/otp_screen.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/privacy_row_component.dart';
 import 'package:more_2_drive/presentation/register/view_models/phone_register_cubit.dart';
-import 'package:more_2_drive/presentation/widgets/button_component.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/first_name_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/last_name_formfield.dart';
-import 'package:more_2_drive/presentation/widgets/form_field/phone_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/phonenum_textfield.dart';
 
 import '../../../core/app_constants/constants.dart';
 import '../../../core/functions/show_toast.dart';
 import '../../../core/network/local/cache_helper.dart';
-import '../../home/home_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({Key? key}) : super(key: key);
-
- static final _formKey = GlobalKey<FormState>();
-
-  var fname = TextEditingController();
-  var sname = TextEditingController();
-  var phone = TextEditingController();
-
-
-
+  static final _formKey = GlobalKey<FormState>();
+  final fname = TextEditingController();
+  final sname = TextEditingController();
+  final phone = TextEditingController();
+RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +38,7 @@ class RegisterScreen extends StatelessWidget {
       token = state.phoneLoginModel.token!;
 
       CacheHelper.saveDate(key: 'access_token', value: state.phoneLoginModel.token)
-          .then((value) => {Get.to(() =>  OtpScreen(id: state.phoneLoginModel.id,))});
+          .then((value) => {Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpScreen(id: state.phoneLoginModel.id,)))});
     } else if (state is PhoneRegisterFailureState) {
       showToast(message: state.errMessage, bcColor: Colors.red);
     }
@@ -72,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                     children: [],
                   ),
                 )),
-            ImageComponent(),
+            const ImageComponent(),
             Positioned(
               left: 20.w,
               right: 20.w,
@@ -82,14 +69,14 @@ class RegisterScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: 34, right: 30, top: 10, bottom: 10).r,
                 decoration:  BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey, //New
                       blurRadius: 10,
                     )
                   ],
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
                     bottomLeft: Radius.circular(40),
@@ -106,7 +93,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 12.h,
                         ),
                         Padding(
-                          padding:EdgeInsets.only(right: 0, left: 130).r,
+                          padding:const EdgeInsets.only(right: 0, left: 130).r,
                           child: Text(
                             "الاسم الاول",
                             style: AppTextStyle.cairoSemiBold16DarkBlue,
@@ -147,11 +134,11 @@ class RegisterScreen extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            phoneNumFormfield(phone: phone),
-                            CountryCodePicker(initialSelection: "EG", showCountryOnly: true,)
+                            PhoneNumberFormField(phone: phone),
+                            const CountryCodePicker(initialSelection: "EG", showCountryOnly: true,)
                           ],
                         ),
-                        PrivacyRoComponent(),
+                        const PrivacyRoComponent(),
 
 
 
@@ -159,11 +146,10 @@ class RegisterScreen extends StatelessWidget {
 
 
                     ElevatedButton(
-                      child: Text("انشاء حساب" , style: AppTextStyle.cairoSemiBold16white ,),
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(332, 46),
+                        minimumSize: const Size(332, 46),
                         backgroundColor: AppColors.darkRed,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10))),
                       ), onPressed: () async{
                       if (_formKey.currentState!.validate()) {
@@ -178,6 +164,7 @@ class RegisterScreen extends StatelessWidget {
 
                       }
                     },
+                      child: Text("انشاء حساب" , style: AppTextStyle.cairoSemiBold16white ,),
 
                     ),
 

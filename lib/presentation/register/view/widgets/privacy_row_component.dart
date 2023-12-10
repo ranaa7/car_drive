@@ -13,7 +13,7 @@ class PrivacyRoComponent extends StatelessWidget {
         Flexible(
           child: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.check_box,
               color: AppColors.darkRed,
             ),

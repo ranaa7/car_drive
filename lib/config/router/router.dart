@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:more_2_drive/presentation/login/view/login_screen.dart';
+import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
+import 'package:more_2_drive/presentation/otp/view/otp_screen.dart';
+import 'package:more_2_drive/presentation/register/view/register_screen.dart';
 import 'package:more_2_drive/presentation/screens/cart_screen/cart_screen.dart';
 import 'package:more_2_drive/presentation/screens/categories_screen/categories_screen.dart';
 import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
@@ -8,9 +12,6 @@ import 'package:more_2_drive/presentation/screens/product_screen/product_screen.
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
-import 'package:more_2_drive/presentation/home_screen.dart';
-import 'package:more_2_drive/presentation/register/view/register_screen.dart';
-import 'package:more_2_drive/presentation/splash_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 
@@ -27,7 +28,7 @@ class RouterApp {
         case RouteName.profileScreen:
           return MaterialPageRoute(builder: (_) => const ProfileScreen());
         case RouteName.notificationScreen:
-          return MaterialPageRoute(builder: (_) => const NotificationScreen());
+          return MaterialPageRoute(builder: (_) =>  NotificationScreen());
         case RouteName.categoriesScreen:
           return MaterialPageRoute(builder: (_) => const CategoriesScreen());
         case RouteName.cartScreen:
@@ -38,9 +39,14 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const ProductScreen());
         case RouteName.searchScreen:
           return MaterialPageRoute(builder: (_) => const SearchScreen());
-
-
-
+        case RouteName.loginScreen:
+          return MaterialPageRoute(builder: (_) =>  LoginScreen());
+        case RouteName.registerScreen:
+          return MaterialPageRoute(builder: (_) =>  RegisterScreen());
+        case RouteName.otpScreen:
+          return MaterialPageRoute(builder: (_) =>  OtpScreen());
+        case RouteName.onBoardingScreen:
+          return MaterialPageRoute(builder: (_) =>  const OnBoardingScreen());
         default:
           return _errorRoute();
       }

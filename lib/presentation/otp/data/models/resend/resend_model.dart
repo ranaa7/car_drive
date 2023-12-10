@@ -1,4 +1,6 @@
 
+// ignore_for_file: unused_import
+
 import 'package:more_2_drive/presentation/login/data/models/user_model.dart';
 class ResendModel {
   bool? error;

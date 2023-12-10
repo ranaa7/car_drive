@@ -5,7 +5,7 @@ import '../../app_constants/constants.dart';
 
 class DioHelper {
   static Dio dio = Dio();
-  static const String baseURL = 'https://dev.more2drive.com/';
+  static const String baseURL = 'https://dev.more2drive.com/api/v2/';
   static void init() {
     dio = Dio(
       BaseOptions(

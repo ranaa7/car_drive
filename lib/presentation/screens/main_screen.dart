@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
           body: [
             const HomeScreen(),
             const CategoriesScreen(),
-            const NotificationScreen(),
+             NotificationScreen(),
             const ProfileScreen(),
           ][appCubit.currentIndex],
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

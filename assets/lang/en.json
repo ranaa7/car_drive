@@ -19,5 +19,6 @@
   "availableProduct": "Available",
   "emptyNotification": "You don't have any notifications now, come back later",
   "shopNow": "Shop now ➝",
-  "loadMoreProduct": "Loading More Products"
+  "loadMoreProduct": "Loading More Products",
+  "signIn": "Sign In"
 }
