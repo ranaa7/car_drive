@@ -4,17 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
-import 'package:more_2_drive/presentation/login/view_models/login_cubit.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
 import 'package:more_2_drive/presentation/widgets/button_component.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/phone_button.dart';
+import 'package:more_2_drive/presentation/widgets/button_component/signup_button.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/email_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/password_formfield.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
-import '../../../core/app_constants/constants.dart';
-import '../../../core/functions/show_toast.dart';
-import '../../../core/network/local/cache_helper.dart';
+import '../../../../core/app_constants/constants.dart';
+import '../../../../core/functions/show_toast.dart';
+import '../../../../core/network/local/cache_helper.dart';
+import '../../signup/views/signup_screen.dart';
+import '../view_models/login_cubit.dart';
+
+
 
 class LoginScreen extends StatelessWidget {
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
@@ -28,7 +32,7 @@ LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async{
           if (state is LoginSuccessState) {
             if (kDebugMode) {
               print('TOOKKEEN ${state.loginModel.token}');
@@ -38,7 +42,8 @@ LoginScreen({super.key});
                 bcColor: Colors.green);
             token = state.loginModel.token!;
             print('Token before saving: $token');
-
+                userId = state.loginModel.user!.id!.toString();
+                await CacheHelper.saveDate(key: 'user_id', value: userId);
             CacheHelper.saveDate(key: 'access_token', value: state.loginModel.token)
                 .then((value) => { Navigator.pushNamed(context, RouteName.mainScreen)});
           }
@@ -138,6 +143,7 @@ LoginScreen({super.key});
                                    ),
                                    onPressed: state is LoginLoadingState ? null : () async {
                                      if (_key.currentState!.validate()) {
+                                       islogin=true;
                                        await LoginCubit.get(context).userLogin(
                                            email: emailcontroller.text,
                                            password: passwordcontroller.text);
@@ -184,9 +190,7 @@ LoginScreen({super.key});
                           height: 4.h,
                         ),
 
-                        const ButtonComponent(
-                            text: "سجل عن طريق البريد الالكتروني",
-                            colors: AppColors.blueCielButton),
+                        SignupButton(),
                         SizedBox(
                           height: 4.h,
                         ),

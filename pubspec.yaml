@@ -69,6 +69,7 @@ dependencies:
 #  sign_in_with_apple: ^5.0.0
   country_code_picker: ^3.0.0
   pinput: ^3.0.1
+  font_awesome_flutter: ^10.6.0
 
 
 

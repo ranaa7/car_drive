@@ -24,5 +24,20 @@ class AppStrings{
   static String get shopNow => "shopNow".tr();
   static String get loadMoreProduct => "loadMoreProduct".tr();
   static String get signIn => "signIn".tr();
+  static String get ReferralCode=> "ReferralCode".tr();
+
+  static String get cart=> "cart".tr();
+  static String get MyWishlist=> "MyWishlist".tr();
+  static String get MyOrders=> "MyOrders".tr();
+  static String get  MyWallet=> "MyWallet".tr();
+  static String get messages=> "messages".tr();
+  static String get EarnedPoints=> "EarnedPoints".tr();
+  static String get address=> "address".tr();
+
+  static String get activate=> "toActivateAllFeatures".tr();
+  static String get date=> "bookYourDate".tr();
+  static String get point=> "doYourServices".tr();
+  static String get services=> "earnPoints".tr();
+
 
 }

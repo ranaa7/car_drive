@@ -27,7 +27,7 @@ RegisterScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocListener<PhoneRegisterCubit, PhoneRegisterState>(
-  listener: (context, state) {
+  listener: (context, state) async{
     if (state is PhoneRegisterSuccessState) {
       if (kDebugMode) {
         print('TOOKKEEN ${state.phoneLoginModel.token}');
@@ -35,6 +35,8 @@ RegisterScreen({super.key});
       showToast(
           message: state.phoneLoginModel.message ?? 'check your SMS',
           bcColor: Colors.green);
+      userId = state.phoneLoginModel.id.toString();
+      await CacheHelper.saveDate(key: 'user_id', value: userId);
       token = state.phoneLoginModel.token!;
 
       CacheHelper.saveDate(key: 'access_token', value: state.phoneLoginModel.token)
@@ -46,6 +48,7 @@ RegisterScreen({super.key});
   child: DefaultTabController(
       length: 4,
       child: Scaffold(
+        backgroundColor: AppColors.darkBlue,
         body: Stack(
           children: [
             Positioned(

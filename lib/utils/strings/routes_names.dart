@@ -16,6 +16,8 @@ class RouteName {
   static const String otpScreen='/otpScreen';
   static const String onBoardingScreen='/onBoardingScreen';
 
+  static const String signupScreen='/SignupScreen';
+
 
 
 

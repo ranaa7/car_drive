@@ -14,5 +14,6 @@ class EndPoints{
   static const String confirmOtp = 'auth/enterotp';
   static const String resendOtp = 'auth/resendotp';
   static const String logOut = 'auth/logout';
+  static const String counters = 'profile/counters';
 
 }

@@ -21,7 +21,22 @@
   "emptyNotification": "ليس لديك أي إشعارات الآن، عد لاحقًا",
   "shopNow": "تسوق الان ⬅",
   "loadMoreProduct": "عرض المزيد من المنتجات",
-  "signIn": "تسجيل دخول"
+  "signIn": "تسجيل دخول",
+  "ReferralCode": "انسخ رمز الإحالة الخاص بك لبدء المشاركة",
+  "cart": "عربة التسوق",
+  "MyWishlist": "رغباتي",
+  "MyOrders": "طلباتي",
+  "MyWallet":"محفظتي",
+  "messages": "رسايل",
+  "address":"عنوان",
+  "EarnedPoints": "النقاط المكتسبة",
+  "toActivateAllFeatures":"لتفعيل جميع المميزات",
+  "bookYourDate": "احجز معادك",
+  "doYourServices": "اعمل خدماتك",
+  "earnPoints" : "اكسب نقاط"
+
+
+
 
 
 

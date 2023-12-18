@@ -5,7 +5,7 @@ import '../../app_constants/constants.dart';
 
 class DioHelper {
   static Dio dio = Dio();
-  static const String baseURL = 'https://dev.more2drive.com/api/v2/';
+  static const String baseURL = 'https://more2drive.com/api/v2/';
   static void init() {
     dio = Dio(
       BaseOptions(
@@ -75,7 +75,7 @@ class DioHelper {
     String? token,
   }) async {
     dio.options.headers = {
-      'Authorization': 'Bearer ${token ?? ''}',
+      'Authorization': 'Bearer ${'token' ?? ''}',
       'Accept-Language': lang,
       'Content-Type': 'application/json',
     };

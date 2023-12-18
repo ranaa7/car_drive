@@ -10,6 +10,7 @@ import 'package:more_2_drive/presentation/otp/view_model/otp_cubit.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 import '../../../core/functions/show_toast.dart';
+import '../../screens/signup/views/signup_screen.dart';
 
 class OtpScreen extends StatelessWidget {
   final int? id;
@@ -88,6 +89,7 @@ class OtpScreen extends StatelessWidget {
                                   Radius.circular(10.r))),
                         ), onPressed: () async {
                       if (_key.currentState!.validate()) {
+                        islogin=true;
                         await OtpCubit.get(context).verifyOtp(
                             otp: pinController.text);
                         // String? token =

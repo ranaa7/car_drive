@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:more_2_drive/presentation/login/view/login_screen.dart';
-import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
+
 import 'package:more_2_drive/presentation/otp/view/otp_screen.dart';
 import 'package:more_2_drive/presentation/register/view/register_screen.dart';
 import 'package:more_2_drive/presentation/screens/cart_screen/cart_screen.dart';
@@ -11,8 +10,12 @@ import 'package:more_2_drive/presentation/screens/notification_screen/notificati
 import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
+import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
+
+import '../../presentation/screens/login/view/login_screen.dart';
+import '../../presentation/screens/onboarding/view/onboarding_screen.dart';
 
 
 class RouterApp {
@@ -47,6 +50,8 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) =>  OtpScreen());
         case RouteName.onBoardingScreen:
           return MaterialPageRoute(builder: (_) =>  const OnBoardingScreen());
+        case RouteName.signupScreen:
+          return MaterialPageRoute(builder: (_) =>  SignupScreen());
         default:
           return _errorRoute();
       }

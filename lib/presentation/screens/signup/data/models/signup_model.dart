@@ -1,22 +1,25 @@
 
 // ignore_for_file: unused_import
 
-class ResendModel {
+class SignupModel {
   bool? error;
   String? message;
+  String? token;
   int? id;
 
-  ResendModel({this.error , this.message , this.id});
+  SignupModel({this.error , this.message ,this.token, this.id});
 
-  factory  ResendModel.fromJson(Map<String, dynamic> json) => ResendModel(
+  factory  SignupModel.fromJson(Map<String, dynamic> json) => SignupModel(
       error: json['result'] as bool?,
       message: json['message'] as String?,
+      token: json['token'] as String?,
       id: json['user_id'] as int?
   );
 
   Map<String, dynamic> toJson() => {
     'result':error,
     'message':message,
+    'token': token,
     'user_id': id,
   };
 }

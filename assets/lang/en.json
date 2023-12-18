@@ -20,5 +20,17 @@
   "emptyNotification": "You don't have any notifications now, come back later",
   "shopNow": "Shop now ➝",
   "loadMoreProduct": "Loading More Products",
-  "signIn": "Sign In"
+  "signIn": "Sign In",
+  "ReferralCode": "copy your referral code to start sharing",
+  "cart": "cart",
+  "MyWishlist": "My wishlist",
+  "MyOrders": "My orders",
+  "MyWallet":"My wallet",
+  "messages": "Messages",
+  "address":"Address",
+  "EarnedPoints": "Earned points",
+  "toActivateAllFeatures": "to activate all features",
+  "bookYourDate": "Book your date",
+  "doYourServices":"Do your services",
+  "earnPoints": "Earn points"
 }

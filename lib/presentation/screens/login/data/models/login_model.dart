@@ -1,5 +1,6 @@
 
-import 'package:more_2_drive/presentation/login/data/models/user_model.dart';
+import 'package:more_2_drive/presentation/screens/login/data/models/user_model.dart';
+
 class LoginModel {
   bool? error;
   String? message;

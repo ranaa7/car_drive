@@ -4,7 +4,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/core/network/local/cache_helper.dart';
 import 'package:more_2_drive/generated/assets.dart';
-import 'package:more_2_drive/presentation/onboarding/view/widgets/onboarding_list_screen.dart';
+import 'package:more_2_drive/presentation/screens/onboarding/view/widgets/onboarding_list_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -116,7 +116,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   .then((value) {
                                 if ((value)) {
                                   Navigator.pushNamed(
-                                      context, RouteName.loginScreen);
+                                      context, RouteName.signupScreen);
                                 }
                               });
                             },
@@ -164,7 +164,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   .then((value) {
                                 if ((value)) {
                                   Navigator.pushNamed(
-                                      context, RouteName.loginScreen);
+                                      context, RouteName.mainScreen);
                                 }
                               });
                             },

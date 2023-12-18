@@ -9,9 +9,6 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:more_2_drive/core/network/local/cache_helper.dart';
-import 'package:more_2_drive/presentation/login/view/login_screen.dart';
-import 'package:more_2_drive/presentation/login/view_models/login_cubit.dart';
-import 'package:more_2_drive/presentation/onboarding/view/onboarding_screen.dart';
 import 'package:more_2_drive/presentation/otp/view_model/otp_cubit.dart';
 import 'package:more_2_drive/domain/repositories/banner_repo/banner_repo.dart';
 import 'package:more_2_drive/domain/repositories/categories_repo/categories_repo.dart';
@@ -20,7 +17,14 @@ import 'package:more_2_drive/locator.dart';
 import 'package:more_2_drive/presentation/cubits/banner_cubit/banner_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
+import 'package:more_2_drive/presentation/screens/login/view/login_screen.dart';
+import 'package:more_2_drive/presentation/screens/login/view_models/login_cubit.dart';
+import 'package:more_2_drive/presentation/screens/login_profile_screen/login_profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/main_screen.dart';
+import 'package:more_2_drive/presentation/screens/onboarding/view/onboarding_screen.dart';
+import 'package:more_2_drive/presentation/screens/profile_screen/view_models/counter/counter_cubit.dart';
+import 'package:more_2_drive/presentation/screens/signup/view_models/signup_cubit.dart';
+import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -74,8 +78,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => CategoriesCubit(sl<CategoriesRepo>())..getAllCategories()..getTopCategories()),
           BlocProvider(create: (_) => ProductCubit(sl<ProductRepo>())..getAllProduct()..getFeaturedProduct()),
           BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => SignupCubit()),
           BlocProvider(create: (context) => PhoneRegisterCubit()),
           BlocProvider(create: (context) => OtpCubit()),
+          BlocProvider(create: (context) => CounterCubit()),
         ],
         child: ScreenUtilInit(
         designSize: const Size(430, 932),
@@ -85,7 +91,7 @@ class MyApp extends StatelessWidget {
                 theme: Themes.defaultTheme,
                 color: AppColors.white,
                 title: 'Speech',
-                home: startWidget,
+                home: LoginProfileScreen( ),
                 onGenerateRoute: RouterApp.generateRoute,
                 builder: LocalizeAndTranslate.directionBuilder,
                 navigatorKey: RouterKeys.mainNavigatorKey,

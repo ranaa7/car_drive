@@ -9,8 +9,10 @@ import 'package:more_2_drive/presentation/cubits/app_cubit/app_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/app_cubit/app_state.dart';
 import 'package:more_2_drive/presentation/screens/categories_screen/categories_screen.dart';
 import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
+import 'package:more_2_drive/presentation/screens/login_profile_screen/login_profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/notification_screen/notification_screen.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
+import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
 import 'package:more_2_drive/presentation/widgets/custom_bottom_navigation/bottome_nav_bar.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
@@ -32,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
             const HomeScreen(),
             const CategoriesScreen(),
              NotificationScreen(),
-            const ProfileScreen(),
+          islogin == true ? ProfileScreen() : LoginProfileScreen(),
           ][appCubit.currentIndex],
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: SizedBox(
