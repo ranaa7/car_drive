@@ -32,5 +32,20 @@
   "toActivateAllFeatures": "to activate all features",
   "bookYourDate": "Book your date",
   "doYourServices":"Do your services",
-  "earnPoints": "Earn points"
+  "earnPoints": "Earn points",
+  "yourOrders": "Your orders",
+  "purchaseHistory": "Purchase history",
+  "orderDetails": "Order Details",
+  "email": "Email",
+  "name": "Name",
+  "phoneNumber": "Phone number",
+  "password": "Password",
+  "basicInformation": "Basic Information",
+  "updateProfile": "Update Profile",
+  "deleteAccount" : "Delete profile",
+  "orderPlaced": "Order Placed",
+  "Confirmed": "Confirmed",
+  "onDelivery":"On delivery",
+  "delivered":"Delivered"
+
 }

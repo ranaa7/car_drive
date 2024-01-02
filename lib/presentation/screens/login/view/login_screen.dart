@@ -40,8 +40,8 @@ LoginScreen({super.key});
             showToast(
                 message: state.loginModel.message ?? 'Successfully logged in',
                 bcColor: Colors.green);
-            token = state.loginModel.token!;
-            print('Token before saving: $token');
+            // token = state.loginModel.token!;
+            // print('Token before saving: $token');
                 userId = state.loginModel.user!.id!.toString();
                 await CacheHelper.saveDate(key: 'user_id', value: userId);
             CacheHelper.saveDate(key: 'access_token', value: state.loginModel.token)
@@ -141,22 +141,25 @@ LoginScreen({super.key});
                                          borderRadius:
                                          BorderRadius.all(Radius.circular(10))),
                                    ),
-                                   onPressed: state is LoginLoadingState ? null : () async {
+                                   onPressed:
+                                   state is LoginLoadingState ? null : () async {
                                      if (_key.currentState!.validate()) {
                                        islogin=true;
                                        await LoginCubit.get(context).userLogin(
                                            email: emailcontroller.text,
                                            password: passwordcontroller.text);
-                                       print(emailcontroller);
-                                       print(passwordcontroller);
                                        //await CacheHelper.saveDate(key: 'access_token', value: token);
 
                                        String? token =
                                        CacheHelper.getData(key:'access_token');
+
+                                       CacheHelper.saveDate(key: 'islogged', value: islogged);
+
                                        print('Retrieved Token: $token');
                                        if (kDebugMode) {
                                          print('UserTOOK $token');
                                        }
+                                       Navigator.pushNamed(context, RouteName.mainScreen);
 
                                      }
                                    },

@@ -7,7 +7,10 @@ import 'package:more_2_drive/presentation/screens/categories_screen/categories_s
 import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
 import 'package:more_2_drive/presentation/screens/main_screen.dart';
 import 'package:more_2_drive/presentation/screens/notification_screen/notification_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_details/view_models/order_details_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_screen/views/order_screen.dart';
 import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/screens/profile_screen/edit_profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
 import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
@@ -52,6 +55,12 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) =>  const OnBoardingScreen());
         case RouteName.signupScreen:
           return MaterialPageRoute(builder: (_) =>  SignupScreen());
+        case RouteName.orderScreen:
+          return MaterialPageRoute(builder: (_) =>  OrderScreen());
+        // case RouteName.orderDetailsScreen:
+        //   return MaterialPageRoute(builder: (_) =>  OrderDetailsScreen(id: null,));
+        case RouteName.editProfilescreen:
+          return MaterialPageRoute(builder: (_) =>  EditProfileScreen());
         default:
           return _errorRoute();
       }

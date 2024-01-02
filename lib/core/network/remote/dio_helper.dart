@@ -35,7 +35,7 @@ class DioHelper {
     print('dio_helper postData');
 
     String Authorization = 'Bearer ${token ?? ''}';
-    print('36');
+
     String Langauge = lang ;
     print('38');
     dio.options.headers = {

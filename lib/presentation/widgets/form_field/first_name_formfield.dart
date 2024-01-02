@@ -13,6 +13,7 @@ class FirstNameFormfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: fname,
+
       validator: ValidationForm.nameValidator,
        keyboardType: TextInputType.text,
       decoration: InputDecoration(

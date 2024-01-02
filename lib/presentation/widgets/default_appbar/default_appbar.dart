@@ -35,10 +35,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // const CustomCircleContainer(image: Assets.svgLike, imageHeight: 22, imageWidth: 22, containerWidth: 35, containerHeight: 35),
-          // const CustomCircleContainer(image: Assets.svgShare, imageHeight: 22, imageWidth: 22, containerWidth: 35, containerHeight: 35),
-          // const CustomCircleContainer(image: Assets.svgShoppingCart, imageHeight: 22, imageWidth: 22, containerWidth: 35, containerHeight: 35,),
-          // const Spacer(),
+
           Text(
             title,
             softWrap: false,
@@ -47,7 +44,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
             style: AppTextStyle.cairoMedium16Blue,
           ),
           IconButton(
-            icon: const Icon(Icons.arrow_back_rounded),
+            icon: const Icon(Icons.arrow_back_rounded , color: AppColors.black,),
             onPressed: () {
               Navigator.pop(context, RouteName.mainScreen);
             },

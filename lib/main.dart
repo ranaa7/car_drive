@@ -9,6 +9,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:more_2_drive/core/network/local/cache_helper.dart';
+import 'package:more_2_drive/presentation/cubits/orders_cubit/orders_cubit.dart';
 import 'package:more_2_drive/presentation/otp/view_model/otp_cubit.dart';
 import 'package:more_2_drive/domain/repositories/banner_repo/banner_repo.dart';
 import 'package:more_2_drive/domain/repositories/categories_repo/categories_repo.dart';
@@ -22,6 +23,9 @@ import 'package:more_2_drive/presentation/screens/login/view_models/login_cubit.
 import 'package:more_2_drive/presentation/screens/login_profile_screen/login_profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/main_screen.dart';
 import 'package:more_2_drive/presentation/screens/onboarding/view/onboarding_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_details/view/order_details_cubit.dart';
+import 'package:more_2_drive/presentation/screens/order_item/view/order_item_cubit.dart';
+import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/view_models/counter/counter_cubit.dart';
 import 'package:more_2_drive/presentation/screens/signup/view_models/signup_cubit.dart';
 import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
@@ -43,15 +47,19 @@ void main() async {
   Widget widget;
 
   bool? splash = CacheHelper.getData(key: 'onboarding');
+  print(splash);
   String? token = CacheHelper.getData(key: 'access_token');
+  print(token);
   if (splash != null) {
     if (token != null) {
-      widget = const SplashScreen();
-    }
-    else {
-      widget = LoginScreen();
+      print('Going to homescreen');
+      widget = MainScreen();
+    } else {
+      print('Going to LoginScreen');
+      widget = SplashScreen();
     }
   } else {
+    print('Going to OnBoardingScreen');
     widget = const OnBoardingScreen();
   }
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -82,6 +90,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => PhoneRegisterCubit()),
           BlocProvider(create: (context) => OtpCubit()),
           BlocProvider(create: (context) => CounterCubit()),
+          BlocProvider(create: (context) => OrdersCubit()),
+          BlocProvider(create: (context) => OrderDetailsCubit()),
+          BlocProvider(create: (context) => OrderItemCubit()),
+          BlocProvider(create: (context) => UpdateProfileCubit()),
         ],
         child: ScreenUtilInit(
         designSize: const Size(430, 932),
@@ -91,7 +103,7 @@ class MyApp extends StatelessWidget {
                 theme: Themes.defaultTheme,
                 color: AppColors.white,
                 title: 'Speech',
-                home: LoginProfileScreen( ),
+                home: startWidget,
                 onGenerateRoute: RouterApp.generateRoute,
                 builder: LocalizeAndTranslate.directionBuilder,
                 navigatorKey: RouterKeys.mainNavigatorKey,

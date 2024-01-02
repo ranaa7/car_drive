@@ -87,6 +87,10 @@ class AppTextStyle {
   cairoBold.merge(fontSize25).copyWith(color: AppColors.white);
   static final TextStyle cairoBold20black =
   cairoBold.merge(fontSize20).copyWith(color: AppColors.black);
+
+  static final TextStyle cairoBold15black =
+  cairoBold.merge(fontSize15).copyWith(color: AppColors.black);
+
   static final TextStyle cairoBold20blue =
   cairoBold.merge(fontSize20).copyWith(color: AppColors.blue);
   static final TextStyle cairo20grey5 =
@@ -100,6 +104,10 @@ class AppTextStyle {
   cairoSemiBold.merge(fontSize15).copyWith(color: AppColors.grey2);
   static final TextStyle cairoSemiBold16 =
   cairoSemiBold.merge(fontSize16).copyWith(color: AppColors.white);
+
+
+  static final TextStyle cairoBoldgrey20 =
+  cairoBold.merge(fontSize20).copyWith(color: AppColors.grey2);
   static final TextStyle cairoSemiBold17Red =
   cairoSemiBold.merge(fontSize17).copyWith(color: AppColors.red);
   static final TextStyle cairoSemiBold15Red =
@@ -120,6 +128,18 @@ class AppTextStyle {
   cairoThin.merge(fontSize11).copyWith(color: AppColors.red);
   static final TextStyle cairoBold17Red =
   cairoBold.merge(fontSize17).copyWith(color: AppColors.red);
+
+  static final TextStyle cairoBold17DarkRed =
+  cairoBold.merge(fontSize17).copyWith(color: AppColors.darkRed);
+
+  static final TextStyle cairoBold24DarkRed =
+  cairoBold.merge(fontSize24).copyWith(color: AppColors.darkRed);
+
+  static final TextStyle cairoSemiBold17DarkRed =
+  cairoSemiBold.merge(fontSize17).copyWith(color: AppColors.darkRed);
+
+  static final TextStyle cairoSemiBold17green =
+  cairoSemiBold.merge(fontSize17).copyWith(color: AppColors.green1);
   static final TextStyle cairoSemiBold16white =
   cairoSemiBold.merge(fontSize16).copyWith(color: AppColors.white);
 

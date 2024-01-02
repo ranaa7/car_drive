@@ -33,7 +33,22 @@
   "toActivateAllFeatures":"لتفعيل جميع المميزات",
   "bookYourDate": "احجز معادك",
   "doYourServices": "اعمل خدماتك",
-  "earnPoints" : "اكسب نقاط"
+  "earnPoints" : "اكسب نقاط",
+  "yourOrders": "طلباتك",
+  "purchaseHistory": "تاريخ الطلبات",
+  "orderDetails": "تفاصيل الطلبات" ,
+  "email": "بريد الالكتروني",
+  "name": "الاسم",
+  "phoneNumber": "رقم الهاتف",
+  "password": "كلمة السر",
+  "basicInformation": "المعلومات الرئيسية",
+  "updateProfile": "تحديث الملف الشخصي",
+  "deleteAccount" : "الغاء الحساب",
+  "orderPlaced": "تم الطلب",
+  "Confirmed": "تم التاكيد",
+  "onDelivery":"قيد التوصيل",
+  "delivered":"تم التوصيل"
+
 
 
 

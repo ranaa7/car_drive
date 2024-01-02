@@ -52,7 +52,7 @@ class DioHelper {
       Map<String, dynamic> data = const {},
       Map<String, dynamic>? query,
       String? token,
-      ProgressCallback? onSendProgress}) async {
+      ProgressCallback? onSendProgress, required Map<String, Object> queryParameters}) async {
     try {
       _dio.options.headers = {
         'Content-Type': 'multipart/form-data',

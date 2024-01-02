@@ -6,3 +6,5 @@ String token = CacheHelper.getData(key: 'access_token') ?? '';
 String lang = CacheHelper.getData(key: 'lang') ?? '';
 
 String userId = CacheHelper.getData(key: 'user_id') ?? '';
+
+String islogged = CacheHelper.getData(key: 'islogged') ?? '';

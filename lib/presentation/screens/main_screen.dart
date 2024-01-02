@@ -16,6 +16,8 @@ import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dar
 import 'package:more_2_drive/presentation/widgets/custom_bottom_navigation/bottome_nav_bar.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
+import '../../core/app_constants/constants.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -34,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
             const HomeScreen(),
             const CategoriesScreen(),
              NotificationScreen(),
-          islogin == true ? ProfileScreen() : LoginProfileScreen(),
+          token != null? ProfileScreen() : LoginProfileScreen(),
           ][appCubit.currentIndex],
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: SizedBox(

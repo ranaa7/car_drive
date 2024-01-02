@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/style/app_colors.dart';
 
@@ -10,8 +11,8 @@ class IconContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:80,
-      width: 68,
+      height:100.h,
+      width: 73.w,
       decoration: BoxDecoration(
         color: AppColors.deepDarkBlue,
         borderRadius: BorderRadius.only(
@@ -26,7 +27,7 @@ class IconContainer extends StatelessWidget {
         child: Column(
           children: [
             Icon(icon , color: Colors.white,),
-            SizedBox(height: 3 ,),
+            Spacer(),
             Text(text,style: TextStyle(fontSize: 9 , color: Colors.white),)
           ],),
       ),

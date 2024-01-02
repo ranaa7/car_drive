@@ -29,6 +29,8 @@ class AppStrings{
   static String get cart=> "cart".tr();
   static String get MyWishlist=> "MyWishlist".tr();
   static String get MyOrders=> "MyOrders".tr();
+
+  static String get yourOrders=> "yourOrders".tr();
   static String get  MyWallet=> "MyWallet".tr();
   static String get messages=> "messages".tr();
   static String get EarnedPoints=> "EarnedPoints".tr();
@@ -38,6 +40,25 @@ class AppStrings{
   static String get date=> "bookYourDate".tr();
   static String get point=> "doYourServices".tr();
   static String get services=> "earnPoints".tr();
+  static String get noorders=> "noOrdersYet".tr();
+  static String get purchasehist=> "purchaseHistory".tr();
+  static String get Orderdetails=> "orderDetails".tr();
+
+  static String get name=> "name".tr();
+  static String get email=> "email".tr();
+  static String get phone=> "phoneNumber".tr();
+  static String get password=> "password".tr();
+
+  static String get Basicinfo=> "basicInformation".tr();
+
+  static String get updateprofile=> "updateProfile".tr();
+
+  static String get deleteAccount=> "deleteAccount".tr();
+
+  static String get orderplaced=> "orderPlaced".tr();
+  static String get confirmed=> "Confirmed".tr();
+  static String get onDelivery=> "onDelivery".tr();
+  static String get delivered=> "delivered".tr();
 
 
 }

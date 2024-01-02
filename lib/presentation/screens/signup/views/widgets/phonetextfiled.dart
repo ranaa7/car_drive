@@ -13,7 +13,7 @@ class phoneFormField extends StatelessWidget {
     return TextFormField(
 
       controller: phone,
-      validator: ValidationForm.emailValidator,
+      validator: ValidationForm.phoneValidator,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 3.w),

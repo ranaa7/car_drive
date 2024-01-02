@@ -7,13 +7,16 @@ class Themes {
   static ThemeData get defaultTheme => ThemeData(
       fontFamily: Fonts.cairo,
       primaryColor: AppColors.white,
+
       appBarTheme: const AppBarTheme(
+
         color: AppColors.white,
         titleTextStyle: TextStyle(color: AppColors.white),
         scrolledUnderElevation: 0.0,
         elevation: 0.0,
       ),
       scaffoldBackgroundColor: AppColors.white,
+      useMaterial3: false,
       colorScheme: ColorScheme.fromSwatch()
           .copyWith(secondary: AppColors.white)
           .copyWith(background: AppColors.white));
