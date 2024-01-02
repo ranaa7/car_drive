@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:more_2_drive/data/remote/dio_helper.dart';
 import 'package:more_2_drive/domain/models/failure.dart';
 import 'package:more_2_drive/domain/models/response_model.dart';
-import 'package:more_2_drive/utils/strings/constants.dart';
 import 'package:more_2_drive/utils/strings/end_points.dart';
 
 class ProductRepo {
@@ -51,11 +50,71 @@ class ProductRepo {
       return Right(failure);
     }
   }
-  Future<Either<ResponseModel, Failure>> getSearchProduct(int? page) async {
+
+  Future<Either<ResponseModel, Failure>> getRelatedProductsOfProduct(
+      int? id) async {
     try {
       Response response = await _dio.get(
-        endPoint: EndPoints.getSearchProducts ,
-        query: {'page':page},
+        endPoint: EndPoints.getRelatedProducts + id.toString(),
+      );
+
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
+
+  Future<Either<ResponseModel, Failure>> getProductOfCategories(
+      int? id, int? page) async {
+    try {
+      Response response = await _dio.get(
+        endPoint: EndPoints.getProductOfCategories + id.toString(),
+        query: {'page': page},
+      );
+
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
+
+  Future<Either<ResponseModel, Failure>> getProductOfBrands(
+      int? id, int? page) async {
+    try {
+      Response response = await _dio.get(
+        endPoint: EndPoints.getProductOfBrands + id.toString(),
+        query: {'page': page},
+      );
+
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
+
+  Future<Either<ResponseModel, Failure>> getSearchProduct(
+    int? page,
+    String? sortKey,
+    String? categories,
+    String? minimum,
+    String? maximum,
+  ) async {
+    try {
+      Response response = await _dio.get(
+        endPoint: EndPoints.getSearchProducts,
+        query: {
+          'page': page,
+          'sort_key': sortKey,
+          'categories': categories,
+          'min': minimum,
+          'max': maximum
+        },
       );
 
       return Left(ResponseModel.fromJson(response.data));

@@ -9,13 +9,16 @@ class CustomCircleContainer extends StatelessWidget {
   final int imageWidth;
   final int containerWidth;
   final int containerHeight;
-  const CustomCircleContainer({super.key, required this.image, required this.imageHeight, required this.imageWidth, required this.containerWidth, required this.containerHeight});
+
+  const CustomCircleContainer(
+      {super.key, required this.image, required this.imageHeight, required this.imageWidth, required this.containerWidth, required this.containerHeight});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){},
-      child: CircleAvatar(backgroundColor: AppColors.white,child: CustomImageView(svgPath: image,fit:BoxFit.contain,height:imageHeight.h,width:imageWidth.w),),
-    );
+    return CircleAvatar(backgroundColor: AppColors.white,
+      child: CustomImageView(imagePath: image,
+          fit: BoxFit.contain,
+          height: imageHeight.h,
+          width: imageWidth.w),);
   }
 }

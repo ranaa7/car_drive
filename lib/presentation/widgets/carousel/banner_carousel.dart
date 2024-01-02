@@ -7,7 +7,10 @@ import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/components/custom_image_view.dart';
 import 'package:more_2_drive/presentation/cubits/banner_cubit/banner_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/banner_cubit/banner_state.dart';
+import 'package:more_2_drive/utils/strings/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class BannerCarousel extends StatefulWidget {
   final bool isHome;
@@ -19,8 +22,6 @@ class BannerCarousel extends StatefulWidget {
 }
 
 class _BannerCarouselState extends State<BannerCarousel> {
-
-
   final List<String> imgList = [
     Assets.imagesEmpty,
   ];
@@ -28,12 +29,11 @@ class _BannerCarouselState extends State<BannerCarousel> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<BannerCubit, BannerState>(
       builder: (context, state) {
         final BannerCubit bannerCubit = BannerCubit.get(context);
 
-        final  banners = bannerCubit.banners;
+        final banners = bannerCubit.banners;
         return Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -59,41 +59,60 @@ class _BannerCarouselState extends State<BannerCarousel> {
                         viewportFraction: 1,
                         autoPlay: true,
                         autoPlayInterval: const Duration(seconds: 3)),
-                    items: banners.isNotEmpty?banners.map((imgUrl) {
-                      return SizedBox(
-                          width: double.infinity,
-                          child:  CustomImageView(
-                            url:banners[currentIndex].photo,
-                            fit: BoxFit.fill,
-                          )
-                          );
-                    }).toList():[CustomImageView(imagePath: Assets.imagesEmpty,fit: BoxFit.fill,width: double.infinity,)],
+                    items: banners.isNotEmpty
+                        ? banners.map((imgUrl) {
+                      return InkWell(
+                        onTap: () {
+                          // Navigator.push(context, MaterialPageRoute(
+                          //     builder: (context) => More2DriveWebView()));
+                          launchUrl(Uri.parse(Constants.more2Drive),mode: LaunchMode.inAppBrowserView);
+                        },
+                        child: SizedBox(
+                            width: double.infinity,
+                            child: CustomImageView(
+                              url: banners[currentIndex].photo,
+                              fit: BoxFit.fill,
+                            )),
+                      );
+                    }).toList()
+                        : [
+                      CustomImageView(
+                        imagePath: Assets.imagesEmpty,
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                      )
+                    ],
                   ),
                   Align(
-                    alignment: widget.isHome ? Alignment.topLeft : Alignment
-                        .bottomCenter,
+                    alignment: widget.isHome
+                        ? Alignment.topLeft
+                        : Alignment.bottomCenter,
                     child: Padding(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 14.0.h, horizontal: 24.w),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 25.0.h, horizontal: 20.w),
                       child: AnimatedSmoothIndicator(
                         activeIndex: currentIndex,
                         count: banners.length,
-                        effect: ExpandingDotsEffect(
+                        effect: const ExpandingDotsEffect(
                             dotColor: AppColors.grey,
                             activeDotColor: AppColors.black),
                       ),
                     ),
                   ),
-                  (widget.isHome ? Align(
+                  (widget.isHome
+                      ? Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       height: 150.h,
-                      decoration: BoxDecoration(gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [AppColors.red2, AppColors.transparent],
-                      )),),
-                  ) : const SizedBox())
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [AppColors.red2, AppColors.transparent],
+                          )),
+                    ),
+                  )
+                      : const SizedBox())
                 ],
               ),
             ));

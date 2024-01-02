@@ -5,16 +5,19 @@ import 'package:more_2_drive/utils/strings/fonts.dart';
 
 class Themes {
   static ThemeData get defaultTheme => ThemeData(
+
+    useMaterial3: false,
       fontFamily: Fonts.cairo,
-      primaryColor: AppColors.black,
+      primaryColor: AppColors.blue,
       appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(color: AppColors.blue),
         color: AppColors.black,
         titleTextStyle: TextStyle(color: AppColors.black),
         scrolledUnderElevation: 0.0,
         elevation: 0.0,
       ),
-      scaffoldBackgroundColor: AppColors.white,
+      scaffoldBackgroundColor: AppColors.white1,
       colorScheme: ColorScheme.fromSwatch()
-          .copyWith(secondary: AppColors.black)
-          .copyWith(background: AppColors.black));
+          .copyWith(secondary: AppColors.blue)
+          .copyWith(background: AppColors.blue));
 }

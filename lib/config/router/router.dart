@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:more_2_drive/presentation/screens/brands_screen/product_of_brands_screen.dart';
+import 'package:more_2_drive/presentation/screens/car_screen/add_or_edit_car_screen.dart';
+import 'package:more_2_drive/presentation/screens/car_screen/select_car_screen.dart';
 import 'package:more_2_drive/presentation/screens/cart_screen/cart_screen.dart';
 import 'package:more_2_drive/presentation/screens/categories_screen/categories_screen.dart';
+import 'package:more_2_drive/presentation/screens/categories_screen/product_of_category_screen.dart';
 import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
 import 'package:more_2_drive/presentation/screens/main_screen.dart';
 import 'package:more_2_drive/presentation/screens/notification_screen/notification_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_screen/add_or_edit_address_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_screen/payment_method_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_screen/pickup_address_screen.dart';
+import 'package:more_2_drive/presentation/screens/order_screen/pickup_time_screen.dart';
+import 'package:more_2_drive/presentation/screens/payment_screen/paymob_screen.dart';
 import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
@@ -35,6 +44,24 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const ProductScreen());
         case RouteName.searchScreen:
           return MaterialPageRoute(builder: (_) => const SearchScreen());
+        case RouteName.productOfCategoriesScreen:
+          return MaterialPageRoute(builder: (_) =>  ProductOfCategoryScreen(  id: args as int,));
+        case RouteName.productOfBrandScreen:
+          return MaterialPageRoute(builder: (_) =>   ProductOfBrandScreen(id: args as int,));
+        case RouteName.selectCarScreen:
+          return MaterialPageRoute(builder: (_) => const SelectCarScreen());
+        case RouteName.orderPickUpLocationScreen:
+          return MaterialPageRoute(builder: (_) => const OrderPickUpLocationScreen());
+        case RouteName.orderPickUpTimeScreen:
+          return MaterialPageRoute(builder: (_) => const OrderPickUpTimeScreen());
+        case RouteName.orderPaymentMethod:
+          return MaterialPageRoute(builder: (_) => const PaymentMethodScreen());
+        case RouteName.payMobScreen:
+          return MaterialPageRoute(builder: (_) => const PayMobScreen());
+        case RouteName.addOrEditCarScreen:
+          return MaterialPageRoute(builder: (_) => const AddOrEditCarScreen());
+        case RouteName.addOrEditAddressScreen:
+          return MaterialPageRoute(builder: (_) => const AddOrEditAddressScreen());
         default:
           return _errorRoute();
       }

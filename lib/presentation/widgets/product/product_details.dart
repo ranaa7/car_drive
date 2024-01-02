@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:intl/intl.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/components/custom_container.dart';
+import 'package:more_2_drive/presentation/components/custom_expandable_description.dart';
 import 'package:more_2_drive/presentation/components/custom_image_view.dart';
 import 'package:more_2_drive/presentation/components/increament_decreament.dart';
-import 'package:more_2_drive/presentation/widgets/suggest_product/suggest_product.dart';
+import 'package:more_2_drive/presentation/cubits/cart_cubit/cart_cubit.dart';
+import 'package:more_2_drive/presentation/widgets/buttons/button_1.dart';
+import 'package:more_2_drive/presentation/widgets/product/related_products.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class ProductDetails extends StatelessWidget {
+  final bool isLoading;
+  final int productId;
+
   final bool hasDiscount;
   final String productName;
   final String productPrice;
@@ -26,8 +32,11 @@ class ProductDetails extends StatelessWidget {
   final String detailsString;
   final String details;
   final int productCount;
+  final int rate;
+  final VoidCallback minusPressed;
+  final VoidCallback plusPressed;
 
-  const ProductDetails(
+  ProductDetails(
       {super.key,
       required this.productName,
       required this.productPrice,
@@ -41,11 +50,14 @@ class ProductDetails extends StatelessWidget {
       required this.detailsString,
       required this.details,
       required this.sellerImage,
-      this.productCount = 0, required this.hasDiscount});
+      this.productCount = 1,
+      required this.hasDiscount,
+      required this.rate,
+      required this.isLoading,
+      required this.productId, required this.minusPressed, required this.plusPressed});
 
   @override
   Widget build(BuildContext context) {
-    RegExp exp = RegExp(r'<[^>]*>|&[^;]+;',multiLine: true,caseSensitive: true);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -73,46 +85,49 @@ class ProductDetails extends StatelessWidget {
               ),
             )),
         SizedBox(height: 3.h),
-        hasDiscount?Text(
-          discount,
-          style: AppTextStyle.cairoSemiBold14LineThroughWhite,
-        ):SizedBox(height: 5.h,),
+        hasDiscount
+            ? Text(
+                discount,
+                style: AppTextStyle.cairoSemiBold14LineThroughWhite,
+              )
+            : SizedBox(
+                height: 5.h,
+              ),
         SizedBox(
           height: 2.h,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomImageView(
-              svgPath: Assets.svgStar,
-            ),
-            CustomImageView(
-              svgPath: Assets.svgStar,
-            ),
-            CustomImageView(
-              svgPath: Assets.svgStar,
-            ),
-            CustomImageView(
-              svgPath: Assets.svgStar,
-            ),
-            CustomImageView(
-              svgPath: Assets.svgStar,
-            ),
-          ],
+        RatingBarIndicator(
+          rating: rate.toDouble(),
+          itemBuilder: (context, index) => const Icon(
+            Icons.star,
+            color: Colors.amber,
+          ),
+          itemCount: 5,
+          itemSize: 50.0,
+          direction: Axis.horizontal,
         ),
         SizedBox(
           height: 11.h,
         ),
         Row(
           children: [
-            Text(
-              "(${"${AppStrings.availableProduct} ""$availableProduct"})",
-              style: AppTextStyle.cairoMedium16White,
+            Expanded(
+              child: Text(
+                "(${"${AppStrings.availableProduct} " "$availableProduct"})",
+                style: AppTextStyle.cairoMedium16White,
+              ),
             ),
             SizedBox(
               width: 20.w,
             ),
-            const IncreamentDecreament()
+            Expanded(
+              child: IncreamentDecreament(
+                counter: productCount,
+                minusPressed: minusPressed,
+                plusPressed: plusPressed,
+              ),
+            ),
+            const Spacer()
           ],
         ),
         SizedBox(
@@ -150,8 +165,8 @@ class ProductDetails extends StatelessWidget {
             DetailsRow(
                 details: AppStrings.sellerLogo,
                 child: CustomContainer(
-                  height: 26,
-                  width: 100,
+                  height: 30,
+                  width: 70,
                   color: AppColors.white,
                   child: CustomImageView(
                     url: sellerImage,
@@ -171,16 +186,8 @@ class ProductDetails extends StatelessWidget {
             ),
             DetailsRow(
                 details: AppStrings.detailsString,
-                child: SizedBox(
-                  height: 100.h,
-                  width: 300.w,
-                  child: Text(
-                    details.replaceAll(exp, ""),
-                    style: AppTextStyle.cairoSemiBold16,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.end,
-                    maxLines: 3,
-                  ),
+                child: ExpandableWidget(
+                  description: details,
                 )),
             SizedBox(
               height: 11.h,
@@ -192,37 +199,31 @@ class ProductDetails extends StatelessWidget {
             SizedBox(
               height: 11.h,
             ),
-            SuggestProduct(
-                details: details, strokedPrice: discount, price: "price", hasDiscount: hasDiscount,),
-            SizedBox(
-              height: 8.h,
+            RelatedProductsList(
+              isLoading: isLoading,
             ),
-            SuggestProduct(
-                details: details, strokedPrice: discount, price: "price", hasDiscount: hasDiscount,),
             SizedBox(height: 19.h),
             Row(
               children: [
-                Container(
-                  height: 103.h,
-                  width: 190.w,
+                Button1(
                   color: AppColors.red3,
-                  child: Center(
-                      child: Text(
-                    "Buy Now",
-                    style: AppTextStyle.cairoBold32White,
-                    textAlign: TextAlign.center,
-                  )),
+                  height: 80,
+                  width: 190,
+                  onPressed: () =>
+                      CartCubit.get(context).addCart(productId, productCount),
+                  text: 'Add',
                 ),
-                Container(
-                  height: 103.h,
-                  width: 190.w,
+                Button1(
                   color: AppColors.yellow,
-                  child: Center(
-                      child: Text(
-                    "Add",
-                    style: AppTextStyle.cairoBold32White,
-                    textAlign: TextAlign.center,
-                  )),
+                  height: 80,
+                  width: 190,
+                  text: "Buy Now",
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, RouteName.cartScreen);
+                    CartCubit.get(context).getCartList();
+                    CartCubit.get(context).addCart(productId, productCount);
+
+                  }
                 ),
               ],
             )
