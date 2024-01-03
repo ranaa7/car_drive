@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
 
     CounterCubit.get(context).getProfileCount();
-    OrdersCubit.get(context).getOrders(1);
+    OrdersCubit.get(context).getOrders(1 , '' , '');
 
     super.initState();
   }
@@ -81,7 +81,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               );
             },
-          )
+          ),
+          SizedBox(height: 20.h,)
 
         ],
       ),

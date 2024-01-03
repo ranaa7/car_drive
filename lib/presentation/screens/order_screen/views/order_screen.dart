@@ -26,16 +26,24 @@ class _OrderScreenState extends State<OrderScreen> {
    bool isLoading = true;
 
   final RefreshController _refreshController = RefreshController();
+   String? selectedPaymentStatus;
+   List<String> paymentStatusItems = [ 'paid', 'unpaid'];
+
+
+   String? selectedDeliveryStatus;
+   List<String> deliveryStatusItems = [ 'pending', 'picked_up', 'cancelled'];
+
+
    @override
    void initState() {
-      OrdersCubit.get(context).getOrders(page);
+    //  OrdersCubit.get(context).getOrders(page ,'' , '');
      super.initState();
      fetchData();
    }
 
    fetchData() async {
      try {
-       await OrdersCubit.get(context).getOrders(page);
+       await OrdersCubit.get(context).getOrders(page ,  selectedPaymentStatus ?? '', selectedDeliveryStatus ?? '');
        setState(() {
          isLoading = false;
        });
@@ -50,74 +58,162 @@ class _OrderScreenState extends State<OrderScreen> {
     return BlocBuilder<OrdersCubit, OrdersState>(
   builder: (context, state) {
     return Scaffold(
+      backgroundColor: AppColors.Scaffoldfground,
       appBar: DefaultAppBar(title: AppStrings.purchasehist,),
-      body:  SmartRefresher(
-          footer: CustomFooter(
-            builder: (BuildContext context, LoadStatus? mode) {
-              Widget body;
-              if (mode == LoadStatus.idle) {
-                body = Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SpinKitPouringHourGlassRefined(
-                      color: AppColors.black,
+      body:  Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                PhysicalModel(
+                        color: Colors.transparent,
+                        elevation: 5, // Adjust the elevation for the shadow
+                        borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
+                        child: Container(
+                width: 150.w,
+                decoration: BoxDecoration(
+                  color: Colors.white, // Set the background color of the dropdown
+                  borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
+                ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      hint: Text(
+                        'All Payments',
+                        style: AppTextStyle.cairoSemiBold17Black
+                      ),
+                      items: paymentStatusItems.map((String item) {
+                        return DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                              style: AppTextStyle.cairoSemiBold17Black                 ),
+                        );
+                      }).toList(),
+                      value: selectedPaymentStatus,
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedPaymentStatus = value;
+                          fetchData(); // Call the API when payment status changes
+                        });
+                      },
+
                     ),
-                    Text(
-                      AppStrings.loadMoreProduct,
-                      style: AppTextStyle.cairoSemiBold17Black,
+                  ),
+                ),),
+                Spacer(),
+                PhysicalModel(
+                  color: Colors.transparent,
+                  elevation: 5, // Adjust the elevation for the shadow
+                  borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
+                  child: Container(
+                    width: 150.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white, // Set the background color of the dropdown
+                      borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
                     ),
-                  ],
-                );
-              } else if (mode == LoadStatus.loading) {
-                body = Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SpinKitPouringHourGlassRefined(
-                      color: AppColors.black,
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        hint: Text(
+                            'All Deliveries',
+                            style: AppTextStyle.cairoSemiBold17Black
+                        ),
+                        items: deliveryStatusItems.map((String item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(
+                                item,
+                                style: AppTextStyle.cairoSemiBold17Black                 ),
+                          );
+                        }).toList(),
+                        value: selectedDeliveryStatus,
+                        onChanged: (String? value) {
+                          setState(() {
+                           selectedDeliveryStatus = value;
+                            fetchData(); // Call the API when payment status changes
+                          });
+                        },
+
+                      ),
                     ),
-                    Text(
-                      AppStrings.loadMoreProduct,
-                      style: AppTextStyle.cairoSemiBold17Black,
-                    ),
-                  ],
-                );
-              } else if (mode == LoadStatus.failed) {
-                body = const Text("Load Failed!Click retry!");
-              } else if (mode == LoadStatus.canLoading) {
-                body = const Text("release to load more");
-              } else {
-                body = const Text("No more Data");
-              }
-              return SizedBox(
-                height: 55.0.h,
-                child: Center(child: body),
-              );
-            },
+                  ),),
+              ],
+            ),
           ),
-          enablePullUp: true,
-          onLoading: () async {
-            await Future.delayed(const Duration(seconds: 1));
-                OrdersCubit.get(context).getOrders(++page);
-            _refreshController.loadComplete();
-          },
-          onRefresh: () {
-            setState(() {
-              isLoading = true;
-              Future.delayed(const Duration(seconds: 2)).then((_) {
-                if (mounted) {
+          SizedBox(height: 20.h,),
+          Expanded(
+            child: SmartRefresher(
+                footer: CustomFooter(
+                  builder: (BuildContext context, LoadStatus? mode) {
+                    Widget body;
+                    if (mode == LoadStatus.idle) {
+                      body = Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SpinKitPouringHourGlassRefined(
+                            color: AppColors.black,
+                          ),
+                          Text(
+                            AppStrings.loadMoreProduct,
+                            style: AppTextStyle.cairoSemiBold17Black,
+                          ),
+                        ],
+                      );
+                    } else if (mode == LoadStatus.loading) {
+                      body = Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SpinKitPouringHourGlassRefined(
+                            color: AppColors.black,
+                          ),
+                          Text(
+                            AppStrings.loadMoreProduct,
+                            style: AppTextStyle.cairoSemiBold17Black,
+                          ),
+                        ],
+                      );
+                    } else if (mode == LoadStatus.failed) {
+                      body = const Text("Load Failed!Click retry!");
+                    } else if (mode == LoadStatus.canLoading) {
+                      body = const Text("release to load more");
+                    } else {
+                      body = const Text("No more Data");
+                    }
+                    return SizedBox(
+                      height: 55.0.h,
+                      child: Center(child: body),
+                    );
+                  },
+                ),
+                enablePullUp: true,
+                onLoading: () async {
+                  await Future.delayed(const Duration(seconds: 1));
+                      OrdersCubit.get(context).getOrders(++page ,'','');
+                  _refreshController.loadComplete();
+                },
+                onRefresh: () {
                   setState(() {
-                    isLoading = false;
+                    isLoading = true;
+                    Future.delayed(const Duration(seconds: 2)).then((_) {
+                      if (mounted) {
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
+                    });
+                    _refreshController.refreshCompleted();
                   });
-                }
-              });
-              _refreshController.refreshCompleted();
-            });
-          },
-          controller: _refreshController,
-          child: isLoading
-              ? Center(child: CircularProgressIndicator())
-              : OrderItem(ordermodel: OrdersCubit.get(context).myOrderList, index: OrdersCubit.get(context).myOrderList.length)
-        ),
+                },
+                controller: _refreshController,
+                child: isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : OrderItem(ordermodel: OrdersCubit.get(context).myOrderList, index: OrdersCubit.get(context).myOrderList.length)
+              ),
+          ),
+        ],
+      ),
     );
   },
 );

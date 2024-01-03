@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/presentation/screens/order_details/view/order_details_cubit.dart';
 import 'package:more_2_drive/presentation/screens/order_details/view_models/order_details_screen.dart';
 import 'package:more_2_drive/presentation/screens/order_screen/data/models/order_model.dart';
@@ -28,10 +29,10 @@ class OrderItem extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderDetailsScreen(id: ordermodel[index].id)));
             },
             child: Card(
-              elevation: 10,
+             elevation: 2,
               surfaceTintColor: Colors.transparent,
 
-              color: Colors.white,
+              color: AppColors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -40,6 +41,7 @@ class OrderItem extends StatelessWidget {
                   Image.asset(
                     Assets.imagesProduct,
                     height: 130.h,
+                   // color: AppColors.Scaffoldfground,
                   ),
 
                   Column(

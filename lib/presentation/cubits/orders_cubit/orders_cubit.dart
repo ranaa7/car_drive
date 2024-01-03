@@ -20,20 +20,42 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   List<PurchaseHistoryModel> myOrderList = [];
 
-   getOrders(int? page) async {
+  getOrders(int? page  , String payment_status , String delivery_status) async {
     emit(Ordersloadingstate());
     try {
       dynamic response = (
           await DioHelper().get(
-          endPoint: EndPoints.getorders, token: token , query: {
-            'page':page
+              endPoint: EndPoints.getorders, token: token , query: {
+            'page':page,
+            'payment_status': payment_status,
+            'delivery_status': delivery_status
           }))
-          ;
+      ;
 
 
       // for (var i in response['data']) {
       //   myOrderList.add(PurchaseHistoryModel.fromJson(i));
       // }
+      myOrderList = List<PurchaseHistoryModel>.from(response.data["data"].map((e)=>PurchaseHistoryModel.fromJson(e))).toList();
+      emit(Orderssuccessstate(myOrderList));
+    } catch (e) {
+      emit(Ordersfailurestate(e.toString()));
+    }
+  }
+
+
+   getOrdersForPaymentandDelivery(int? page , String payment_status , String delivery_status) async {
+    emit(Ordersloadingstate());
+    try {
+      dynamic response = (
+          await DioHelper().get(
+          endPoint: EndPoints.getorders, token: token , query: {
+            'page':page,
+            'payment_status': payment_status,
+            'delivery_status': delivery_status
+          }))
+          ;
+
       myOrderList = List<PurchaseHistoryModel>.from(response.data["data"].map((e)=>PurchaseHistoryModel.fromJson(e))).toList();
       emit(Orderssuccessstate(myOrderList));
     } catch (e) {

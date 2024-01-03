@@ -35,7 +35,7 @@ class EditProfileScreen extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Positioned(left: 0, right: 0,
+              Positioned(left: 0.w, right: 0.w,
                 child: Center(
                     child: CircleAvatar(
                       radius: 50,
@@ -44,18 +44,17 @@ class EditProfileScreen extends StatelessWidget {
             ],
           ),
           Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 150,
-            //di bntl3 el container el abyd l fo2
+            left: 0.w,
+            right: 0.w,
+            bottom: 0.h,
+            top: 150.h,
             child: Container(
-              padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+              padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 10.h),
               decoration: BoxDecoration(
                 color: AppColors.deepDarkBlue,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)),
+                    topLeft: Radius.circular(60).r,
+                    topRight: Radius.circular(60)).r,
               ),
               child: (
                   Form(
@@ -80,7 +79,11 @@ class EditProfileScreen extends StatelessWidget {
                       ProfileFormField(
                         name: fname,
                         validator: ValidationForm.nameValidator,
-                        text: '',
+                        text: LoginCubit.get(context)
+                            .loginModel
+                            .user
+                            ?.username ??
+                            "",
                       ),
                       SizedBox(
                         height: 15.h,
@@ -99,7 +102,8 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       ProfileFormField(
                         name: email,
-                        text: '',
+                        text: LoginCubit.get(context).loginModel.user?.email ??
+                            "",
                       ),
                       SizedBox(
                         height: 15.h,
@@ -118,7 +122,8 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       ProfileFormField(
                         name: phone,
-                        text: '',
+                        text: LoginCubit.get(context).loginModel.user?.mobileNumber ??
+                            "",
                       ),
                       SizedBox(
                         height: 15.h,
@@ -156,18 +161,7 @@ class EditProfileScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      BlocBuilder<LoginCubit, LoginState>(
-                        builder: (context, state) {
-                          return DeleteButton(
-                            onPressed: () async {
-                              await LoginCubit.get(context).userDeleteAcc();
-                            },
-                          );
-                        },
-                      )
+
                     ],
                   ),
                 ),
