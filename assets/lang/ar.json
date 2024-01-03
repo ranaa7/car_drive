@@ -68,6 +68,30 @@
   "userAddress": "عنوان المستخدم",
   "enterCity": "ادخل المنطقة",
   "selectStateFirst": "ادخل المحافظة اولا",
-  "addLocation": "ادخل موقع"
+  "addLocation": "ادخل موقع",
+  "buyNow": "اشتر الان",
+  "sort": "تصنيف",
+  "default1": "الافتراضي",
+  "highToLow": "الاعلي الي الاقل",
+  "lowToHigh": "الاقل الي الاعلي",
+  "newArrival": "القادم حديثا",
+  "popularity": "المشهور",
+  "topRated": "اعلي تصنيف",
+  "priceRange": "حدود السعر",
+  "minimum": "الاعلي",
+  "maximum": "الاقل",
+  "clear": "ازالة",
+  "apply": "تطبيق",
+  "filter": "تنقية",
+  "products": "المنتجات",
+  "choosePaymentMethod": "اختر طريقة الدفع",
+
+  "showMore": "عرض المزيد",
+  "selectAddress": "تحديد العنوان",
+
+  "showLess": "عرض اقل",
+  "noAvailableProduct": "لا يوجد المزيد من هذا المنتج",
+  "minMaxWarning": "برجاء ادخال حدود صحيحة"
+
 
 }

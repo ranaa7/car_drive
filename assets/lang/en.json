@@ -68,6 +68,27 @@
   "userAddress": "User Address",
   "enterCity": "Enter City",
   "selectStateFirst": "Select State First",
-  "addLocation": "Add Location"
+  "addLocation": "Add Location",
+  "buyNow": "Buy Now",
+  "sort": "Sort",
+  "default1": "Default",
+  "highToLow": "High To Low",
+  "lowToHigh": "Low To High",
+  "newArrival": "New Arrival",
+  "popularity": "Popularity",
+  "topRated": "Top Rated",
+  "priceRange": "Price Range",
+  "minimum": "Minimum",
+  "maximum": "Maximum",
+  "clear": "Clear",
+  "apply": "Apply",
+  "filter": "Filter",
+  "choosePaymentMethod": "Choose Payment Method",
+  "selectAddress": "Select Address",
+  "products": "Products",
+  "showLess": "Show Less",
+  "showMore": "Show More",
+  "noAvailableProduct": "No Available Product",
+  "minMaxWarning": "Please Enter Valid Range"
 
 }

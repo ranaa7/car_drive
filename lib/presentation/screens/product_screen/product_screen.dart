@@ -5,13 +5,13 @@ import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dar
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/product_sliver_appbar.dart';
 import 'package:more_2_drive/presentation/widgets/product/product_details.dart';
-import 'package:more_2_drive/presentation/widgets/shimmer/categories_shimmer.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/product_details_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class ProductScreen extends StatelessWidget {
-  final bool isLoading;
-
-  const ProductScreen({super.key, this.isLoading = true});
+  const ProductScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,14 @@ class ProductScreen extends StatelessWidget {
                   (BuildContext context, bool innerBoxIsScrolled) => [
                 ProductSliverAppBar(
                   height: 60,
-                  title: detailsOfProducts.isEmpty
+                  title: state is GetProductDetailsLoadingState ||
+                          detailsOfProducts.isEmpty
                       ? ""
                       : detailsOfProducts[0].name ?? "",
+                  productId: state is GetProductDetailsLoadingState ||
+                          detailsOfProducts.isEmpty
+                      ? 0
+                      : detailsOfProducts[0].id ?? 0,
                 )
               ],
               body: Container(
@@ -47,8 +52,9 @@ class ProductScreen extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 25.w, vertical: 14.h),
                   children: [
-                    detailsOfProducts.isEmpty
-                        ? const CategoriesShimmer()
+                    state is GetProductDetailsLoadingState ||
+                            detailsOfProducts.isEmpty
+                        ? const ProductDetailsShimmer()
                         : ProductDetails(
                             productCount: productCubit.quantity,
                             productName: detailsOfProducts[0].name ?? "",
@@ -67,7 +73,6 @@ class ProductScreen extends StatelessWidget {
                             hasDiscount:
                                 detailsOfProducts[0].hasDiscount ?? false,
                             rate: detailsOfProducts[0].ratingCount ?? 0,
-                            isLoading: isLoading,
                             productId: detailsOfProducts[0].id ?? 1,
                             minusPressed: () => productCubit.minusPressed(0),
                             plusPressed: () => productCubit.plusPressed(0),

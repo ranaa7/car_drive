@@ -28,10 +28,11 @@ class Button1 extends StatelessWidget {
           ),
           height: height.h,
           width: width.w,
-          child: Center(
+          child: FittedBox(
             child: Text(
                         text,
-                        style: AppTextStyle.cairoBold24White,
+                        style: AppTextStyle.cairoBold16White,
+              textAlign: TextAlign.center,
                       ),
           )),
     );

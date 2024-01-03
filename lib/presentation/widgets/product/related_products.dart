@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
-import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/product/suggest_product.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class RelatedProductsList extends StatelessWidget {
-  final bool isLoading;
 
-   const RelatedProductsList({super.key, required this.isLoading});
+   const RelatedProductsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +24,16 @@ class RelatedProductsList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => relatedProducts.isNotEmpty?InkWell(
                 onTap: (){
+                  WishlistCubit.get(context).checkIfProductIsInWishlist(relatedProducts[index].id);
+
                   ProductCubit.get(context).quantity=1;
                   productCubit.getDetailsOfProduct(
                       relatedProducts[index].id);
                   productCubit.getRelatedProductsOfProduct(relatedProducts[index].id);
                   print(relatedProducts[index].id.toString());
-                  Navigator.push(
+                  Navigator.pushReplacementNamed(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              ProductScreen(isLoading: isLoading,)));
+                      RouteName.productScreen);
                 },
                 child: SuggestProduct(
                     details: relatedProducts[index].name ?? '',

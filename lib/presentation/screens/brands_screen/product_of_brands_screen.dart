@@ -5,7 +5,7 @@ import 'package:more_2_drive/presentation/components/custom_reload_footer.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
-import 'package:more_2_drive/presentation/widgets/shimmer/categories_shimmer.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/product_grid_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -85,7 +85,7 @@ class _ProductOfBrandScreenState extends State<ProductOfBrandScreen> {
               },
               controller: _refreshController,
               child: isLoading
-                  ? const CategoriesShimmer()
+                  ? const ProductGridShimmer()
                   : GridView.count(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
@@ -102,8 +102,11 @@ class _ProductOfBrandScreenState extends State<ProductOfBrandScreen> {
                         child: InkWell(
                           onTap: (){
                             ProductCubit.get(context).quantity=1;
+                            productCubit
+                                .getRelatedProductsOfProduct(
+                                searchList[index].id);
                             ProductCubit.get(context).getDetailsOfProduct(
-                                productDetails[index].id);
+                                searchList[index].id);
                             Navigator.pushNamed(context, RouteName.productScreen);
                           },
                           child: ProductItem(
@@ -132,6 +135,9 @@ class _ProductOfBrandScreenState extends State<ProductOfBrandScreen> {
                         child: InkWell(
                           onTap: (){
                             ProductCubit.get(context).quantity=1;
+                            productCubit
+                                .getRelatedProductsOfProduct(
+                                productDetails[index].id);
                             ProductCubit.get(context).getDetailsOfProduct(
                                 productDetails[index].id);
                             Navigator.pushNamed(context, RouteName.productScreen);

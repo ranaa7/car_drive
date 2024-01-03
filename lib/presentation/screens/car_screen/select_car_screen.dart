@@ -9,7 +9,7 @@ import 'package:more_2_drive/presentation/cubits/car_cubit/car_state.dart';
 import 'package:more_2_drive/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/order_cubit/order_cubit.dart';
 import 'package:more_2_drive/presentation/screens/car_screen/add_or_edit_car_screen.dart';
-import 'package:more_2_drive/presentation/widgets/buttons/button_1.dart';
+import 'package:more_2_drive/presentation/widgets/buttons/button_2.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/car_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
@@ -37,8 +37,8 @@ class _SelectCarScreenState extends State<SelectCarScreen> {
           appBar: DefaultAppBar(
             title: AppStrings.selectCar,
           ),
-          body: state is GetCarBrandsLoadingState
-              ? CarShimmer()
+          body: state is GetUserCarsLoadingState
+              ? const CarShimmer()
               : userCars.isNotEmpty
                   ? Stack(
                       children: [
@@ -121,34 +121,25 @@ class _SelectCarScreenState extends State<SelectCarScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Button1(
-                                    color: AppColors.blue,
-                                    height: 43,
-                                    width: 200,
-                                    onPressed: () {
-                                      CarCubit.get(context).getUserCars();
-                                      Navigator.pushNamed(context,
-                                          RouteName.addOrEditCarScreen);
-                                    },
-                                    text: AppStrings.addOrEditCar),
-                                SizedBox(
-                                  height: 10.h,
+                                Button2(
+                                  height: 50,
+                                  width: 350,
+                                  onPressed: () {
+                                    CartCubit.get(context).getCartList();
+                                    OrderCubit.get(context).getPickupList();
+                                    OrderCubit.get(context)
+                                        .getUserAddressList();
+                                    carCubit.updateUserCar(
+                                        carCubit.userCarsModel?.id);
+                                    Navigator.pushNamed(context,
+                                        RouteName.orderPickUpLocationScreen);
+                                  },
+                                  onPressed2: () {
+                                    CarCubit.get(context).getUserCars();
+                                    Navigator.pushNamed(context,
+                                        RouteName.addOrEditCarScreen);
+                                  }, titleBlue: AppStrings.addOrEditCar, titleRed:AppStrings.continueToPickup,
                                 ),
-                                Button1(
-                                    color: AppColors.red3,
-                                    height: 43,
-                                    width: 420,
-                                    onPressed: () {
-                                      CartCubit.get(context).getCartList();
-                                      OrderCubit.get(context).getPickupList();
-                                      OrderCubit.get(context)
-                                          .getUserAddressList();
-                                      carCubit.updateUserCar(
-                                          carCubit.userCarsModel?.id);
-                                      Navigator.pushNamed(context,
-                                          RouteName.orderPickUpLocationScreen);
-                                    },
-                                    text: AppStrings.continueToPickup),
                               ],
                             ),
                           ),

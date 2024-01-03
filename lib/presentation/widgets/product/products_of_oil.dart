@@ -5,9 +5,10 @@ import 'package:more_2_drive/config/style/app_shadows.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
-import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/product_list_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class ProductsOfOil extends StatelessWidget {
   final bool isLoading;
@@ -29,20 +30,20 @@ class ProductsOfOil extends StatelessWidget {
           child: oilProducts.isEmpty || isLoading
               ? const ProductListShimmer()
               : ListView.separated(
-                  physics: const BouncingScrollPhysics(),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) => InkWell(
                     onTap: () {
+                      WishlistCubit.get(context).checkIfProductIsInWishlist(oilProducts[index].id);
+
                       productCubit.quantity = 1;
                       productCubit.getDetailsOfProduct(oilProducts[index].id);
                       productCubit
                           .getRelatedProductsOfProduct(oilProducts[index].id);
-                      Navigator.push(
+                      Navigator.pushReplacementNamed(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductScreen(
-                                    isLoading: isLoading,
-                                  )));
+                          RouteName.productScreen);
                     },
                     child: ProductItem(
                       discount: oilProducts[index].discount ?? "",

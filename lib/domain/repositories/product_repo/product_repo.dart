@@ -101,7 +101,7 @@ class ProductRepo {
   Future<Either<ResponseModel, Failure>> getSearchProduct(
     int? page,
     String? sortKey,
-    String? categories,
+    int? categories,
     String? minimum,
     String? maximum,
   ) async {
@@ -111,7 +111,7 @@ class ProductRepo {
         query: {
           'page': page,
           'sort_key': sortKey,
-          'categories': categories,
+          'categories': "$categories",
           'min': minimum,
           'max': maximum
         },

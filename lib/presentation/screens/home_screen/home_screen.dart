@@ -20,6 +20,7 @@ import 'package:more_2_drive/presentation/widgets/categories/categories_banner.d
 import 'package:more_2_drive/presentation/widgets/categories_gridview/categories_gridview.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/home_sliver_appbar.dart';
 import 'package:more_2_drive/presentation/widgets/product/category_products_list.dart';
+import 'package:more_2_drive/presentation/widgets/product/product_of_offers.dart';
 import 'package:more_2_drive/presentation/widgets/product/products_of_battery.dart';
 import 'package:more_2_drive/presentation/widgets/product/feature_products_list.dart';
 import 'package:more_2_drive/presentation/widgets/product/products_of_oil.dart';
@@ -77,6 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
               isLoading = true;
               productCubit.getSearchProduct(page: 1);
               CartCubit.get(context).getCartCount();
+              productCubit.getProductsOfOilCategory();
+              productCubit.getProductsOfOfferCategory();
+              productCubit.getProductsOfBatteryCategory();
               Future.delayed(const Duration(seconds: 2)).then((_) {
                 if (mounted) {
                   setState(() {
@@ -108,9 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 imagePath: Assets.imagesNew,
                 fit: BoxFit.cover,
               ),
-              SizedBox(
-                height: 5.h,
-              ),
               CategoriesGridView(
                 isLoading: isLoading,
               ),
@@ -122,9 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              CategoryProductList(
-                  isLoading: isLoading,
-                  products: ProductCubit.get(context).productOfOffers),
+           ProductsOfOffers(isLoading: isLoading),
               SizedBox(
                 height: 15.h,
               ),
@@ -132,9 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              CategoryProductList(
-                  isLoading: isLoading,
-                  products: ProductCubit.get(context).productOfOils),
+              ProductsOfOil(isLoading: isLoading),
               SizedBox(
                 height: 15.h,
               ),
@@ -142,9 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              CategoryProductList(
-                  isLoading: isLoading,
-                  products: ProductCubit.get(context).productOfBatteries),
+              ProductsOfBattery(isLoading: isLoading),
               SizedBox(
                 height: 40.h,
               ),

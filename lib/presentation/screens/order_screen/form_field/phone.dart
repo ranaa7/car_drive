@@ -6,9 +6,8 @@ import 'package:more_2_drive/presentation/components/app_textfield.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class PhoneForm extends StatelessWidget {
-  final TextEditingController phoneController = TextEditingController();
-
-   PhoneForm({super.key});
+final TextEditingController controller;
+   const PhoneForm({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class PhoneForm extends StatelessWidget {
         SizedBox(height: 10.h,),
         AppTextFormField(
           validator: ValidationForm.phoneValidator,
-          controller: phoneController,
+          controller: controller,
         ),
       ],
     );

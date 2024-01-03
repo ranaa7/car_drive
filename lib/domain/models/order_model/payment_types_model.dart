@@ -27,14 +27,14 @@ class PaymentTypesModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['payment_type'] = this.paymentType;
-    data['payment_type_key'] = this.paymentTypeKey;
-    data['image'] = this.image;
-    data['name'] = this.name;
-    data['title'] = this.title;
-    data['offline_payment_id'] = this.offlinePaymentId;
-    data['details'] = this.details;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['payment_type'] = paymentType;
+    data['payment_type_key'] = paymentTypeKey;
+    data['image'] = image;
+    data['name'] = name;
+    data['title'] = title;
+    data['offline_payment_id'] = offlinePaymentId;
+    data['details'] = details;
     return data;
   }
 }

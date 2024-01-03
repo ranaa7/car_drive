@@ -4,34 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
-import 'package:more_2_drive/presentation/widgets/shimmer/categories_shimmer.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/product_grid_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
-class AllProducts extends StatefulWidget {
+class AllProducts extends StatelessWidget {
   const AllProducts({super.key});
 
-  @override
-  State<AllProducts> createState() => _AllProductsState();
-}
-
-class _AllProductsState extends State<AllProducts> {
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    Future.delayed(const Duration(seconds: 2)).then((_) {
-      if (mounted) {
-        setState(() {
-          isLoading = false;
-        });
-      }
-    });
-    super.initState();
-  }
-
-  int page = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +29,8 @@ class _AllProductsState extends State<AllProducts> {
                 style: AppTextStyle.cairoSemiBold17Black,
               ),
             ),
-            isLoading
-                ? const CategoriesShimmer()
+            state is GetSearchProductLoadingState||productDetails.isEmpty
+                ? const ProductGridShimmer()
                 : GridView.count(
                 padding: EdgeInsets.symmetric(
                     vertical: 50.0.h, horizontal: 10.w),
@@ -69,7 +49,7 @@ class _AllProductsState extends State<AllProducts> {
                             ProductCubit.get(context).getDetailsOfProduct(
                                 productDetails[index].id);
                             ProductCubit.get(context).getRelatedProductsOfProduct(productDetails[index].id);
-                            Navigator.pushNamed(
+                            Navigator.pushReplacementNamed(
                                 context, RouteName.productScreen);
                           },
                           child: ProductItem(

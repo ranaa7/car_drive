@@ -28,7 +28,7 @@ class PaymentSummary extends StatelessWidget {
           PaymentSummaryItem(
               object: OrderCubit.get(context).cartSummary?.discount ?? '',
               text: AppStrings.discount),
-          Divider(),
+          const Divider(),
           PaymentSummaryItem(isTotal:true,object: OrderCubit.get(context).cartSummary?.grandTotal??"", text: AppStrings.totalOutput),
           SizedBox(height: 10.h,),
           Button1(height: 50, width: 100, onPressed: ()=>Navigator.pop(context), text: AppStrings.close, color: AppColors.red)
@@ -54,7 +54,7 @@ class PaymentSummaryItem extends StatelessWidget {
           object,
           style: isTotal?AppTextStyle.cairoSemiBold15Red:AppTextStyle.cairoSemiBold15Grey,
         ),
-        Spacer(),
+        const Spacer(),
         Text(
           text,
           style: AppTextStyle.cairoSemiBold15Grey,
@@ -66,7 +66,7 @@ class PaymentSummaryItem extends StatelessWidget {
           text,
           style: AppTextStyle.cairoSemiBold15Grey,
         ),
-        Spacer(),
+        const Spacer(),
 
         Text(
           object,

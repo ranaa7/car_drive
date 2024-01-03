@@ -13,6 +13,7 @@ import 'package:more_2_drive/presentation/screens/order_screen/user_address_cont
 import 'package:more_2_drive/presentation/widgets/buttons/button_1.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
 import 'package:more_2_drive/presentation/widgets/setting_widgets/setting_radio_button.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/cart_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/pickup_locations_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
@@ -38,21 +39,24 @@ class _OrderPickUpLocationScreenState extends State<OrderPickUpLocationScreen> {
         final pickupList = OrderCubit.get(context).pickupList;
         final userAddressList = OrderCubit.get(context).userAddressList;
         return Scaffold(
-          bottomNavigationBar: Button1(
-              color: AppColors.red3,
-              height: 43,
-              width: 420,
-              onPressed: () {
-                OrderCubit.get(context).updateShippingTypeInCart(
-                    selectedIndex == 0
-                        ? OrderCubit.get(context).pickupModel?.id
-                        : OrderCubit.get(context).userAddress?.id,
-                    selectedIndex == 0 ? "pickup_point" : "home_delivery");
-                Navigator.pushNamed(context, RouteName.orderPickUpTimeScreen);
-              },
-              text: AppStrings.continue1),
+          bottomNavigationBar: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 8.w,vertical: 15.h),
+            child: Button1(
+                color: AppColors.red3,
+                height: 43,
+                width: 420,
+                onPressed: () {
+                  OrderCubit.get(context).updateShippingTypeInCart(
+                      selectedIndex == 0
+                          ? OrderCubit.get(context).pickupModel?.id
+                          : OrderCubit.get(context).userAddress?.id,
+                      selectedIndex == 0 ? "pickup_point" : "home_delivery");
+                  Navigator.pushNamed(context, RouteName.orderPickUpTimeScreen);
+                },
+                text: AppStrings.continue1),
+          ),
           appBar: DefaultAppBar(
-            title: AppStrings.selectCar,
+            title: AppStrings.selectAddress,
           ),
           body: Stack(
             children: [
@@ -60,21 +64,23 @@ class _OrderPickUpLocationScreenState extends State<OrderPickUpLocationScreen> {
                 padding: EdgeInsets.only(bottom: 100.h, top: 20.h),
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => CartProductContainer(
-                        isPickup: true,
-                          productImage:
-                              cartList[index].productThumbnailImage ?? '',
-                          name: cartList[index].productName ?? '',
-                          price: cartList[index].price,
-                          currency: cartList[index].currencySymbol ?? '',
-                          onPressed: () {}),
-                      separatorBuilder: (context, index) => SizedBox(
-                            height: 10.h,
-                          ),
-                      itemCount: cartList.length),
+                  state is GetCartListLoadingState
+                      ? const CartShimmer()
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) => CartProductContainer(
+                              isPickup: true,
+                              productImage:
+                                  cartList[index].productThumbnailImage ?? '',
+                              name: cartList[index].productName ?? '',
+                              price: cartList[index].price,
+                              currency: cartList[index].currencySymbol ?? '',
+                              onPressed: () {}),
+                          separatorBuilder: (context, index) => SizedBox(
+                                height: 10.h,
+                              ),
+                          itemCount: cartList.length),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -140,8 +146,9 @@ class _OrderPickUpLocationScreenState extends State<OrderPickUpLocationScreen> {
                           height: 10.h,
                         ),
                         selectedOption == 0
-                            ? state is GetPickupPointLoadingState
-                                ? PickUpLocationShimmer()
+                            ? state is GetPickupPointLoadingState ||
+                                    pickupList.isEmpty
+                                ? const PickUpLocationShimmer()
                                 : ListView.separated(
                                     physics:
                                         const NeverScrollableScrollPhysics(),
@@ -175,51 +182,60 @@ class _OrderPickUpLocationScreenState extends State<OrderPickUpLocationScreen> {
                                     itemCount: pickupList.length)
                             : Column(
                                 children: [
-                                  ListView.separated(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemBuilder: (context, index) => InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                selectedIndex = index;
-                                                OrderCubit.get(context)
-                                                    .setUserAddress(
-                                                        userAddressList[index]);
-                                                print(OrderCubit.get(context)
-                                                    .userAddress
-                                                    ?.id
-                                                    .toString());
-                                              });
-                                            },
-                                            child: UserAddressContainer(
-                                              address: userAddressList[index]
-                                                      .address ??
-                                                  '',
-                                              city: userAddressList[index]
-                                                      .cityName ??
-                                                  '',
-                                              state: userAddressList[index]
-                                                      .stateName ??
-                                                  '',
-                                              country: userAddressList[index]
-                                                      .countryName ??
-                                                  '',
-                                              postalCode: userAddressList[index]
-                                                      .postalCode ??
-                                                  '',
-                                              phone: userAddressList[index]
-                                                      .phone ??
-                                                  '',
-                                              selectedIndex: selectedIndex,
-                                              index: index,
-                                            ),
-                                          ),
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
-                                      itemCount: userAddressList.length),
+                                  state is GetUserAddressLoadingState ||
+                                          userAddressList.isEmpty
+                                      ? const PickUpLocationShimmer()
+                                      : ListView.separated(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) =>
+                                              InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    selectedIndex = index;
+                                                    OrderCubit.get(context)
+                                                        .setUserAddress(
+                                                            userAddressList[
+                                                                index]);
+                                                    print(
+                                                        OrderCubit.get(context)
+                                                            .userAddress
+                                                            ?.id
+                                                            .toString());
+                                                  });
+                                                },
+                                                child: UserAddressContainer(
+                                                  address:
+                                                      userAddressList[index]
+                                                              .address ??
+                                                          '',
+                                                  city: userAddressList[index]
+                                                          .cityName ??
+                                                      '',
+                                                  state: userAddressList[index]
+                                                          .stateName ??
+                                                      '',
+                                                  country:
+                                                      userAddressList[index]
+                                                              .countryName ??
+                                                          '',
+                                                  postalCode:
+                                                      userAddressList[index]
+                                                              .postalCode ??
+                                                          '',
+                                                  phone: userAddressList[index]
+                                                          .phone ??
+                                                      '',
+                                                  selectedIndex: selectedIndex,
+                                                  index: index,
+                                                ),
+                                              ),
+                                          separatorBuilder: (context, index) =>
+                                              SizedBox(
+                                                height: 10.h,
+                                              ),
+                                          itemCount: userAddressList.length),
                                   TextButton(
                                     onPressed: () {
                                       OrderCubit.get(context)

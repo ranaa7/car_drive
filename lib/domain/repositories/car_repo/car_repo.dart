@@ -53,7 +53,7 @@ class CarRepo{
     try {
       Response response = await _dio.post(
         data: {
-          "car_id":"${carId}"
+          "car_id":"$carId"
         },
         token: Constants.token,
         endPoint: EndPoints.updateUserCar ,

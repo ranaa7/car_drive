@@ -14,7 +14,7 @@ class PayMobScreen extends StatelessWidget {
       ..setBackgroundColor(const Color(0x00000000))
       ..loadRequest(Uri.parse(Constants.visaUrl));
     return Scaffold(
-      appBar: DefaultAppBar(title: "Paymob Integration",),
+      appBar: const DefaultAppBar(title: "Paymob Integration",),
       body:
       WebViewWidget(controller: controller,)
     );

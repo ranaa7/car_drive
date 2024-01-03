@@ -30,15 +30,15 @@ class CartSummaryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sub_total'] = this.subTotal;
-    data['tax'] = this.tax;
-    data['shipping_cost'] = this.shippingCost;
-    data['discount'] = this.discount;
-    data['grand_total'] = this.grandTotal;
-    data['grand_total_value'] = this.grandTotalValue;
-    data['coupon_code'] = this.couponCode;
-    data['coupon_applied'] = this.couponApplied;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sub_total'] = subTotal;
+    data['tax'] = tax;
+    data['shipping_cost'] = shippingCost;
+    data['discount'] = discount;
+    data['grand_total'] = grandTotal;
+    data['grand_total_value'] = grandTotalValue;
+    data['coupon_code'] = couponCode;
+    data['coupon_applied'] = couponApplied;
     return data;
   }
 }

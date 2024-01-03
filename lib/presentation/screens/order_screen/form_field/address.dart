@@ -6,8 +6,8 @@ import 'package:more_2_drive/presentation/components/app_textfield.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class AddressForm extends StatelessWidget {
-  final TextEditingController addressController = TextEditingController();
-   AddressForm({super.key});
+  final TextEditingController controller;
+   const AddressForm({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
           textInput: TextInputType.multiline,
           maxLines: 3,
           maxLength: 100,
-          controller: addressController,
+          controller: controller,
           validator: ValidationForm.nameValidator,
         ),
       ],

@@ -37,7 +37,7 @@ class PaymentContainer extends StatelessWidget {
           Container(
             width: 5.w,
             height: 10.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.blue,
             ),
@@ -45,19 +45,19 @@ class PaymentContainer extends StatelessWidget {
           Container(
             height: 2.h,
             width: 200.w,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.blue,
             ),
           ),
           Container(
             width: 5.w,
             height: 10.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.blue,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           SettingRadioButton(value: value, text: "")
         ],
       ),

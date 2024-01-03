@@ -59,7 +59,7 @@ class CarCubit extends Cubit<CarState> {
   }
 
   getUserCars() async {
-    emit(GetCarBrandsLoadingState());
+    emit(GetUserCarsLoadingState());
     final result = await _carRepo.getUserCars();
     result.fold((l) {
       final getUserCar = l.data["data"];
@@ -68,13 +68,13 @@ class CarCubit extends Cubit<CarState> {
             .map<UserCarsModel>((e) => UserCarsModel.fromJson(e))
             .toList();
       }
-      emit(GetCarBrandsSuccessState());
-    }, (r) => emit(GetCarBrandsErrorState()));
+      emit(GetUserCarsSuccessState());
+    }, (r) => emit(GetUserCarsErrorState()));
   }
 
   getCarBrandsModels(int carId) async {
     print(carId);
-    emit(GetCarBrandsLoadingState());
+    emit(GetCarBrandsModelsLoadingState());
     final result = await _carRepo.getCarBrandsModel(carId);
     result.fold((l) {
       final getCarBrandsModels = l.data["data"];
@@ -83,26 +83,21 @@ class CarCubit extends Cubit<CarState> {
             .map<CarBrandsModelsModel>((e) => CarBrandsModelsModel.fromJson(e))
             .toList();
       }
-      emit(GetCarBrandsSuccessState());
-    }, (r) => emit(GetCarBrandsErrorState()));
+      emit(GetCarBrandsModelsSuccessState());
+    }, (r) => emit(GetCarBrandsModelsErrorState()));
   }
   updateUserCar(int? carId) async {
     print(carId);
-    emit(GetCarBrandsLoadingState());
+    emit(GetUserCarsUpdateLoadingState());
     final result = await _carRepo.updateUserCar(carId);
-    result.fold((l) {
-      // final getUserCar = l.data["data"];
-      // if (getUserCar != null) {
-      //   userCars = getUserCar
-      //       .map<UserCarsModel>((e) => UserCarsModel.fromJson(e))
-      //       .toList();
-      // }
-      emit(GetCarBrandsSuccessState());
-    }, (r) => emit(GetCarBrandsErrorState()));
+    result.fold((l) async{
+      await getUserCars();
+      emit(GetUserCarsUpdateSuccessState());
+    }, (r) => emit(GetUserCarsUpdateErrorState()));
   }
 
   addCar(int carType, int carModel) async {
-    emit(GetCarBrandsLoadingState());
+    emit(AddUserCarsUpdateLoadingState());
     final result = await _carRepo.addCar(carType, carModel);
     result.fold((l) {
       final getCarBrandsModels = l.data["data"];
@@ -114,7 +109,7 @@ class CarCubit extends Cubit<CarState> {
       getUserCars();
       _carBrandModel = null;
       _carBrandsModelsModel = null;
-      emit(GetCarBrandsSuccessState());
-    }, (r) => emit(GetCarBrandsErrorState()));
+      emit(AddUserCarsUpdateSuccessState());
+    }, (r) => emit(AddUserCarsUpdateErrorState()));
   }
 }

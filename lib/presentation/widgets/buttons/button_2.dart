@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
-import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class Button2 extends StatelessWidget {
+  final String titleBlue;
+  final String titleRed;
   final int height;
   final int width;
   final VoidCallback onPressed;
@@ -15,7 +16,7 @@ class Button2 extends StatelessWidget {
       required this.height,
       required this.width,
       required this.onPressed,
-      required this.onPressed2});
+      required this.onPressed2, required this.titleBlue, required this.titleRed});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,11 @@ class Button2 extends StatelessWidget {
                         color: AppColors.blue),
                     width: 155.w,
                     height: height.h,
-                    child: Text(
-                      AppStrings.updateCart,
-                      style: AppTextStyle.cairoMedium20white,
+                    child: FittedBox(
+                      child: Text(
+                        titleBlue,
+                        style: AppTextStyle.cairoMedium20white,
+                      ),
                     )),
               ),
               Expanded(
@@ -47,7 +50,7 @@ class Button2 extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Text(
-                      AppStrings.continueToSelectCar,
+                      titleRed,
                       style: AppTextStyle.cairoBold32White,
                     ),
                   ),

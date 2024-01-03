@@ -31,5 +31,7 @@ class EndPoints{
   static const String createUserAddress = 'user/shipping/create';
   static const String getStateByCountry = 'states-by-country/64';
   static const String getCityByState = 'cities-by-state/';
+  static const String addProductToWishlist = 'wishlists-add-product';
+  static const String checkIfProductIsInWishlist = 'wishlists-check-product';
 
 }

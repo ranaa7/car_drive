@@ -86,7 +86,7 @@ class OrderRepo{
       Response response = await _dio.postRaw(
         data: {
           "shipping_id": shippingId,
-          "shipping_type":"${shippingType}"
+          "shipping_type":"$shippingType"
         },
         token: Constants.token,
         endPoint: EndPoints.updateShippingTypeInCart,
@@ -157,14 +157,14 @@ class OrderRepo{
     }
   }
   Future<Either<ResponseModel, Failure>> createUserAddress(
-    int userId,String address,int countryId, int stateId,int cityId,String? postalCode,String? phone) async {
+    int userId,String address,int? countryId, int stateId,int cityId,String? postalCode,String? phone) async {
     try {
       Response response = await _dio.post(
         token: Constants.token,
         data: {
           "user_id":userId,
           "address":address,
-          "country_id":countryId,
+          "country_id":64,
           "state_id":stateId,
           "city_id":cityId,
           "postal_code":postalCode,

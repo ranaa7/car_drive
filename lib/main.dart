@@ -16,6 +16,7 @@ import 'package:more_2_drive/domain/repositories/cart_repo/cart_repo.dart';
 import 'package:more_2_drive/domain/repositories/categories_repo/categories_repo.dart';
 import 'package:more_2_drive/domain/repositories/order_repo/order_repo.dart';
 import 'package:more_2_drive/domain/repositories/product_repo/product_repo.dart';
+import 'package:more_2_drive/domain/repositories/wishlist_repo/wishlist_repo.dart';
 import 'package:more_2_drive/locator.dart';
 import 'package:more_2_drive/presentation/cubits/banner_cubit/banner_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/brands_cubit/brands_cubit.dart';
@@ -24,6 +25,7 @@ import 'package:more_2_drive/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/order_cubit/order_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
+import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'presentation/cubits/app_cubit/app_cubit.dart';
@@ -76,6 +78,7 @@ class MyApp extends StatelessWidget {
               create: (_) => CartCubit(sl<CartRepo>())..getCartCount()),
           BlocProvider(create: (_) => CarCubit(sl<CarRepo>())),
           BlocProvider(create: (_) => OrderCubit(sl<OrderRepo>())),
+          BlocProvider(create: (_) => WishlistCubit(sl<WishlistRepo>())),
         ],
         child: ScreenUtilInit(
             designSize: const Size(430, 932),

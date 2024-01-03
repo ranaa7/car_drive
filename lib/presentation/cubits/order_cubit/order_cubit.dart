@@ -29,6 +29,7 @@ class OrderCubit extends Cubit<OrderState> {
   setPickModel(PickupModel? pickModel) {
     _pickupModel = pickModel;
   }
+
   setUserAddress(AddressModel? userAddress) {
     _userAddress = userAddress;
   }
@@ -75,6 +76,7 @@ class OrderCubit extends Cubit<OrderState> {
       emit(GetPickupPointSuccessState());
     }, (r) => emit(GetPickupPointErrorState()));
   }
+
   getPaymentTypes() async {
     emit(GetPaymentMethodLoadingState());
     final result = await _orderRepo.getPaymentTypes();
@@ -89,30 +91,35 @@ class OrderCubit extends Cubit<OrderState> {
       emit(GetPaymentMethodSuccessState());
     }, (r) => emit(GetPaymentMethodErrorState()));
   }
+
   CartSummaryModel? cartSummary;
+
   getCartSummary() async {
-    emit(GetPickupPointLoadingState());
+    emit(GetCartSummaryLoadingState());
     final result = await _orderRepo.getCartSummary();
     result.fold((l) {
-     cartSummary = CartSummaryModel.fromJson(l);
-      emit(GetPickupPointSuccessState());
-    }, (r) => emit(GetPickupPointErrorState()));
+      cartSummary = CartSummaryModel.fromJson(l);
+      emit(GetCartSummarySuccessState());
+    }, (r) => emit(GetCartSummaryErrorState()));
   }
+
   ApplyCouponModel? applyCouponModel;
+
   applyCoupon(String couponCode) async {
-    emit(GetPickupPointLoadingState());
+    emit(ApplyCouponLoadingState());
     final result = await _orderRepo.applyCoupon(couponCode);
     result.fold((l) {
-      applyCouponModel = ApplyCouponModel.fromJson(l);
-      emit(GetPickupPointSuccessState());
-    }, (r) => emit(GetPickupPointErrorState()));
+      // applyCouponModel = ApplyCouponModel.fromJson(l);
+      emit(ApplyCouponSuccessState());
+    }, (r) => emit(ApplyCouponErrorState()));
   }
+
   removeCoupon() async {
-    emit(GetPickupPointLoadingState());
+    emit(RemoveCouponLoadingState());
     final result = await _orderRepo.removeCoupon();
     result.fold((l) {
-      emit(GetPickupPointSuccessState());
-    }, (r) => emit(GetPickupPointErrorState()));
+      emit(RemoveCouponSuccessState());
+    }, (r) => emit(RemoveCouponErrorState()));
   }
 
   getUserAddressList() async {
@@ -130,21 +137,21 @@ class OrderCubit extends Cubit<OrderState> {
     }, (r) => emit(GetUserAddressErrorState()));
   }
 
-  createUserAddress(int userId, String address, int countryId, int stateId,
+  createUserAddress(int userId, String address, int stateId,
       int cityId, String? postalCode, String? phone) async {
-    emit(GetUserAddressLoadingState());
+    emit(CreateUserAddressLoadingState());
     final result = await _orderRepo.createUserAddress(
-        userId, address, countryId, stateId, cityId, postalCode, phone);
+        userId, address, 64, stateId, cityId, postalCode, phone);
     result.fold((l) {
-      final allUserAddress = l.data["data"];
-      if (allUserAddress != null) {
-        userAddressList = allUserAddress
-            .map<AddressModel>((e) => AddressModel.fromJson(e))
-            .toList();
-      }
+      // final allUserAddress = l.data["data"];
+      // if (allUserAddress != null) {
+      //   userAddressList = allUserAddress
+      //       .map<AddressModel>((e) => AddressModel.fromJson(e))
+      //       .toList();
+      // }
       getUserAddressList();
-      emit(GetUserAddressSuccessState());
-    }, (r) => emit(GetUserAddressErrorState()));
+      emit(CreateUserAddressSuccessState());
+    }, (r) => emit(CreateUserAddressErrorState()));
   }
 
   onSelectPickLocation(PickupModel? pickupModel) async {
@@ -154,7 +161,7 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   updateShippingTypeInCart(int? shippingId, String? shippingType) async {
-    emit(GetUserAddressLoadingState());
+    emit(UpdateShippingTypeInCartLoadingState());
     final result =
         await _orderRepo.updateShippingTypeInCart(shippingId, shippingType);
     result.fold((l) {
@@ -164,13 +171,13 @@ class OrderCubit extends Cubit<OrderState> {
       //       .map<AddCartModel>((e) => AddCartModel.fromJson(e))
       //       .toList();
       // }
-      emit(GetUserAddressSuccessState());
-    }, (r) => emit(GetUserAddressErrorState()));
+      emit(UpdateShippingTypeInCartSuccessState());
+    }, (r) => emit(UpdateShippingTypeInCartErrorState()));
   }
+
   updatePickupDateInCart(DateTime date) async {
-    emit(GetUserAddressLoadingState());
-    final result =
-        await _orderRepo.updatePickupDateInCart( date);
+    emit(UpdateOrderDateInCartLoadingState());
+    final result = await _orderRepo.updatePickupDateInCart(date);
     result.fold((l) {
       // final shippingTypes = l.data["data"];
       // if (shippingTypes != null) {
@@ -178,12 +185,12 @@ class OrderCubit extends Cubit<OrderState> {
       //       .map<AddCartModel>((e) => AddCartModel.fromJson(e))
       //       .toList();
       // }
-      emit(GetUserAddressSuccessState());
-    }, (r) => emit(GetUserAddressErrorState()));
+      emit(UpdateOrderDateInCartSuccessState());
+    }, (r) => emit(UpdateOrderDateInCartErrorState()));
   }
 
   getStateByCountry() async {
-    emit(GetPickupPointLoadingState());
+    emit(GetStateByCountryLoadingState());
     final result = await _orderRepo.getStateByCountry();
     result.fold((l) {
       final getStateByCountry = l.data["data"];
@@ -192,8 +199,8 @@ class OrderCubit extends Cubit<OrderState> {
             .map<StateByCountryModel>((e) => StateByCountryModel.fromJson(e))
             .toList();
       }
-      emit(GetPickupPointSuccessState());
-    }, (r) => emit(GetPickupPointErrorState()));
+      emit(GetStateByCountrySuccessState());
+    }, (r) => emit(GetStateByCountryErrorState()));
   }
 
   getCityByState(int? stateId) async {

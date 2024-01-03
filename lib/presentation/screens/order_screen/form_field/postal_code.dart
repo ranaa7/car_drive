@@ -6,8 +6,8 @@ import 'package:more_2_drive/presentation/components/app_textfield.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class PostalCodeForm extends StatelessWidget {
-  final TextEditingController postalCode = TextEditingController();
-   PostalCodeForm({super.key});
+  final TextEditingController controller;
+   const PostalCodeForm({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class PostalCodeForm extends StatelessWidget {
         SizedBox(height: 10.h,),
         AppTextFormField(
 
-          controller: postalCode,
+          controller: controller,
           validator: ValidationForm.nameValidator,
         ),
       ],

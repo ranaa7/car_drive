@@ -30,7 +30,7 @@ class _ProductCarouselState extends State<ProductCarousel> {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         final ProductCubit productCubit = ProductCubit.get(context);
-        final productList = productCubit.detailsOfProducts[0].photos;
+        final productList = productCubit.detailsOfProducts;
         return Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -56,28 +56,28 @@ class _ProductCarouselState extends State<ProductCarousel> {
                         viewportFraction: 1,
                         autoPlay: true,
                         autoPlayInterval: const Duration(seconds: 3)),
-                    items: productList!.isNotEmpty
-                        ? productList.map((imgUrl) {
-                            return InkWell(
-                              onTap: () {
-                                openPhotoDialog(
-                                    context, productList[currentIndex].path);
-                              },
-                              child: SizedBox(
-                                  width: double.infinity,
-                                  child: CustomImageView(
-                                    url: productList[currentIndex].path,
-                                    fit: BoxFit.fill,
-                                  )),
-                            );
-                          }).toList()
-                        : [
-                            CustomImageView(
-                              imagePath: Assets.imagesEmpty,
+                    items: state is GetProductDetailsLoadingState||productList[0].photos!.isEmpty
+                        ? [
+                      CustomImageView(
+                        imagePath: Assets.imagesEmpty,
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                      )
+                    ]
+                        : productList[0].photos!.map((imgUrl) {
+                      return InkWell(
+                        onTap: () {
+                          openPhotoDialog(
+                              context, productList[0].photos?[currentIndex].path);
+                        },
+                        child: SizedBox(
+                            width: double.infinity,
+                            child: CustomImageView(
+                              url: productList[0].photos?[currentIndex].path,
                               fit: BoxFit.fill,
-                              width: double.infinity,
-                            )
-                          ],
+                            )),
+                      );
+                    }).toList(),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -86,7 +86,7 @@ class _ProductCarouselState extends State<ProductCarousel> {
                           vertical: 25.0.h, horizontal: 20.w),
                       child: AnimatedSmoothIndicator(
                         activeIndex: currentIndex,
-                        count: productList.length,
+                        count: state is GetProductDetailsLoadingState?0:productList[0].photos!.length,
                         effect: const ExpandingDotsEffect(
                             dotColor: AppColors.grey,
                             activeDotColor: AppColors.black),
@@ -106,7 +106,7 @@ openPhotoDialog(BuildContext context, path) => showDialog(
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-          child: Container(
+          child: SizedBox(
             height: 454.h,
               child: Stack(
             children: [
@@ -115,7 +115,7 @@ openPhotoDialog(BuildContext context, path) => showDialog(
                 child: PhotoView(
                   backgroundDecoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage(
                             Assets.imagesEmpty,
                           ),
@@ -129,15 +129,15 @@ openPhotoDialog(BuildContext context, path) => showDialog(
               Align(
                 alignment: Alignment.topRight,
                 child: Container(
-                  margin: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
+                  margin: const EdgeInsets.all(15),
+                  decoration: const BoxDecoration(
                     color: AppColors.black,
                     shape: BoxShape.circle
                   ),
                   width: 40.w,
                   height: 40.h,
                   child: IconButton(
-                    icon: Icon(Icons.clear, color: AppColors.white),
+                    icon: const Icon(Icons.clear, color: AppColors.white),
                     onPressed: () {
                       Navigator.pop(context);
                     },

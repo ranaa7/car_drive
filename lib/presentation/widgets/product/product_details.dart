@@ -8,6 +8,7 @@ import 'package:more_2_drive/presentation/components/custom_container.dart';
 import 'package:more_2_drive/presentation/components/custom_expandable_description.dart';
 import 'package:more_2_drive/presentation/components/custom_image_view.dart';
 import 'package:more_2_drive/presentation/components/increament_decreament.dart';
+import 'package:more_2_drive/presentation/components/toasters.dart';
 import 'package:more_2_drive/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/buttons/button_1.dart';
 import 'package:more_2_drive/presentation/widgets/product/related_products.dart';
@@ -15,7 +16,6 @@ import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class ProductDetails extends StatelessWidget {
-  final bool isLoading;
   final int productId;
 
   final bool hasDiscount;
@@ -36,7 +36,7 @@ class ProductDetails extends StatelessWidget {
   final VoidCallback minusPressed;
   final VoidCallback plusPressed;
 
-  ProductDetails(
+  const ProductDetails(
       {super.key,
       required this.productName,
       required this.productPrice,
@@ -53,7 +53,6 @@ class ProductDetails extends StatelessWidget {
       this.productCount = 1,
       required this.hasDiscount,
       required this.rate,
-      required this.isLoading,
       required this.productId, required this.minusPressed, required this.plusPressed});
 
   @override
@@ -199,8 +198,7 @@ class ProductDetails extends StatelessWidget {
             SizedBox(
               height: 11.h,
             ),
-            RelatedProductsList(
-              isLoading: isLoading,
+            const RelatedProductsList(
             ),
             SizedBox(height: 19.h),
             Row(
@@ -209,19 +207,28 @@ class ProductDetails extends StatelessWidget {
                   color: AppColors.red3,
                   height: 80,
                   width: 190,
-                  onPressed: () =>
-                      CartCubit.get(context).addCart(productId, productCount),
-                  text: 'Add',
+                  onPressed: () {
+                    if (availableProduct==0) {
+                      Toasters.show(AppStrings.noAvailableProduct);
+                    }else {
+                      CartCubit.get(context).getCartList();
+                      CartCubit.get(context).addCart(productId, productCount);
+                    }
+                  },
+                  text: AppStrings.add,
                 ),
                 Button1(
                   color: AppColors.yellow,
                   height: 80,
                   width: 190,
-                  text: "Buy Now",
+                  text: AppStrings.buyNow,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, RouteName.cartScreen);
-                    CartCubit.get(context).getCartList();
-                    CartCubit.get(context).addCart(productId, productCount);
+                   if (availableProduct==0) {
+                     Toasters.show(AppStrings.noAvailableProduct);
+                   }else {
+                     CartCubit.get(context).addCart(productId, productCount);
+                     Navigator.pushReplacementNamed(context, RouteName.cartScreen);
+                   }
 
                   }
                 ),

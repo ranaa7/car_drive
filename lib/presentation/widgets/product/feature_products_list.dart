@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
-import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/product_list_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class FeaturedProductList extends StatelessWidget {
   final bool isLoading;
@@ -21,7 +22,7 @@ class FeaturedProductList extends StatelessWidget {
 
         final featuredProducts = productCubit.featuredProduct;
 
-        return Container(
+        return SizedBox(
           height: 300.h,
           width: double.infinity,
           child: featuredProducts.isEmpty || isLoading
@@ -32,17 +33,16 @@ class FeaturedProductList extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) => InkWell(
                     onTap: () {
+                      WishlistCubit.get(context).checkIfProductIsInWishlist(featuredProducts[index].id);
+
                       productCubit.quantity=1;
                       productCubit
                           .getDetailsOfProduct(featuredProducts[index].id);
                       productCubit.getRelatedProductsOfProduct(
                           featuredProducts[index].id);
-                      Navigator.push(
+                      Navigator.pushReplacementNamed(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductScreen(
-                                    isLoading: isLoading,
-                                  )));
+                          RouteName.productScreen);
                     },
                     child: ProductItem(
                       discount: featuredProducts[index].discount ?? "",

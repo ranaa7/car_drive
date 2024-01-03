@@ -11,7 +11,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? child;
 
   final TextEditingController? searchController;
-  final onChanged;
+  final dynamic onChanged;
 
   const DefaultAppBar(
       {super.key,
@@ -23,8 +23,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      actions: const [SizedBox()],
 automaticallyImplyLeading: isSearch?false:true,
-      toolbarHeight: isSearch?100.h:60.h,
+      toolbarHeight: isSearch?120.h:60.h,
       backgroundColor: isSearch?AppColors.white:Colors.transparent,
       centerTitle: false,
       title: isSearch
@@ -36,7 +37,7 @@ automaticallyImplyLeading: isSearch?false:true,
                 children: [
                   IconButton(onPressed: (){
                     Navigator.pop(context);
-                  }, icon: Icon(Icons.arrow_back)),
+                  }, icon: const Icon(Icons.arrow_back)),
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -62,7 +63,8 @@ automaticallyImplyLeading: isSearch?false:true,
                   ),
                 ],
               ),
-              child??SizedBox(),
+              SizedBox(height: 10.h,),
+              child??const SizedBox(),
             ],
           )
           : Text(
@@ -77,7 +79,7 @@ automaticallyImplyLeading: isSearch?false:true,
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, isSearch?100.h:60.h);
+  Size get preferredSize => Size(double.infinity, isSearch?120.h:60.h);
 }
 // Row(
 // children: [

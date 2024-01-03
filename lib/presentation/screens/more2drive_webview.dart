@@ -14,7 +14,7 @@ class More2DriveWebView extends StatelessWidget {
       ..setBackgroundColor(const Color(0x00000000))
       ..loadRequest(Uri.parse(Constants.more2Drive));
     return Scaffold(
-        appBar: DefaultAppBar(title: "More2Drive",),
+        appBar: const DefaultAppBar(title: "More2Drive",),
         body:
         WebViewWidget(controller: controller,)
     );

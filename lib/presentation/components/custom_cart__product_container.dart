@@ -72,7 +72,7 @@ class CartProductContainer extends StatelessWidget {
               ],
             ),
           ),
-          isPickup?SizedBox():Expanded(
+          isPickup?const SizedBox():Expanded(
               child: InkWell(
             onTap: onPressed,
             child: Padding(
@@ -83,7 +83,7 @@ class CartProductContainer extends StatelessWidget {
               ),
             ),
           )),
-          isPickup?SizedBox():Padding(
+          isPickup?const SizedBox():Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 10.w),
             child: IncreamentDecreament(
               isHorizontal: false,

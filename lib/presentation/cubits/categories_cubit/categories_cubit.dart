@@ -17,6 +17,7 @@ List<CategoryModel> allCategory=[];
 List<TopCategoriesModel> topCategory=[];
    getAllCategories(
       ) async {
+     emit(GetAllCategoriesLoadingState());
     final result = await _categoriesRepo.getAllCategories();
 
     result.fold((l) {
@@ -30,6 +31,8 @@ List<TopCategoriesModel> topCategory=[];
   }
   getTopCategories(
       ) async {
+    emit(GetTopCategoriesLoadingState());
+
     final result = await _categoriesRepo.getTopCategories();
 
     result.fold((l) {

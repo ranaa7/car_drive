@@ -23,7 +23,7 @@ class Toasters {
       backgroundColor: isError ? AppColors.red3 : AppColors.blue,
       radius: defaultRadius.r,
       textStyle: AppTextStyle.cairoBold16White,
-      animationBuilder: defaultAnimationBuilder,
+      animationBuilder: defaultAnimationBuilder.call,
       textPadding: defaultTextPadding,
       duration: const Duration(milliseconds: 1250),
     );

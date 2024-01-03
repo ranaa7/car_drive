@@ -44,8 +44,8 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   getAllProduct() async {
+    emit(GetProductLoadingState());
     final result = await _productRepo.getAllProduct();
-
     result.fold((l) {
       final allProducts = l.data["data"];
       if (allProducts != null) {
@@ -58,6 +58,7 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   getFeaturedProduct() async {
+    emit(GetFeaturedProductLoadingState());
     final result = await _productRepo.getFeaturedProduct();
 
     result.fold((l) {
@@ -67,11 +68,12 @@ class ProductCubit extends Cubit<ProductState> {
             .map<FeaturedProductModel>((e) => FeaturedProductModel.fromJson(e))
             .toList();
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetFeaturedProductSuccessState());
+    }, (r) => emit(GetFeaturedProductErrorState()));
   }
 
   getDetailsOfProduct(id) async {
+    emit(GetProductDetailsLoadingState());
     final result = await _productRepo.getDetailsOfProduct(id);
 
     result.fold((l) {
@@ -82,11 +84,12 @@ class ProductCubit extends Cubit<ProductState> {
                 (e) => DetailsOfProductModel.fromJson(e))
             .toList();
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductDetailsSuccessState());
+    }, (r) => emit(GetProductDetailsErrorState()));
   }
 
   getRelatedProductsOfProduct(id) async {
+    emit(GetProductDetailsLoadingState());
     final result = await _productRepo.getRelatedProductsOfProduct(id);
 
     result.fold((l) {
@@ -96,17 +99,19 @@ class ProductCubit extends Cubit<ProductState> {
             .map<AllProductModel>((e) => AllProductModel.fromJson(e))
             .toList();
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductDetailsSuccessState());
+    }, (r) => emit(GetProductDetailsErrorState()));
   }
-
+  String? sortKey;
+      int? categories;
+  String? minimum;
+      String? maximum;
   getSearchProduct({
     int? page,
-    String? sortKey,
-    String? categories,
-    String? minimum,
-    String? maximum,
   }) async {
+    if (page==1) {
+      emit(GetSearchProductLoadingState());
+    }
     final result = await _productRepo.getSearchProduct(
       page,
       sortKey,
@@ -125,11 +130,12 @@ class ProductCubit extends Cubit<ProductState> {
             .toList());
       }
       print(page.toString());
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetSearchProductSuccessState());
+    }, (r) => emit(GetSearchProductErrorState()));
   }
 
   getProductOfCategory({int? id, int? page}) async {
+    emit(GetProductOfCategoryLoadingState());
     final result = await _productRepo.getProductOfCategories(id, page);
     if (page == 1) {
       productOfCategory.clear();
@@ -142,11 +148,12 @@ class ProductCubit extends Cubit<ProductState> {
             .toList());
       }
       print(page.toString());
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductOfCategorySuccessState());
+    }, (r) => emit(GetProductOfCategoryErrorState()));
   }
 
   getProductsOfOfferCategory() async {
+    emit(GetProductOfOfferLoadingState());
     final result = await _productRepo.getProductOfCategories(9, 1);
 
     result.fold((l) {
@@ -156,11 +163,12 @@ class ProductCubit extends Cubit<ProductState> {
             .map<AllProductModel>((e) => AllProductModel.fromJson(e))
             .toList();
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductOfOfferSuccessState());
+    }, (r) => emit(GetProductOfOfferErrorState()));
   }
 
   getProductsOfOilCategory() async {
+    emit(GetProductOfOilLoadingState());
     final result = await _productRepo.getProductOfCategories(4, 1);
 
     result.fold((l) {
@@ -170,11 +178,12 @@ class ProductCubit extends Cubit<ProductState> {
             .map<AllProductModel>((e) => AllProductModel.fromJson(e))
             .toList();
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductOfOilSuccessState());
+    }, (r) => emit(GetProductOfOilErrorState()));
   }
 
   getProductsOfBatteryCategory() async {
+    emit(GetProductOfBatteryLoadingState());
     final result = await _productRepo.getProductOfCategories(7, 1);
 
     result.fold((l) {
@@ -184,11 +193,12 @@ class ProductCubit extends Cubit<ProductState> {
             .map<AllProductModel>((e) => AllProductModel.fromJson(e))
             .toList();
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductOfBatterySuccessState());
+    }, (r) => emit(GetProductOfBatteryErrorState()));
   }
 
   getProductOfBrand({int? id, int? page}) async {
+    emit(GetProductOfBrandLoadingState());
     final result = await _productRepo.getProductOfBrands(id, page);
     if (page == 1) {
       productOfBrand.clear();
@@ -200,7 +210,7 @@ class ProductCubit extends Cubit<ProductState> {
             .map<AllProductModel>((e) => AllProductModel.fromJson(e))
             .toList());
       }
-      emit(GetProductSuccessState());
-    }, (r) => emit(GetProductErrorState()));
+      emit(GetProductOfBrandSuccessState());
+    }, (r) => emit(GetProductOfBrandErrorState()));
   }
 }

@@ -20,7 +20,7 @@ class AddOrEditCarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar:  DefaultAppBar(title: AppStrings.addOrEditCar,),
       body: Center(
         child: InkWell(
           onTap: () => showDialog(

@@ -1,7 +1,7 @@
 class ValidationForm {
   static String? phoneValidator( value) {
     String pattern = r'^(\+201|01|00201)[0-2,5]{1}[0-9]{8}';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (value.length == 0) {
       return 'Please enter mobile number';
     }

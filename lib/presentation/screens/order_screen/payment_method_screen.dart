@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/presentation/components/app_textfield.dart';
@@ -43,7 +44,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 text: AppStrings.continue1,
                 color: AppColors.red3),
           ),
-          appBar: DefaultAppBar(),
+          appBar: DefaultAppBar(title:AppStrings.choosePaymentMethod),
           body: Column(
             children: [
               Center(
@@ -53,17 +54,14 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     controller: couponController,
                     hintText: AppStrings.enterCoupon,
                     fixIcon: Padding(
-                      padding: EdgeInsets.only(left: 10.0.w),
+                      padding: context.isRTL?
+                      EdgeInsets.only(right: 10.0.w):EdgeInsets.only(left: 10.0.w),
                       child: Button1(
                           height: 50,
                           width: 100,
                           onPressed: () {
-                            if (couponController.text.isNotEmpty) {
-                              setState(() {
-                                OrderCubit.get(context).applyCoupon(couponController.text);
-                                couponApplied = true;
-                              });
-                            }else if (couponController.text.isEmpty) {
+                            OrderCubit.get(context).applyCoupon(couponController.text);
+                             if (couponController.text.isEmpty) {
                               Toasters.show(
                                 AppStrings.pleaseEnterCoupon,
                               );
@@ -73,7 +71,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 OrderCubit.get(context).applyCouponModel?.message ?? '',
                                 isError: false,
                               );
-                            } else if (couponApplied == true) {
+                            }
+                            else if (couponApplied == true) {
                               setState(() {
                                 OrderCubit.get(context).removeCoupon();
                                 couponApplied = false;
@@ -89,8 +88,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 ),
               ),
               Expanded(
-                  child: state is GetPaymentMethodLoadingState
-                      ? PaymentShimmer()
+                  child: state is GetPaymentMethodLoadingState || OrderCubit.get(context).paymentTypes.isEmpty
+                      ? const PaymentShimmer()
                       : ListView.separated(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10.w, vertical: 15.h),
@@ -111,7 +110,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                               OrderCubit.get(context).paymentTypes.length)),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.r),
                     color: AppColors.blue),
@@ -121,12 +120,12 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                       AppStrings.totalPrice,
                       style: AppTextStyle.cairoBold16White,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     TextButton(
                         onPressed: () {
                           showDialog(
                               context: context,
-                              builder: (context) => AlertDialog(
+                              builder: (context) => const AlertDialog(
                                     content: PaymentSummary(),
                                   ));
                         },

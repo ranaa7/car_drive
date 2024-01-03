@@ -24,9 +24,9 @@ class CategoriesGridView extends StatelessWidget {
           SizedBox(
             height: 320.h,
             child: categories.isEmpty || isLoading
-                ? CategoriesShimmer()
+                ? const CategoriesShimmer(isHome:true)
                 : GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 15.h),
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 4,
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

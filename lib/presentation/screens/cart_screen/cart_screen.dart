@@ -36,8 +36,8 @@ class CartScreen extends StatelessWidget {
           appBar: DefaultAppBar(
             title: AppStrings.cart,
           ),
-          body: state is GetCartListLoadingState
-              ? CartShimmer()
+          body: state is GetCartListLoadingState || state is UpdateCartLoadingState ||state is AddCartLoadingState||state is DeleteProductFromCartLoadingState
+              ? const CartShimmer()
               : cartList.isNotEmpty
                   ? ListView.separated(
                       padding: EdgeInsets.only(top: 20.h, bottom: 150.h),
@@ -56,7 +56,6 @@ class CartScreen extends StatelessWidget {
                           currency: cartList[index].currencySymbol ?? '',
                           onPressed: () {
                             cartCubit.deleteProduct(cartList[index].id);
-                            cartCubit.getCartCount();
                           },
                           productQuantity: cartList[index].quantity ?? 1,
                           minusPressed: () => cartCubit.minusPressed(index),
@@ -125,7 +124,8 @@ class CartScreen extends StatelessWidget {
                   },
                   onPressed2: () {
                     cartCubit.updateCart();
-                  },
+                    Toasters.show(isError: false,"Cart Updated");
+                  }, titleBlue: AppStrings.updateCart, titleRed: AppStrings.continueToSelectCar,
                 )
               ],
             ),

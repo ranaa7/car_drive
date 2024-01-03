@@ -16,6 +16,7 @@ import 'package:more_2_drive/presentation/screens/order_screen/form_field/postal
 import 'package:more_2_drive/presentation/screens/order_screen/user_address_container.dart';
 import 'package:more_2_drive/presentation/widgets/buttons/button_1.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/user_address_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class AddOrEditAddressScreen extends StatefulWidget {
@@ -29,220 +30,277 @@ class _AddOrEditAddressScreenState extends State<AddOrEditAddressScreen> {
   int selectedOption = 0;
   int selectedIndex = 0;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController postCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final userAddress = OrderCubit.get(context).userAddressList;
-    return Scaffold(
-      appBar:  DefaultAppBar(
-        title: AppStrings.userAddress,
-      ),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          userAddress.isEmpty
-              ? Column(
-                  children: [
-                    CustomImageView(
-                      imagePath: Assets.imagesEmptyAddress,
-                      fit: BoxFit.cover,
-                      height: 70.h,
-                      width: 70.w,
+    return BlocBuilder<OrderCubit, OrderState>(
+      builder: (context, state) {
+        final userAddress = OrderCubit.get(context).userAddressList;
+        return Scaffold(
+          appBar: DefaultAppBar(
+            title: AppStrings.userAddress,
+          ),
+          body: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              userAddress.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomImageView(
+                            imagePath: Assets.imagesEmptyAddress,
+                            fit: BoxFit.contain,
+                            height: 300.h,
+                            width: 300.w,
+                          )
+                        ],
+                      ),
                     )
-                  ],
-                )
-              : ListView.separated(
-            padding: EdgeInsets.only(bottom: 80.h),
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: UserAddressContainer(
-                          address: userAddress[index].address ?? '',
-                          city: userAddress[index].cityName ?? '',
-                          state: userAddress[index].stateName ?? '',
-                          country: userAddress[index].countryName ?? '',
-                          postalCode: userAddress[index].postalCode ?? '',
-                          phone: userAddress[index].phone ?? '',
-                          selectedIndex: selectedIndex,
-                          index: index,
-                        ),
-                      ),
-                  separatorBuilder: (context, index) => SizedBox(
-                        height: 10.h,
-                      ),
-                  itemCount: userAddress.length),
-          Padding(
-            padding:  EdgeInsets.only(bottom:20.h),
-            child: Button1(
-                height: 60,
-                width: 235,
-                onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.r)),
-                          insetPadding: EdgeInsets.symmetric(horizontal: 10.w),
-                          contentPadding: EdgeInsets.only(
-                              top: 36.0.h,
-                              left: 36.0.w,
-                              right: 36.0.w,
-                              bottom: 36.0.h),
-                          content: SingleChildScrollView(
-                            child: BlocBuilder<OrderCubit, OrderState>(
-                              builder: (context, state) {
-                                final OrderCubit orderCubit =
-                                    OrderCubit.get(context);
-                                final List<StateByCountryModel> stateByCountry =
-                                    orderCubit.stateByCountries;
-                                final List<CityByStateModel> cityByState =
-                                    orderCubit.cityByStates;
-                                return SizedBox(
-                                  width: 400.w,
-                                  child: Form(
-                                    key: formKey,
-                                    autovalidateMode: AutovalidateMode.always,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        AddressForm(),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Text(
-                                          AppStrings.state,
-                                          style: AppTextStyle.cairoSemiBold15Grey,
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        AppDropList<StateByCountryModel>(
-                                          items: stateByCountry,
-                                          compareFn: (stateByCountry, filter) =>
-                                              stateByCountry.id == filter.id,
-                                          filterFn: (stateByCountry, filter) =>
-                                              stateByCountry.name!
-                                                  .toLowerCase()
-                                                  .contains(filter.toLowerCase()),
-                                          asyncItems: (String filter) async {
-                                            await orderCubit.getStateByCountry();
-                                            return orderCubit.stateByCountries;
-                                          },
-                                          itemsAsString: (stateByCountry) =>
-                                              stateByCountry.name ?? '',
-                                          itemBuilder: (context, t, isSelected) =>
-                                              Container(
-                                            padding: const EdgeInsets.all(8),
-                                            color: isSelected
-                                                ? AppColors.red3
-                                                : AppColors.white,
-                                            child: Center(
-                                              child: Text(
-                                                t.name ?? '',
-                                                style: AppTextStyle
-                                                    .cairoMedium14Black
-                                                    .copyWith(
-                                                  color: isSelected
-                                                      ? AppColors.white
-                                                      : AppColors.red3,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          onChange: orderCubit.onSelectState,
-                                          hintText: AppStrings.enterState,
-                                        ),
-                                        Text(
-                                          AppStrings.city,
-                                          style: AppTextStyle.cairoSemiBold15Grey,
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        AppDropList<CityByStateModel>(
-                                          items: cityByState,
-                                          itemsAsString: (cityByState) =>
-                                              cityByState.name ?? '',
-                                          compareFn: (cityByState, filter) =>
-                                              cityByState.id == filter.id,
-                                          filterFn: (cityByState, filter) =>
-                                              cityByState.name!
-                                                  .toLowerCase()
-                                                  .contains(filter.toLowerCase()),
-                                          itemBuilder: (context, cityByState,
-                                                  isSelected) =>
-                                              Container(
-                                            padding: const EdgeInsets.all(8),
-                                            color: isSelected
-                                                ? AppColors.red3
-                                                : AppColors.white,
-                                            child: Center(
-                                              child: Text(
-                                                cityByState.name ?? '',
-                                                style: AppTextStyle
-                                                    .cairoMedium14Black
-                                                    .copyWith(
-                                                  color: isSelected
-                                                      ? AppColors.white
-                                                      : AppColors.red3,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          onChange:
-                                              orderCubit.onSelectCityByState,
-                                          hintText: AppStrings.enterCity,
-                                          emptyText: AppStrings.selectStateFirst,
-                                        ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        PostalCodeForm(),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        PhoneForm(),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
-                                        Row(
+                  : state is GetUserAddressLoadingState ||
+                          state is CreateUserAddressLoadingState
+                      ? const UserAddressShimmer()
+                      : ListView.separated(
+                          padding: EdgeInsets.only(bottom: 80.h),
+                          physics: const BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = index;
+                                  });
+                                },
+                                child: UserAddressContainer(
+                                  address: userAddress[index].address ?? '',
+                                  city: userAddress[index].cityName ?? '',
+                                  state: userAddress[index].stateName ?? '',
+                                  country: userAddress[index].countryName ?? '',
+                                  postalCode:
+                                      userAddress[index].postalCode ?? '',
+                                  phone: userAddress[index].phone ?? '',
+                                  selectedIndex: selectedIndex,
+                                  index: index,
+                                ),
+                              ),
+                          separatorBuilder: (context, index) => SizedBox(
+                                height: 10.h,
+                              ),
+                          itemCount: userAddress.length),
+              Padding(
+                padding: EdgeInsets.only(bottom: 20.h),
+                child: Button1(
+                    height: 60,
+                    width: 235,
+                    onPressed: () => showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.r)),
+                              insetPadding:
+                                  EdgeInsets.symmetric(horizontal: 10.w),
+                              contentPadding: EdgeInsets.only(
+                                  top: 36.0.h,
+                                  left: 36.0.w,
+                                  right: 36.0.w,
+                                  bottom: 36.0.h),
+                              content: SingleChildScrollView(
+                                child: BlocBuilder<OrderCubit, OrderState>(
+                                  builder: (context, state) {
+                                    final OrderCubit orderCubit =
+                                        OrderCubit.get(context);
+                                    final List<StateByCountryModel>
+                                        stateByCountry =
+                                        orderCubit.stateByCountries;
+                                    final List<CityByStateModel> cityByState =
+                                        orderCubit.cityByStates;
+                                    return SizedBox(
+                                      width: 400.w,
+                                      child: Form(
+                                        key: formKey,
+                                        autovalidateMode:
+                                            AutovalidateMode.always,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Button1(
-                                              color: AppColors.red3,
-                                              height: 36,
-                                              width: 120,
-                                              onPressed: () {},
-                                              text: AppStrings.add,
+                                            AddressForm(
+                                              controller: addressController,
                                             ),
-                                            const Spacer(),
-                                            Button1(
-                                              color: AppColors.grey4,
-                                              height: 36,
-                                              width: 120,
-                                              onPressed: () =>
-                                                  Navigator.pop(context),
-                                              text: AppStrings.close,
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Text(
+                                              AppStrings.state,
+                                              style: AppTextStyle
+                                                  .cairoSemiBold15Grey,
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            AppDropList<StateByCountryModel>(
+                                              items: stateByCountry,
+                                              compareFn: (stateByCountry,
+                                                      filter) =>
+                                                  stateByCountry.id ==
+                                                  filter.id,
+                                              filterFn: (stateByCountry,
+                                                      filter) =>
+                                                  stateByCountry.name!
+                                                      .toLowerCase()
+                                                      .contains(
+                                                          filter.toLowerCase()),
+                                              asyncItems:
+                                                  (String filter) async {
+                                                await orderCubit
+                                                    .getStateByCountry();
+                                                return orderCubit
+                                                    .stateByCountries;
+                                              },
+                                              itemsAsString: (stateByCountry) =>
+                                                  stateByCountry.name ?? '',
+                                              itemBuilder:
+                                                  (context, t, isSelected) =>
+                                                      Container(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                color: isSelected
+                                                    ? AppColors.red3
+                                                    : AppColors.white,
+                                                child: Center(
+                                                  child: Text(
+                                                    t.name ?? '',
+                                                    style: AppTextStyle
+                                                        .cairoMedium14Black
+                                                        .copyWith(
+                                                      color: isSelected
+                                                          ? AppColors.white
+                                                          : AppColors.red3,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              onChange:
+                                                  orderCubit.onSelectState,
+                                              hintText: AppStrings.enterState,
+                                            ),
+                                            Text(
+                                              AppStrings.city,
+                                              style: AppTextStyle
+                                                  .cairoSemiBold15Grey,
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            AppDropList<CityByStateModel>(
+                                              items: cityByState,
+                                              itemsAsString: (cityByState) =>
+                                                  cityByState.name ?? '',
+                                              compareFn: (cityByState,
+                                                      filter) =>
+                                                  cityByState.id == filter.id,
+                                              filterFn: (cityByState, filter) =>
+                                                  cityByState.name!
+                                                      .toLowerCase()
+                                                      .contains(
+                                                          filter.toLowerCase()),
+                                              itemBuilder: (context,
+                                                      cityByState,
+                                                      isSelected) =>
+                                                  Container(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                color: isSelected
+                                                    ? AppColors.red3
+                                                    : AppColors.white,
+                                                child: Center(
+                                                  child: Text(
+                                                    cityByState.name ?? '',
+                                                    style: AppTextStyle
+                                                        .cairoMedium14Black
+                                                        .copyWith(
+                                                      color: isSelected
+                                                          ? AppColors.white
+                                                          : AppColors.red3,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              onChange: orderCubit
+                                                  .onSelectCityByState,
+                                              hintText: AppStrings.enterCity,
+                                              emptyText:
+                                                  AppStrings.selectStateFirst,
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            PostalCodeForm(
+                                              controller: postCodeController,
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            PhoneForm(
+                                              controller: phoneController,
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Button1(
+                                                  color: AppColors.red3,
+                                                  height: 36,
+                                                  width: 120,
+                                                  onPressed: () {
+                                                    orderCubit.createUserAddress(
+                                                        493,
+                                                        addressController.text,
+                                                        orderCubit
+                                                                .stateByCountry
+                                                                ?.id ??
+                                                            0,
+                                                        orderCubit.cityByState
+                                                                ?.id ??
+                                                            0,
+                                                        postCodeController.text.toString(),
+                                                        phoneController.text.toString());
+                                                    Navigator.pop(context);
+                                                    phoneController.clear();
+                                                    postCodeController.clear();
+                                                    addressController.clear();
+                                                  },
+                                                  text: AppStrings.add,
+                                                ),
+                                                const Spacer(),
+                                                Button1(
+                                                  color: AppColors.grey4,
+                                                  height: 36,
+                                                  width: 120,
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                  text: AppStrings.close,
+                                                )
+                                              ],
                                             )
                                           ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          )),
-                    ),
-                text: AppStrings.addLocation,
-                color: AppColors.blue),
-          )
-        ],
-      ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              )),
+                        ),
+                    text: AppStrings.addLocation,
+                    color: AppColors.blue),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

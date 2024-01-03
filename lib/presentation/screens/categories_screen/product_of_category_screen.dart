@@ -5,7 +5,7 @@ import 'package:more_2_drive/presentation/components/custom_reload_footer.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_state.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
-import 'package:more_2_drive/presentation/widgets/shimmer/categories_shimmer.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/product_grid_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -85,7 +85,7 @@ class _ProductOfCategoryScreenState extends State<ProductOfCategoryScreen> {
               },
               controller: _refreshController,
               child: isLoading
-                  ? const CategoriesShimmer()
+                  ? const ProductGridShimmer()
                   : GridView.count(
 
                       shrinkWrap: true,
@@ -107,7 +107,7 @@ class _ProductOfCategoryScreenState extends State<ProductOfCategoryScreen> {
                                         productCubit
                                             .getRelatedProductsOfProduct(
                                                 productDetails[index].id);
-                                        Navigator.pushNamed(
+                                        Navigator.pushReplacementNamed(
                                             context, RouteName.productScreen);
                                       },
                                       child: ProductItem(
@@ -148,7 +148,7 @@ class _ProductOfCategoryScreenState extends State<ProductOfCategoryScreen> {
                                         print(productDetails[index]
                                             .id
                                             .toString());
-                                        Navigator.pushNamed(
+                                        Navigator.pushReplacementNamed(
                                             context, RouteName.productScreen);
                                       },
                                       child: ProductItem(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart' as DateFormatter;
+import 'package:intl/intl.dart' as date_formatter;
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
@@ -64,17 +64,20 @@ class _OrderPickUpTimeScreenState extends State<OrderPickUpTimeScreen> {
       pickupTimes[selectedTimeIndex].minute,
     );
     return Scaffold(
-        bottomNavigationBar: Button1(
-            height: 50,
-            width: 300,
-            onPressed: () {
-              OrderCubit.get(context).updatePickupDateInCart(pickupTime);
-              OrderCubit.get(context).getPaymentTypes();
-              OrderCubit.get(context).getCartSummary();
-              Navigator.pushNamed(context, RouteName.orderPaymentMethod);
-            },
-            text: AppStrings.continue1,
-            color: AppColors.red3),
+        bottomNavigationBar: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: 8.0.w,vertical: 10.h),
+          child: Button1(
+              height: 50,
+              width: 300,
+              onPressed: () {
+                OrderCubit.get(context).updatePickupDateInCart(pickupTime);
+                OrderCubit.get(context).getPaymentTypes();
+                OrderCubit.get(context).getCartSummary();
+                Navigator.pushNamed(context, RouteName.orderPaymentMethod);
+              },
+              text: AppStrings.continue1,
+              color: AppColors.red3),
+        ),
         appBar: DefaultAppBar(
           title: AppStrings.choosePickup,
         ),
@@ -115,7 +118,7 @@ class _OrderPickUpTimeScreenState extends State<OrderPickUpTimeScreen> {
                                       : AppColors.white),
                               child: Center(
                                 child: Text(
-                                  "${DateFormatter.DateFormat("dd MMMM").format(value)}",
+                                  date_formatter.DateFormat("dd MMMM").format(value),
                                   style: selectedDateIndex == index
                                       ? AppTextStyle.cairoBold16White
                                       : AppTextStyle.cairoBold17Red,
@@ -160,10 +163,10 @@ class _OrderPickUpTimeScreenState extends State<OrderPickUpTimeScreen> {
                                   color: selectedTimeIndex == index
                                       ? AppColors.red3
                                       : AppColors.white),
-                              padding: EdgeInsets.all(4),
+                              padding: const EdgeInsets.all(4),
                               child: Center(
                                 child: Text(
-                                  "${DateFormatter.DateFormat("h:mm a").format(value)}",
+                                  date_formatter.DateFormat("h:mm a").format(value),
                                   style: selectedTimeIndex == index
                                       ? AppTextStyle.cairoBold16White
                                       : AppTextStyle.cairoBold17Red,

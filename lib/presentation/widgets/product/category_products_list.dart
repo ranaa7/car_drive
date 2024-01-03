@@ -4,9 +4,10 @@ import 'package:more_2_drive/config/style/app_shadows.dart';
 import 'package:more_2_drive/domain/models/product_model/all_produts_model.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
-import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
+import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/product_list_shimmer.dart';
 import 'package:more_2_drive/presentation/widgets/special_product/product_item.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 class CategoryProductList extends StatelessWidget {
   final bool isLoading;
@@ -30,14 +31,12 @@ class CategoryProductList extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) => InkWell(
                 onTap: () {
                   final productCubit = ProductCubit.get(context);
+                  WishlistCubit.get(context).checkIfProductIsInWishlist(products[index].id);
                   productCubit.getDetailsOfProduct(products[index].id);
                   productCubit.getRelatedProductsOfProduct(products[index].id);
-                  Navigator.push(
+                  Navigator.pushReplacementNamed(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => ProductScreen(
-                                isLoading: isLoading,
-                              )));
+                      RouteName.productScreen);
                 },
                 child: ProductItem(
                   discount: products[index].discount ?? "",

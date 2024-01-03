@@ -43,8 +43,10 @@ class CartCubit extends Cubit<CartState> {
       quantity: productQuantity,
     );
     result.fold((l) async {
-      getCartCount();
+      await getCartList();
+      await getCartCount();
       emit(AddCartSuccessState());
+
     }, (r) => emit(AddCartErrorState()));
     print(result.toString());
   }
@@ -53,8 +55,8 @@ class CartCubit extends Cubit<CartState> {
     emit(UpdateCartLoadingState());
 
     final result = await _cartRepo.updateCart(
-      cartId: "${cartList.map((e) => (e.id.toString()) + ("")).toList().toString().replaceAll("[", "").replaceAll("]", "")}",
-      quantity: "${cartList.map((e) => (e.quantity.toString()) + ("")).toList().toString().replaceAll("[", "").replaceAll("]", "")}",
+      cartId: cartList.map((e) => (e.id.toString()) + ("")).toList().toString().replaceAll("[", "").replaceAll("]", ""),
+      quantity: cartList.map((e) => (e.quantity.toString()) + ("")).toList().toString().replaceAll("[", "").replaceAll("]", ""),
     );
     result.fold((l) async {
       emit(UpdateCartSuccessState());
@@ -75,17 +77,17 @@ class CartCubit extends Cubit<CartState> {
               .toList();
         }
       }
-      getCartCount();
       emit(GetCartListSuccessState());
+      getCartCount();
     }, (r) => emit(GetCartListErrorState()));
   }
 
   deleteProduct(cartId) async {
     emit(DeleteProductFromCartLoadingState());
     final result = await _cartRepo.deleteProduct(cartId);
-    result.fold((l) {
-      getCartCount();
-      getCartList();
+    result.fold((l) async{
+      await getCartList();
+      await getCartCount();
       emit(DeleteProductFromCartSuccessState());
     }, (r) => emit(DeleteProductFromCartErrorState()));
   }
