@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
-import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 import '../../../config/style/app_colors.dart';
 import '../../../config/style/text_styles.dart';

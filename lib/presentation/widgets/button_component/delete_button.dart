@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
-import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 import '../../../config/style/app_colors.dart';
 import '../../../config/style/text_styles.dart';

@@ -4,8 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:more_2_drive/data/remote/dio_helper.dart';
 import 'package:more_2_drive/presentation/screens/order_details/data/models/order_details_model.dart';
-import 'package:more_2_drive/presentation/screens/order_details/data/models/order_details_model.dart';
-import 'package:more_2_drive/presentation/screens/order_details/data/models/order_details_model.dart';
+
 
 import '../../../../core/app_constants/constants.dart';
 import '../../../../utils/strings/end_points.dart';

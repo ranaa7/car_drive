@@ -9,7 +9,6 @@ import 'package:more_2_drive/presentation/screens/order_details/view_models/widg
 import 'package:more_2_drive/presentation/screens/order_item/data/models/order_item_model.dart';
 import 'package:more_2_drive/presentation/screens/order_item/view/order_item_cubit.dart';
 import 'package:more_2_drive/presentation/screens/order_item/view_models/widgets/payment_row.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../../../config/style/text_styles.dart';
 import '../../../../utils/strings/app_strings.dart';
@@ -24,7 +23,7 @@ class OrderDetailsScreen extends StatefulWidget {
 }
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  int _index = 0;
+
 
   void initState() {
     OrderItemCubit.get(context).getOrdersItems(widget.id);

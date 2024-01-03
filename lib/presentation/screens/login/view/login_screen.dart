@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
-import 'package:more_2_drive/presentation/widgets/button_component.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/phone_button.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/signup_button.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/email_formfield.dart';

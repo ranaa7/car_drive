@@ -6,8 +6,7 @@ import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
 import 'package:more_2_drive/presentation/screens/signup/view_models/signup_cubit.dart';
 import 'package:more_2_drive/presentation/screens/signup/views/widgets/phonetextfiled.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/email_formfield.dart';
-import 'package:more_2_drive/presentation/widgets/form_field/phone_formfield.dart';
-import 'package:nb_utils/nb_utils.dart';
+
 
 import '../../../../config/style/app_colors.dart';
 import '../../../../config/style/text_styles.dart';

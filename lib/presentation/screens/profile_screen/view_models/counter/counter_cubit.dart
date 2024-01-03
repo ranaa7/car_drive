@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:more_2_drive/core/app_constants/constants.dart';
 import 'package:more_2_drive/domain/repositories/counter_repo/counter_repo.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/data/models/profile_counter_model.dart';
 
-import '../../../../../core/network/remote/dio_helper.dart';
-import '../../../../../utils/strings/end_points.dart';
+
 
 part 'counter_state.dart';
 

@@ -5,9 +5,7 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/config/validationform.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
-import 'package:more_2_drive/presentation/widgets/button_component/delete_button.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/update_profile_button.dart';
-import 'package:more_2_drive/presentation/widgets/form_field/first_name_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/profile_form_field.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 

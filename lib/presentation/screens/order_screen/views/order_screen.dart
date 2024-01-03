@@ -10,7 +10,6 @@ import '../../../../config/style/app_colors.dart';
 import '../../../../config/style/text_styles.dart';
 import '../../../../utils/strings/app_strings.dart';
 import '../../../widgets/default_appbar/default_appbar.dart';
-import '../../../widgets/shimmer/categories_shimmer.dart';
 
 class OrderScreen extends StatefulWidget {
    OrderScreen({super.key});

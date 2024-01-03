@@ -7,7 +7,6 @@ import 'package:more_2_drive/presentation/screens/categories_screen/categories_s
 import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
 import 'package:more_2_drive/presentation/screens/main_screen.dart';
 import 'package:more_2_drive/presentation/screens/notification_screen/notification_screen.dart';
-import 'package:more_2_drive/presentation/screens/order_details/view_models/order_details_screen.dart';
 import 'package:more_2_drive/presentation/screens/order_screen/views/order_screen.dart';
 import 'package:more_2_drive/presentation/screens/product_screen/product_screen.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/edit_profile_screen.dart';

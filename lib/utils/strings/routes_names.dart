@@ -20,7 +20,6 @@ class RouteName {
 
   static const String orderScreen='/OrderScreen';
 
-  static const String orderDetailsScreen='/OrderDetailsScreen';
 
   static const String editProfilescreen='/EditProfileScreen';
 

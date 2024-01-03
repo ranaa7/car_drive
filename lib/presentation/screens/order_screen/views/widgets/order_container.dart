@@ -7,7 +7,6 @@ import 'package:more_2_drive/presentation/screens/order_screen/data/models/order
 
 import '../../../../../config/style/text_styles.dart';
 import '../../../../../generated/assets.dart';
-import '../../../../../utils/strings/routes_names.dart';
 
 class OrderItem extends StatelessWidget {
 
@@ -25,7 +24,6 @@ class OrderItem extends StatelessWidget {
           return GestureDetector(
             onTap: (){
             OrderDetailsCubit.get(context).getOrdersDetails(ordermodel[index].id );
-            Navigator.pushNamed(context , RouteName.orderDetailsScreen);
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderDetailsScreen(id: ordermodel[index].id)));
             },
             child: Card(

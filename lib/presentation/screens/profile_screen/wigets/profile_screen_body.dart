@@ -6,7 +6,6 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../../../../config/style/app_colors.dart';
 import '../../../../config/style/text_styles.dart';
-import '../../../../core/network/local/cache_helper.dart';
 import '../../../../generated/assets.dart';
 import '../../../../utils/strings/app_strings.dart';
 import '../../../../utils/strings/routes_names.dart';

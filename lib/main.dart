@@ -18,9 +18,7 @@ import 'package:more_2_drive/locator.dart';
 import 'package:more_2_drive/presentation/cubits/banner_cubit/banner_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/product_cubit/product_cubit.dart';
-import 'package:more_2_drive/presentation/screens/login/view/login_screen.dart';
 import 'package:more_2_drive/presentation/screens/login/view_models/login_cubit.dart';
-import 'package:more_2_drive/presentation/screens/login_profile_screen/login_profile_screen.dart';
 import 'package:more_2_drive/presentation/screens/main_screen.dart';
 import 'package:more_2_drive/presentation/screens/onboarding/view/onboarding_screen.dart';
 import 'package:more_2_drive/presentation/screens/order_details/view/order_details_cubit.dart';
@@ -28,7 +26,6 @@ import 'package:more_2_drive/presentation/screens/order_item/view/order_item_cub
 import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/view_models/counter/counter_cubit.dart';
 import 'package:more_2_drive/presentation/screens/signup/view_models/signup_cubit.dart';
-import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:oktoast/oktoast.dart';
 

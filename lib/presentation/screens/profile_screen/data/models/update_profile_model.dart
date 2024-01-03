@@ -1,5 +1,4 @@
 
-import 'package:more_2_drive/presentation/screens/login/data/models/user_model.dart';
 
 class UpdateProfileModel {
   bool? error;
