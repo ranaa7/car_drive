@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:more_2_drive/config/style/app_colors.dart';
 
 class SizedBoxRadio extends StatelessWidget {
   final int value;
@@ -21,21 +22,19 @@ class SizedBoxRadio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          height: height ?? 30.h,
-          child: RadioMenuButton(
-            value: value,
-            style: const ButtonStyle(
-                padding: MaterialStatePropertyAll(EdgeInsets.zero)),
-            groupValue: groupValue,
-            onChanged: onChanged,
-            child: child,
-          ),
-        ),
-      ],
+    return SizedBox(
+      height: height ?? 30.h,
+      child: RadioMenuButton(
+        value: value,
+        style: const ButtonStyle(
+          overlayColor: MaterialStatePropertyAll(AppColors.blue),
+          foregroundColor: MaterialStatePropertyAll(AppColors.blue),
+            iconColor: MaterialStatePropertyAll(AppColors.blue),
+            padding: MaterialStatePropertyAll(EdgeInsets.zero)),
+        groupValue: groupValue,
+        onChanged: onChanged,
+        child: child,
+      ),
     );
   }
 }

@@ -4,6 +4,8 @@ class Assets {
 
   static const String fontCairoRegular = 'assets/font/Cairo-Regular.ttf';
   static const String fontDINRegular = 'assets/font/DIN-Regular.ttf';
+  static const String imagesAddCar = 'assets/images/addCar.png';
+  static const String imagesAppIcon = 'assets/images/app_icon.png';
   static const String imagesBackground = 'assets/images/background.jpg';
   static const String imagesBanner = 'assets/images/banner.jpg';
   static const String imagesCallCenterIcon = 'assets/images/call_center_icon.png';
@@ -26,22 +28,36 @@ class Assets {
   static const String imagesTranslateLogo = 'assets/images/translate_logo.png';
   static const String imagesW = 'assets/images/w.jpg';
   static const String imagesLogin= 'assets/images/تسجيل_الدخول.png';
+  static const String imagesCarLoading = 'assets/images/carLoading.json';
+  static const String imagesCart = 'assets/images/cart.png';
+  static const String imagesChangeFilter = 'assets/images/changeFilter.jpg';
+  static const String imagesEmpty = 'assets/images/empty.jpg';
+  static const String imagesEmptyAddress = 'assets/images/emptyAddress.jpg';
+  static const String imagesEmptyCart = 'assets/images/emptyCart.png';
+  static const String imagesFullWash = 'assets/images/fullWash.jpg';
+  static const String imagesInnerWash = 'assets/images/innerWash.jpg';
+  static const String imagesLike = 'assets/images/like.png';
+  static const String imagesMinusBlue = 'assets/images/minusBlue.png';
+  static const String imagesMinusWhite = 'assets/images/minusWhite.png';
+  static const String imagesNew = 'assets/images/new.png';
+  static const String imagesOuterWash = 'assets/images/outerWash.jpg';
+  static const String imagesPickup = 'assets/images/pickup.jpg';
+  static const String imagesPlusBlue = 'assets/images/plusBlue.png';
+  static const String imagesPlusWhite = 'assets/images/plusWhite.png';
+  static const String imagesProduct = 'assets/images/product.jpg';
+  static const String imagesRecharge = 'assets/images/recharge.jpg';
+  static const String imagesShare = 'assets/images/share.png';
+  static const String imagesSplash = 'assets/images/splash.gif';
+  static const String imagesTrue = 'assets/images/true.jpg';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';
   static const String svgBack = 'assets/svg/back.svg';
-  static const String svgCart = 'assets/svg/cart.svg';
   static const String svgCategory = 'assets/svg/category.svg';
   static const String svgCoins = 'assets/svg/coins.svg';
   static const String svgEmptyNotificaion = 'assets/svg/emptyNotificaion.svg';
   static const String svgHome = 'assets/svg/home.svg';
-  static const String svgLike = 'assets/svg/like.svg';
-  static const String svgMinus = 'assets/svg/minus.svg';
-  static const String svgMinus2 = 'assets/svg/minus2.svg';
   static const String svgNotification = 'assets/svg/notification.svg';
-  static const String svgPlus = 'assets/svg/plus.svg';
   static const String svgProfile = 'assets/svg/profile.svg';
-  static const String svgShare = 'assets/svg/share.svg';
-  static const String svgShoppingCart = 'assets/svg/shopping_cart.svg';
   static const String svgStar = 'assets/svg/star.svg';
 
 }

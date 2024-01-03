@@ -22,6 +22,16 @@ class RouteName {
 
 
   static const String editProfilescreen='/EditProfileScreen';
+  static const String productOfCategoriesScreen='/productOfCategoriesScreen';
+  static const String productOfBrandScreen='/productOfBrandScreen';
+  static const String selectCarScreen='/selectCarScreen';
+  static const String orderPickUpLocationScreen='/orderPickUpLocationScreen';
+  static const String orderPickUpTimeScreen='/orderPickUpTimeScreen';
+  static const String orderPaymentMethod='/orderPaymentMethod';
+  static const String payMobScreen='/payMobScreen';
+
+  static const String addOrEditCarScreen='/addOrEditCarScreen';
+  static const String addOrEditAddressScreen='/addOrEditAddressScreen';
 
 
 

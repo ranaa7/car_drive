@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
-import 'package:more_2_drive/generated/assets.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomAppShimmer extends StatelessWidget {
@@ -16,7 +15,7 @@ class CustomAppShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppColors.grey4,
+      baseColor: AppColors.grey3,
       highlightColor: AppColors.white,
       child:child??Container(
           width:width,

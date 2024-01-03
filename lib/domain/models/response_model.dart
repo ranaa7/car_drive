@@ -5,7 +5,7 @@ class ResponseModel {
   dynamic success;
   dynamic message;
   dynamic messageAr;
-   Map<String,dynamic> data={};
+   dynamic data={};
 
   ResponseModel.fromJson(Map<String,dynamic> json) {
     success = json['success'];

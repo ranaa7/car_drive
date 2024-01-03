@@ -1,7 +1,12 @@
 class ValidationForm {
-  static String? phoneValidator(value) {
-    if (value.isEmpty) {
-      return "برجاء ادخال رقم الهاتف";
+  static String? phoneValidator( value) {
+    String pattern = r'^(\+201|01|00201)[0-2,5]{1}[0-9]{8}';
+    RegExp regExp = RegExp(pattern);
+    if (value.length == 0) {
+      return 'Please enter mobile number';
+    }
+    else if (!regExp.hasMatch(value)||value.length > 11) {
+      return 'Please enter valid mobile number';
     }
     return null;
   }

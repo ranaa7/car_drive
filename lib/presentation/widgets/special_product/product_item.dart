@@ -23,41 +23,64 @@ class ProductItem extends StatelessWidget {
       required this.details,
       required this.price,
       required this.image,
-      required this.discount, required this.hasDiscount, required this.strokedPrice, required this.imageHeight, required this.imageWidth, required this.containerHeight});
+      required this.discount,
+      required this.hasDiscount,
+      required this.strokedPrice,
+      required this.imageHeight,
+      required this.imageWidth,
+      required this.containerHeight});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: AppColors.white),
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.white),
       height: containerHeight.h,
       width: 150.w,
       child: Column(
-        crossAxisAlignment: context.isRTL?CrossAxisAlignment.end:CrossAxisAlignment.start,
+crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
               height: imageHeight.h,
               width: imageWidth.w,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Stack(
-                  alignment: context.isRTL?Alignment.topRight:Alignment.topLeft,
+                  alignment:
+                      context.isRTL ? Alignment.topRight : Alignment.topLeft,
                   children: [
                     CustomImageView(
                       width: imageWidth.w,
                       url: image,
                       fit: BoxFit.cover,
                     ),
-                    hasDiscount?CustomContainer(height: 30, width: 50,color: AppColors.red2, child: Center(child: Text(discount,style: AppTextStyle.cairoBold13White,)),):const SizedBox()
+                    hasDiscount
+                        ? CustomContainer(
+                            height: 30,
+                            width: 50,
+                            color: AppColors.red2,
+                            child: Center(
+                                child: Text(
+                              discount,
+                              style: AppTextStyle.cairoBold13White,
+                              textDirection: TextDirection.ltr,
+                            )),
+                          )
+                        : const SizedBox()
                   ],
                 ),
               )),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 13.0.w, vertical: 4.h),
-            child:ProductPrice(details: details, strokedPrice: strokedPrice, price: price,hasDiscount: hasDiscount,)
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 13.0.w,),
+              child: ProductPrice(
+                details: details,
+                strokedPrice: strokedPrice,
+                price: price,
+                hasDiscount: hasDiscount,
+              )),
         ],
       ),
     );

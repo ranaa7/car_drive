@@ -1,34 +1,78 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
-import 'package:more_2_drive/utils/strings/routes_names.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final bool isSearch ;
-  final TextEditingController? searchController;
-  final onChanged;
+  final bool isSearch;
+  final Widget? child;
 
-  const DefaultAppBar({super.key, this.title = '',this.isSearch =false,  this.searchController, this.onChanged});
+  final TextEditingController? searchController;
+  final dynamic onChanged;
+
+  const DefaultAppBar(
+      {super.key,
+      this.title = '',
+      this.isSearch = false,
+      this.searchController,
+      this.onChanged, this.child});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      centerTitle: true,
-      title: isSearch? Container(
-        width: 420.w,
-        color: AppColors.white,
-        child: TextFormField(
-          onChanged: onChanged,
-          style: AppTextStyle.cairoSemiBold17Black,
-          cursorColor: AppColors.grey4,
-          decoration: const InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: FittedBox(
-              fit: BoxFit.scaleDown,
-              child:Icon(Icons.search),
+      actions: const [SizedBox()],
+automaticallyImplyLeading: isSearch?false:true,
+      toolbarHeight: isSearch?120.h:60.h,
+      backgroundColor: isSearch?AppColors.white:Colors.transparent,
+      centerTitle: false,
+      title: isSearch
+          ? Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(onPressed: (){
+                    Navigator.pop(context);
+                  }, icon: const Icon(Icons.arrow_back)),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      decoration:BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.greyTransparent,
+                    ),
+                      child: TextFormField(
+                        onChanged: onChanged,
+                        style: AppTextStyle.cairoSemiBold17Black,
+                        cursorColor: AppColors.grey4,
+                        decoration: InputDecoration(
+                          hintText: AppStrings.search,
+                          hintStyle: AppTextStyle.cairoThin13Grey,
+                          border: InputBorder.none,
+                          suffixIcon: const FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Icon(Icons.search, color: AppColors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.h,),
+              child??const SizedBox(),
+            ],
+          )
+          : Text(
+              title,
+              softWrap: false,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle.cairoBold16Blue,
             ),
           ),
       )):
@@ -57,7 +101,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, 99.h);
+  Size get preferredSize => Size(double.infinity, isSearch?120.h:60.h);
 }
 // Row(
 // children: [
