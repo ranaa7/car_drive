@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:more_2_drive/config/style/text_styles.dart';
+import 'package:more_2_drive/config/validationform.dart';
+import 'package:more_2_drive/presentation/components/app_textfield.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
+
+class AddressForm extends StatelessWidget {
+  final TextEditingController controller;
+   const AddressForm({super.key, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(AppStrings.address,style: AppTextStyle.cairoSemiBold15Grey,),
+        SizedBox(height: 10.h,),
+        AppTextFormField(
+          textInput: TextInputType.multiline,
+          maxLines: 3,
+          maxLength: 100,
+          controller: controller,
+          validator: ValidationForm.nameValidator,
+        ),
+      ],
+    );
+  }
+}
