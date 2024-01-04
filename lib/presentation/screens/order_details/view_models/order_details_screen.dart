@@ -25,6 +25,7 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
 
+  @override
   void initState() {
     OrderItemCubit.get(context).getOrdersItems(widget.id);
     super.initState();
@@ -42,7 +43,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           child: BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
             builder: (context, state) {
               if (state is OrderDetailsSuccess) {
-                List<orderDetails> orderdetailsList = state.orderdetails;
+                List<OrderDetails> orderdetailsList = state.orderDetail;
                 return SingleChildScrollView(
                   child: Column(
                     children: [
@@ -55,7 +56,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               Expanded(
                                 child: Column(children: [
 
-                                  TimelineComponent(color: orderdetailsList[0].deliveryStatusString == "Order Placed" ? AppColors.green1 : AppColors.grey , islast: false, isfirst: true , color2: orderdetailsList[0].deliveryStatusString == "Order Placed" ? AppColors.white : AppColors.grey, icon: Icons.list_alt_outlined, text: AppStrings.orderplaced, iconcolor: Colors.blue ,),
+                                  TimelineComponent(color: orderdetailsList[0].deliveryStatusString == "Order Placed" ? AppColors.green1 : AppColors.grey , islast: false, isfirst: true , color2: orderdetailsList[0].deliveryStatusString == "Order Placed" ? AppColors.white : AppColors.grey, icon: Icons.list_alt_outlined, text: AppStrings.orderPlaced, iconcolor: Colors.blue ,),
 
                                   TimelineComponent(color: orderdetailsList[0].deliveryStatusString == "Confirmed" ? AppColors.green1 : AppColors.grey , islast: false, isfirst: false , color2: orderdetailsList[0].deliveryStatusString == "Confirmed" ? AppColors.white : AppColors.grey, icon: Icons.check, text: AppStrings.confirmed, iconcolor: Colors.green ),
                                   TimelineComponent(color: orderdetailsList[0].deliveryStatusString == "On Delivery" ? AppColors.green1 : AppColors.grey , islast: false, isfirst: false , color2: orderdetailsList[0].deliveryStatusString == "On Delivery" ? AppColors.white : AppColors.grey, icon: Icons.fire_truck, text: AppStrings.onDelivery, iconcolor: Colors.orange ),
@@ -74,7 +75,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       Card(
                         elevation: 10,
                         surfaceTintColor: Colors.transparent,
-                        color: AppColors.Scaffoldfground,
+                        color: AppColors.scaffoldGround,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -87,7 +88,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   SizedBox(
-                                    height: 30,
+                                    height: 30.h,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -118,7 +119,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 20.h,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -149,7 +150,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 20.h,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -198,7 +199,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 20.h,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -237,7 +238,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 60,
+                                    height: 60.h,
                                   ),
                                 ],
                               ),
@@ -258,28 +259,28 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       BlocBuilder<OrderItemCubit, OrderItemState>(
                         builder: (context, state) {
                           if (state is OrderItemSuccess) {
-                            List<OrderDetailsItem> orderdetailsItems = state.orderItems ;
+                            List<OrderDetailsItem> orderDetailsItems = state.orderItems ;
                             return Card(
                               elevation: 20,
 
                               surfaceTintColor: Colors.transparent,
-                              color: AppColors.Scaffoldfground,
+                              color: AppColors.scaffoldGround,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Expanded(
-                                child: Container(
+                                child: SizedBox(
                                   height: 900.h,
                                   child: ListView.separated(
                                     shrinkWrap: true, // Set shrinkWrap to true
                                    // physics: NeverScrollableScrollPhysics(),
                                     padding: const EdgeInsets.all(8),
-                                    itemCount: orderdetailsItems.length,
+                                    itemCount: orderDetailsItems.length,
                                     separatorBuilder: (BuildContext context, int index) {
                                       // Add a Divider between each ordered product
                                       return Divider(
                                         color: Colors.grey,
-                                        height: 16,
+                                        height: 16.h,
                                         thickness: 1,
                                       );
                                     },
@@ -296,7 +297,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               children: [
                                                 SizedBox(height: 30.h),
                                                 Text(
-                                                  orderdetailsItems[index].productName ??"",
+                                                  orderDetailsItems[index].productName ??"",
                                                   style: AppTextStyle
                                                       .cairoSemiBold15Grey,
                                                 ),
@@ -306,12 +307,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                           .spaceBetween,
                                                   children: [
                                                     Text(
-                                                      "${orderdetailsItems[index].quantity} x item",
+                                                      "${orderDetailsItems[index].quantity} x item",
                                                       style: AppTextStyle
                                                           .cairoBold15black,
                                                     ),
                                                     Text(
-                                                      orderdetailsItems[index].price ??"",
+                                                      orderDetailsItems[index].price ??"",
                                                       style: AppTextStyle
                                                           .cairoBold17DarkRed,
                                                     ),
@@ -331,10 +332,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             );
                           } else if (state is OrderItemLoading) {
                             // Handle loading state if needed
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           } else {
                             // Handle other states if needed
-                            return Center(child: Text("Unexpected state"));
+                            return const Center(child: Text("Unexpected state"));
                           }
                         },
                       ),
@@ -357,7 +358,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       ),
                       Divider(
                         color: Colors.grey,
-                        height: 16,
+                        height: 16.h,
                         thickness: 1,
                       ),
                         PaymentRowComponent(text1: "Grand Total", text2: orderdetailsList[0].grandTotal ?? ""),
@@ -370,10 +371,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 );
               } else if (state is OrderDetailsLoading) {
                 // Handle loading state if needed
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else {
                 // Handle other states if needed
-                return Center(child: Text("Unexpected state"));
+                return const Center(child: Text("Unexpected state"));
               }
             },
           ),

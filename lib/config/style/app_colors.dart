@@ -8,17 +8,17 @@ class AppColors {
   static const Color appbarBackGround = Color(0xffC20C0C);
   static const Color grey4= Color(0xe0e0e0ff);
   static const Color grey3 = Color(0xffD9D9D9);
-  static  Color grey2 = const Color(0xff7C7C7C);
-  static  Color grey = const Color(0xff656565);
-  static  Color greyTransparent = const Color(0xCCD9D9D9);
-  static  Color backGround = const Color(0xff205599);
+  static  const Color grey2 =  Color(0xff7C7C7C);
+  static   const Color grey =  Color(0xff656565);
+  static  const Color greyTransparent =  Color(0xCCD9D9D9);
+  static const  Color backGround =  Color(0xff205599);
 
-  static  Color Scaffoldfground = const Color(0xffF4F7FB);
-  static  Color red = const Color(0xffFF0000);
-  static  Color red2 = const Color(0xffe40613);
-  static  Color red3 = const Color(0xffE52E04);
-  static  Color yellow = const Color(0xffE0B419);
-  static  Color transparent = const Color(0x00d9d9d9);
+  static  const Color scaffoldGround =  Color(0xffF4F7FB);
+  static  const Color red =  Color(0xffFF0000);
+  static  const Color red2 =  Color(0xffe40613);
+  static const  Color red3 =  Color(0xffE52E04);
+  static const  Color yellow =  Color(0xffE0B419);
+  static const Color transparent =  Color(0x00d9d9d9);
   static const Color shadow3 = Color(0x4F455B63);
   static const Color blue2 = Color(0xff62C3E3);
   static const Color blueButton = Color(0xff1B7BEB);
@@ -48,18 +48,9 @@ class AppColors {
   static const Color error = Colors.red;
   static const Color error2 = Color.fromRGBO(239, 0, 0, .5);
   static const Color error3 = Color.fromRGBO(239, 0, 0, .1);
-  static  Color get lightGray =>const Color(0xff232F3E);
-  static const Color grey2 =  Color(0xff7C7C7C);
-  static const Color grey = Color(0xff656565);
-  static const Color greyTransparent = Color(0xCCD9D9D9);
-  static const Color backGround = Color(0xff205599);
-  static const Color red = Color(0xffFF0000);
-  static const Color red2 = Color(0xffe40613);
-  static const Color red3 = Color(0xffE52E04);
+  static  const Color lightGray = Color(0xff232F3E);
+
   static const Color red4 = Color(0x80E52E04);
-  static const Color yellow = Color(0xffE0B419);
-  static const Color transparent = Color(0x00d9d9d9);
-  static const Color shadow3 = Color(0xe0e0e0ff);
-  static const Color lightGray = Color(0xff232F3E);
+
 
 }

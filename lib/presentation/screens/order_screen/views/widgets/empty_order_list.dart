@@ -9,7 +9,7 @@ class EmptyOrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        AppStrings.noorders,
+        AppStrings.noOrders,
         style: AppTextStyle.cairoSemiBold23black,
       ),
     );

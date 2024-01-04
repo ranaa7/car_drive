@@ -89,7 +89,7 @@ class OtpScreen extends StatelessWidget {
                                   Radius.circular(10.r))),
                         ), onPressed: () async {
                       if (_key.currentState!.validate()) {
-                        islogin=true;
+                        isLogin=true;
                         await OtpCubit.get(context).verifyOtp(
                             otp: pinController.text);
                         // String? token =

@@ -1,9 +1,7 @@
 
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:more_2_drive/presentation/screens/signup/data/models/signup_model.dart';
 import 'package:more_2_drive/utils/strings/end_points.dart';
@@ -23,15 +21,15 @@ class SignupCubit extends Cubit<SignupState> {
 
 
 
-  Future<void> Signup({required String fname , required String secname ,required String email,required String password ,required String phone}) async {
+  Future<void> signUp({required String firstName , required String secName ,required String email,required String password ,required String phone}) async {
     emit(SignupLoadingState());
 
     try {
       var response = await DioHelper.postData(
         endPoint:EndPoints.register,
         queryParameters: {
-          'name': fname,
-          'secname': secname,
+          'name': firstName,
+          'secname': secName,
           'email': email,
           'password': password,
           'phone': phone,

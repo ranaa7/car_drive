@@ -27,7 +27,7 @@ class PhoneFormfield extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             7.r,
           ),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.red,
           ),
         ),

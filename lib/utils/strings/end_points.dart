@@ -53,6 +53,8 @@ class EndPoints{
   static const String getStateByCountry = 'states-by-country/64';
   static const String getCityByState = 'cities-by-state/';
   static const String addProductToWishlist = 'wishlists-add-product';
+  static const String removeProductFromWishlist = 'wishlists-remove-product';
+
   static const String checkIfProductIsInWishlist = 'wishlists-check-product';
 
 }

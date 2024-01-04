@@ -22,7 +22,7 @@ class FirstNameFormfield extends StatelessWidget {
             vertical: 6.h, horizontal: 3.w),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(7.r),
-          borderSide:  BorderSide(
+          borderSide:  const BorderSide(
             color: AppColors.red,
           ),
         ),

@@ -34,13 +34,13 @@ class DioHelper {
   }) async {
     print('dio_helper postData');
 
-    String Authorization = 'Bearer ${token ?? ''}';
+    String authorization = 'Bearer ${token ?? ''}';
 
-    String Langauge = lang ;
+    String language = lang ;
     print('38');
     dio.options.headers = {
-      'Authorization': Authorization,
-      'Accept-Language': Langauge,
+      'Authorization': authorization,
+      'Accept-Language': language,
       'Content-Type': 'application/json',
     };
 
@@ -75,7 +75,7 @@ class DioHelper {
     String? token,
   }) async {
     dio.options.headers = {
-      'Authorization': 'Bearer ${'token' ?? ''}',
+      'Authorization': 'Bearer ${'token'}',
       'Accept-Language': lang,
       'Content-Type': 'application/json',
     };

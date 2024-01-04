@@ -21,6 +21,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   void initState() {
 
     CounterCubit.get(context).getProfileCount();
@@ -34,12 +35,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // final int selectedValue =
     // context.supportedLocales.map<String>((e) => e.languageCode).toList().indexOf(context.languageCode);
     return  Scaffold(
-      backgroundColor: AppColors.Scaffoldfground,
+      backgroundColor: AppColors.scaffoldGround,
       body:
       ListView(
-
+        padding: EdgeInsets.only(top: 0.h,bottom: 70.h),
         children: [
-      profileScreenBody(),
+      const ProfileScreenBody(),
         BlocBuilder<OrdersCubit, OrdersState>(
                 buildWhen: (_, current) =>
                 current is Ordersloadingstate||
@@ -53,7 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   } else if (state is Orderssuccessstate) {
                     return state.ordermodel.isEmpty
                         ? const EmptyOrdersView()
-                        : Container(
+                        : SizedBox(
                         height: 170.h,
                         child: OrderItem(ordermodel: state.ordermodel, index: 1));
                   } else {

@@ -60,10 +60,10 @@ void main() async {
   if (splash != null) {
     if (token != null) {
       print('Going to homescreen');
-      widget = MainScreen();
+      widget = const MainScreen();
     } else {
       print('Going to LoginScreen');
-      widget = SplashScreen();
+      widget = const SplashScreen();
     }
   } else {
     print('Going to OnBoardingScreen');
@@ -88,37 +88,6 @@ class MyApp extends StatelessWidget {
     return LocalizedApp(
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => AppCubit()),
-          BlocProvider(create: (_) => BannerCubit(sl<BannerRepo>())..getBanner()),
-          BlocProvider(create: (_) => CategoriesCubit(sl<CategoriesRepo>())..getAllCategories()..getTopCategories()),
-          BlocProvider(create: (_) => ProductCubit(sl<ProductRepo>())..getAllProduct()..getFeaturedProduct()),
-          BlocProvider(create: (context) => LoginCubit()),
-          BlocProvider(create: (context) => SignupCubit()),
-          BlocProvider(create: (context) => PhoneRegisterCubit()),
-          BlocProvider(create: (context) => OtpCubit()),
-          BlocProvider(create: (context) => CounterCubit()),
-          BlocProvider(create: (context) => OrdersCubit()),
-          BlocProvider(create: (context) => OrderDetailsCubit()),
-          BlocProvider(create: (context) => OrderItemCubit()),
-          BlocProvider(create: (context) => UpdateProfileCubit()),
-        ],
-        child: ScreenUtilInit(
-        designSize: const Size(430, 932),
-        builder: (_, child) => OKToast(
-              child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: Themes.defaultTheme,
-                color: AppColors.white,
-                title: 'Speech',
-                home: startWidget,
-                onGenerateRoute: RouterApp.generateRoute,
-                builder: LocalizeAndTranslate.directionBuilder,
-                navigatorKey: RouterKeys.mainNavigatorKey,
-                localizationsDelegates: context.delegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
-              ),
-            )),
           BlocProvider(
               create: (_) => BannerCubit(sl<BannerRepo>())..getBanner()),
           BlocProvider(
@@ -141,24 +110,34 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => CarCubit(sl<CarRepo>())),
           BlocProvider(create: (_) => OrderCubit(sl<OrderRepo>())),
           BlocProvider(create: (_) => WishlistCubit(sl<WishlistRepo>())),
+          BlocProvider(create: (_) => AppCubit()),
+          BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => SignupCubit()),
+          BlocProvider(create: (context) => PhoneRegisterCubit()),
+          BlocProvider(create: (context) => OtpCubit()),
+          BlocProvider(create: (context) => CounterCubit()),
+          BlocProvider(create: (context) => OrdersCubit()),
+          BlocProvider(create: (context) => OrderDetailsCubit()),
+          BlocProvider(create: (context) => OrderItemCubit()),
+          BlocProvider(create: (context) => UpdateProfileCubit()),
         ],
         child: ScreenUtilInit(
-            designSize: const Size(430, 932),
-            builder: (_, child) => OKToast(
-                  child: MaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    theme: Themes.defaultTheme,
-                    color: AppColors.white,
-                    title: 'Speech',
-                    home: const SplashScreen(),
-                    onGenerateRoute: RouterApp.generateRoute,
-                    builder: LocalizeAndTranslate.directionBuilder,
-                    navigatorKey: RouterKeys.mainNavigatorKey,
-                    localizationsDelegates: context.delegates,
-                    supportedLocales: context.supportedLocales,
-                    locale: context.locale,
-                  ),
-                )),
+        designSize: const Size(430, 932),
+        builder: (_, child) => OKToast(
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: Themes.defaultTheme,
+                color: AppColors.white,
+                title: 'More2Drive',
+                home: startWidget,
+                onGenerateRoute: RouterApp.generateRoute,
+                builder: LocalizeAndTranslate.directionBuilder,
+                navigatorKey: RouterKeys.mainNavigatorKey,
+                localizationsDelegates: context.delegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+              ),
+            )),
       ),
     );
   }

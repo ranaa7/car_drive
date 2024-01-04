@@ -17,39 +17,36 @@ import '../../../../core/network/local/cache_helper.dart';
 import '../../signup/views/signup_screen.dart';
 import '../view_models/login_cubit.dart';
 
-
-
 class LoginScreen extends StatelessWidget {
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-final emailcontroller = TextEditingController();
-final passwordcontroller = TextEditingController();
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
 
-LoginScreen({super.key});
-
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listener: (context, state) async{
-          if (state is LoginSuccessState) {
-            if (kDebugMode) {
-              print('TOOKKEEN ${state.loginModel.token}');
-            }
-            showToast(
-                message: state.loginModel.message ?? 'Successfully logged in',
-                bcColor: Colors.green);
-            // token = state.loginModel.token!;
-            // print('Token before saving: $token');
-                userId = state.loginModel.user!.id!.toString();
-                await CacheHelper.saveDate(key: 'user_id', value: userId);
-            CacheHelper.saveDate(key: 'access_token', value: state.loginModel.token)
-                .then((value) => { Navigator.pushNamed(context, RouteName.mainScreen)});
+      listener: (context, state) async {
+        if (state is LoginSuccessState) {
+          if (kDebugMode) {
+            print('TOOKKEEN ${state.loginModel.token}');
           }
-
-        },
+          showToast(
+              message: state.loginModel.message ?? 'Successfully logged in',
+              bcColor: Colors.green);
+          // token = state.loginModel.token!;
+          // print('Token before saving: $token');
+          userId = state.loginModel.user!.id!.toString();
+          await CacheHelper.saveDate(key: 'user_id', value: userId);
+          CacheHelper.saveDate(
+                  key: 'access_token', value: state.loginModel.token)
+              .then((value) =>
+                  {Navigator.pushNamed(context, RouteName.mainScreen)});
+        }
+      },
       child: Scaffold(
-
         backgroundColor: AppColors.darkBlue,
         body: Stack(
           children: [
@@ -69,9 +66,9 @@ LoginScreen({super.key});
               bottom: 20.h,
               top: 259.h,
               child: Container(
-                padding:
-                    const EdgeInsets.only(left: 34, right: 30, top: 10, bottom: 10)
-                        .r,
+                padding: const EdgeInsets.only(
+                        left: 34, right: 30, top: 10, bottom: 10)
+                    .r,
                 decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(
@@ -91,9 +88,8 @@ LoginScreen({super.key});
                   physics: const NeverScrollableScrollPhysics(),
                   child: Form(
                     key: _key,
-                    child: (
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                    child: (Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SizedBox(
                           height: 12.h,
@@ -125,54 +121,51 @@ LoginScreen({super.key});
                           height: 15,
                         ),
 
-                           BlocBuilder<LoginCubit, LoginState>(
-                             buildWhen: (previous, current) =>
-                             current is LoginLoadingState ||
-                                 current is LoginFailureState ||
-                                 current is LoginSuccessState,
-                           builder: (context, state) {
+                        BlocBuilder<LoginCubit, LoginState>(
+                          buildWhen: (previous, current) =>
+                              current is LoginLoadingState ||
+                              current is LoginFailureState ||
+                              current is LoginSuccessState,
+                          builder: (context, state) {
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(332, 46),
+                                backgroundColor: AppColors.deepDarkBlue,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                              ),
+                              onPressed: state is LoginLoadingState
+                                  ? null
+                                  : ()  {
+                                      if (_key.currentState!.validate()) {
+                                        isLogin = true;
+                                         LoginCubit.get(context).userLogin(
+                                            email: emailcontroller.text,
+                                            password: passwordcontroller.text);
+                                        //await CacheHelper.saveDate(key: 'access_token', value: token);
 
-                                 return ElevatedButton(
-                                   style: ElevatedButton.styleFrom(
-                                     minimumSize: const Size(332, 46),
-                                     backgroundColor: AppColors.deepDarkBlue,
-                                     shape: const RoundedRectangleBorder(
-                                         borderRadius:
-                                         BorderRadius.all(Radius.circular(10))),
-                                   ),
-                                   onPressed:
-                                   state is LoginLoadingState ? null : () async {
-                                     if (_key.currentState!.validate()) {
-                                       islogin=true;
-                                       await LoginCubit.get(context).userLogin(
-                                           email: emailcontroller.text,
-                                           password: passwordcontroller.text);
-                                       //await CacheHelper.saveDate(key: 'access_token', value: token);
+                                        String? token = CacheHelper.getData(
+                                            key: 'access_token');
 
-                                       String? token =
-                                       CacheHelper.getData(key:'access_token');
+                                        CacheHelper.saveDate(
+                                            key: 'islogged', value: islogged);
 
-                                       CacheHelper.saveDate(key: 'islogged', value: islogged);
-
-                                       print('Retrieved Token: $token');
-                                       if (kDebugMode) {
-                                         print('UserTOOK $token');
-                                       }
-                                       Navigator.pushNamed(context, RouteName.mainScreen);
-
-                                     }
-                                   },
-                                   child: Text(
-                                     "تسجيل دخول",
-                                     style: AppTextStyle.cairoSemiBold16white,
-                                   ),
-
-                                 );
-
-
-
-  },
-),
+                                        print('Retrieved Token: $token');
+                                        if (kDebugMode) {
+                                          print('UserTOOK $token');
+                                        }
+                                        Navigator.pushNamed(
+                                            context, RouteName.mainScreen);
+                                      }
+                                    },
+                              child: Text(
+                                "تسجيل دخول",
+                                style: AppTextStyle.cairoSemiBold16white,
+                              ),
+                            );
+                          },
+                        ),
 
                         SizedBox(
                           height: 4.h,
@@ -192,7 +185,7 @@ LoginScreen({super.key});
                           height: 4.h,
                         ),
 
-                        SignupButton(),
+                        const SignupButton(),
                         SizedBox(
                           height: 4.h,
                         ),
@@ -230,5 +223,3 @@ LoginScreen({super.key});
     );
   }
 }
-
-

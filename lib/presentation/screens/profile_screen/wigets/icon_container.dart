@@ -13,7 +13,7 @@ class IconContainer extends StatelessWidget {
     return Container(
       height:100.h,
       width: 73.w,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColors.deepDarkBlue,
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(10),
@@ -27,8 +27,8 @@ class IconContainer extends StatelessWidget {
         child: Column(
           children: [
             Icon(icon , color: Colors.white,),
-            Spacer(),
-            Text(text,style: TextStyle(fontSize: 9 , color: Colors.white),)
+            const Spacer(),
+            Text(text,style: const TextStyle(fontSize: 9 , color: Colors.white),)
           ],),
       ),
     );

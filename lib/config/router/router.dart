@@ -42,7 +42,7 @@ class RouterApp {
         case RouteName.profileScreen:
           return MaterialPageRoute(builder: (_) => const ProfileScreen());
         case RouteName.notificationScreen:
-          return MaterialPageRoute(builder: (_) =>  NotificationScreen());
+          return MaterialPageRoute(builder: (_) =>  const NotificationScreen());
         case RouteName.categoriesScreen:
           return MaterialPageRoute(builder: (_) => const CategoriesScreen());
         case RouteName.cartScreen:

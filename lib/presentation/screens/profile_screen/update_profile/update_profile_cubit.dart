@@ -1,7 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:more_2_drive/presentation/screens/login/data/models/login_model.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/data/models/update_profile_model.dart';
 
@@ -31,7 +29,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           'name': name,
           'password': password,
         },
-        token: token, queryParameters: {},
+        token: token,
       );
       if (response.data != null) {
         loginModel = LoginModel.fromJson(response.data);

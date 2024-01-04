@@ -77,7 +77,7 @@ class CartProductContainer extends StatelessWidget {
             onTap: onPressed,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 12.0.h),
-              child: const Icon(
+              child:  const Icon(
                 Icons.delete_outline,
                 color: AppColors.red,
               ),

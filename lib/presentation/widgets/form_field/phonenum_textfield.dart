@@ -22,7 +22,7 @@ class PhoneNumberFormField extends StatelessWidget {
               vertical: 6.h, horizontal: 0.1.w),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(7.r),
-            borderSide:  BorderSide(
+            borderSide:  const BorderSide(
               color: AppColors.red,
             ),
           ),

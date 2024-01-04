@@ -25,38 +25,36 @@ class AppStrings{
   static String get shopNow => "shopNow".tr();
   static String get loadMoreProduct => "loadMoreProduct".tr();
   static String get signIn => "signIn".tr();
-  static String get ReferralCode=> "ReferralCode".tr();
+  static String get referralCode=> "referralCode".tr();
 
   static String get cart=> "cart".tr();
-  static String get MyWishlist=> "MyWishlist".tr();
-  static String get MyOrders=> "MyOrders".tr();
+  static String get myWishlist=> "myWishlist".tr();
+  static String get myOrders=> "myOrders".tr();
 
   static String get yourOrders=> "yourOrders".tr();
-  static String get  MyWallet=> "MyWallet".tr();
+  static String get  myWallet=> "myWallet".tr();
   static String get messages=> "messages".tr();
-  static String get EarnedPoints=> "EarnedPoints".tr();
+  static String get earnedPoints=> "earnedPoints".tr();
   static String get address=> "address".tr();
 
   static String get activate=> "toActivateAllFeatures".tr();
   static String get date=> "bookYourDate".tr();
   static String get point=> "doYourServices".tr();
   static String get services=> "earnPoints".tr();
-  static String get noorders=> "noOrdersYet".tr();
-  static String get purchasehist=> "purchaseHistory".tr();
-  static String get Orderdetails=> "orderDetails".tr();
+  static String get noOrders=> "noOrdersYet".tr();
+  static String get purchaseHistory=> "purchaseHistory".tr();
 
   static String get name=> "name".tr();
   static String get email=> "email".tr();
   static String get phone=> "phoneNumber".tr();
   static String get password=> "password".tr();
 
-  static String get Basicinfo=> "basicInformation".tr();
 
-  static String get updateprofile=> "updateProfile".tr();
+  static String get updateProfile=> "updateProfile".tr();
 
   static String get deleteAccount=> "deleteAccount".tr();
 
-  static String get orderplaced=> "orderPlaced".tr();
+  static String get orderPlaced=> "orderPlaced".tr();
   static String get confirmed=> "Confirmed".tr();
   static String get onDelivery=> "onDelivery".tr();
   static String get delivered=> "delivered".tr();
@@ -97,7 +95,6 @@ class AppStrings{
   static String get selectCarModelYear  => "selectCarModelYear".tr();
   static String get continueToSelectCar  => "continueToSelectCar".tr();
   static String get updateCart  => "updateCart".tr();
-  static String get cart  => "cart".tr();
   static String get totalPrice  => "totalPrice".tr();
   static String get carType  => "carType".tr();
   static String get carModel  => "carModel".tr();
@@ -122,13 +119,11 @@ class AppStrings{
   static String get completeWash  => "completeWash".tr();
   static String get changeFilter  => "changeFilter".tr();
   static String get recharge  => "recharge".tr();
-  static String get address  => "address".tr();
   static String get selectAddress  => "selectAddress".tr();
   static String get city  => "city".tr();
   static String get state  => "state".tr();
   static String get country  => "country".tr();
   static String get postalCode  => "postalCode".tr();
-  static String get phone  => "phone".tr();
   static String get addOrEditAddress  => "addOrEditAddress".tr();
   static String get subtotal  => "subtotal".tr();
   static String get tax  => "tax".tr();

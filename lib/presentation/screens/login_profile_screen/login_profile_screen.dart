@@ -22,8 +22,8 @@ class LoginProfileScreen extends StatelessWidget {
         
             children: [
 
-            loginProfileColumn(),
-          SizedBox(height: 60,),
+            const LoginProfileColumn(),
+          const SizedBox(height: 60,),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(332, 46),
@@ -36,8 +36,8 @@ class LoginProfileScreen extends StatelessWidget {
             child: Text( AppStrings.signIn , style: AppTextStyle.cairoSemiBold16black,),
             //onPressed: isLoading ? null : function ,
           ),
-              SizedBox(height: 30,),
-              Text(AppStrings.signIn , style: TextStyle(fontSize:16 , color: Colors.white ),),
+              const SizedBox(height: 30,),
+              Text(AppStrings.signIn , style: const TextStyle(fontSize:16 , color: Colors.white ),),
 
         
         

@@ -103,7 +103,8 @@ class ProductSliverAppBar extends StatelessWidget {
                                         .addResponseModel
                                         ?.isInWishlist ==
                                     true) {
-                                  Toasters.show("Product is in Wishlist");
+                                  WishlistCubit.get(context).removeProductFromWishlist(productId);
+                                  Toasters.show("Product removed");
                                 }
                               },
                               icon: WishlistCubit.get(context)

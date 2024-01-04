@@ -1,8 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:more_2_drive/domain/repositories/counter_repo/counter_repo.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/data/models/profile_counter_model.dart';
 
@@ -45,6 +42,7 @@ Map<String , ProfileCountersResponse>? data;
 int cartItem =0;
 int wishlistItem =0;
 int orderCount =0;
+
   getProfileCount()async{
     emit(CounterLoading());
     final result = await ProfileCounterRepo().getProfileCount();

@@ -15,10 +15,10 @@ import '../login/view_models/login_cubit.dart';
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
 
-  var fname = TextEditingController();
-  var email = TextEditingController();
-  var phone = TextEditingController();
-  var pass = TextEditingController();
+  final TextEditingController firstName = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController pass = TextEditingController();
 
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
@@ -26,15 +26,15 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.Scaffoldfground,
+        backgroundColor: AppColors.scaffoldGround,
       ),
-      backgroundColor: AppColors.Scaffoldfground,
+      backgroundColor: AppColors.scaffoldGround,
       body: Stack(
         children: [
           Stack(
             children: [
               Positioned(left: 0.w, right: 0.w,
-                child: Center(
+                child: const Center(
                     child: CircleAvatar(
                       radius: 50,
                     )),
@@ -51,8 +51,8 @@ class EditProfileScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.deepDarkBlue,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(60).r,
-                    topRight: Radius.circular(60)).r,
+                    topLeft: const Radius.circular(60).r,
+                    topRight: const Radius.circular(60)).r,
               ),
               child: (
                   Form(
@@ -75,7 +75,7 @@ class EditProfileScreen extends StatelessWidget {
                         height: 10.h,
                       ),
                       ProfileFormField(
-                        name: fname,
+                        name: firstName,
                         validator: ValidationForm.nameValidator,
                         text: LoginCubit.get(context)
                             .loginModel
@@ -153,7 +153,7 @@ class EditProfileScreen extends StatelessWidget {
                               if (_key.currentState!.validate()) {
                                 await UpdateProfileCubit.get(context)
                                     .updateProfile(
-                                        name: fname.text, password: pass.text);
+                                        name: firstName.text, password: pass.text);
                               }
                             },
                           );

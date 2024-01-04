@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
@@ -39,22 +38,22 @@ class ProductDetails extends StatelessWidget {
 
   const ProductDetails(
       {super.key,
-      required this.productName,
-      required this.productPrice,
-      required this.discount,
-      required this.availableProduct,
-      required this.pointsString,
-      required this.pointsNumber,
-      required this.sellerLogo,
-      required this.sellerString,
-      required this.sellerName,
-      required this.detailsString,
-      required this.details,
-      required this.sellerImage,
-      this.productCount = 1,
-      required this.hasDiscount,
-      required this.rate,
-      required this.productId, required this.minusPressed, required this.plusPressed});
+        required this.productName,
+        required this.productPrice,
+        required this.discount,
+        required this.availableProduct,
+        required this.pointsString,
+        required this.pointsNumber,
+        required this.sellerLogo,
+        required this.sellerString,
+        required this.sellerName,
+        required this.detailsString,
+        required this.details,
+        required this.sellerImage,
+        this.productCount = 1,
+        required this.hasDiscount,
+        required this.rate,
+        required this.productId, required this.minusPressed, required this.plusPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -87,12 +86,12 @@ class ProductDetails extends StatelessWidget {
         SizedBox(height: 3.h),
         hasDiscount
             ? Text(
-                discount,
-                style: AppTextStyle.cairoSemiBold14LineThroughWhite,
-              )
+          discount,
+          style: AppTextStyle.cairoSemiBold14LineThroughWhite,
+        )
             : SizedBox(
-                height: 5.h,
-              ),
+          height: 5.h,
+        ),
         SizedBox(
           height: 2.h,
         ),
@@ -150,11 +149,11 @@ class ProductDetails extends StatelessWidget {
                   ),
                   Text(
                     AppStrings.pointsString,
-                    style: AppTextStyle.cairoBold16White,
+                    style: AppTextStyle.cairoBold15white,
                   ),
                   Text(
                     "$pointsNumber",
-                    style: AppTextStyle.cairoBold16White,
+                    style: AppTextStyle.cairoBold15white,
                   )
                 ],
               ),
@@ -186,16 +185,6 @@ class ProductDetails extends StatelessWidget {
             ),
             DetailsRow(
                 details: AppStrings.detailsString,
-                child: SizedBox(
-                  height: 100.h,
-                  width: 300.w,
-                  child: Text(
-                    details.replaceAll(exp, ""),
-                    style: AppTextStyle.cairoSemiBold16,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: context.isRTL?TextAlign.start:TextAlign.end,
-                    maxLines: 3,
-                  ),
                 child: ExpandableWidget(
                   description: details,
                 )),
@@ -229,19 +218,19 @@ class ProductDetails extends StatelessWidget {
                   text: AppStrings.add,
                 ),
                 Button1(
-                  color: AppColors.yellow,
-                  height: 80,
-                  width: 190,
-                  text: AppStrings.buyNow,
-                  onPressed: () {
-                   if (availableProduct==0) {
-                     Toasters.show(AppStrings.noAvailableProduct);
-                   }else {
-                     CartCubit.get(context).addCart(productId, productCount);
-                     Navigator.pushReplacementNamed(context, RouteName.cartScreen);
-                   }
+                    color: AppColors.yellow,
+                    height: 80,
+                    width: 190,
+                    text: AppStrings.buyNow,
+                    onPressed: () {
+                      if (availableProduct==0) {
+                        Toasters.show(AppStrings.noAvailableProduct);
+                      }else {
+                        CartCubit.get(context).addCart(productId, productCount);
+                        Navigator.pushReplacementNamed(context, RouteName.cartScreen);
+                      }
 
-                  }
+                    }
                 ),
               ],
             )

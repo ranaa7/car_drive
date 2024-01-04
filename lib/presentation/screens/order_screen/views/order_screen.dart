@@ -12,7 +12,7 @@ import '../../../../utils/strings/app_strings.dart';
 import '../../../widgets/default_appbar/default_appbar.dart';
 
 class OrderScreen extends StatefulWidget {
-   OrderScreen({super.key});
+   const OrderScreen({super.key});
 
 
   @override
@@ -56,9 +56,10 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<OrdersCubit, OrdersState>(
   builder: (context, state) {
+    final OrdersCubit ordersCubit=OrdersCubit.get(context);
     return Scaffold(
-      backgroundColor: AppColors.Scaffoldfground,
-      appBar: DefaultAppBar(title: AppStrings.purchasehist,),
+      backgroundColor: AppColors.scaffoldGround,
+      appBar: DefaultAppBar(title: AppStrings.purchaseHistory,),
       body:  Column(
         children: [
           Padding(
@@ -101,7 +102,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     ),
                   ),
                 ),),
-                Spacer(),
+                const Spacer(),
                 PhysicalModel(
                   color: Colors.transparent,
                   elevation: 5, // Adjust the elevation for the shadow
@@ -189,7 +190,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 enablePullUp: true,
                 onLoading: () async {
                   await Future.delayed(const Duration(seconds: 1));
-                      OrdersCubit.get(context).getOrders(++page ,'','');
+                      ordersCubit.getOrders(++page ,'','');
                   _refreshController.loadComplete();
                 },
                 onRefresh: () {
@@ -207,7 +208,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 },
                 controller: _refreshController,
                 child: isLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : OrderItem(ordermodel: OrdersCubit.get(context).myOrderList, index: OrdersCubit.get(context).myOrderList.length)
               ),
           ),

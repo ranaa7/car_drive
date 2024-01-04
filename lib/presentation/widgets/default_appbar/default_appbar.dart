@@ -15,86 +15,64 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const DefaultAppBar(
       {super.key,
-      this.title = '',
-      this.isSearch = false,
-      this.searchController,
-      this.onChanged, this.child});
+        this.title = '',
+        this.isSearch = false,
+        this.searchController,
+        this.onChanged, this.child});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       actions: const [SizedBox()],
-automaticallyImplyLeading: isSearch?false:true,
+      automaticallyImplyLeading: isSearch?false:true,
       toolbarHeight: isSearch?120.h:60.h,
       backgroundColor: isSearch?AppColors.white:Colors.transparent,
       centerTitle: false,
       title: isSearch
           ? Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(onPressed: (){
-                    Navigator.pop(context);
-                  }, icon: const Icon(Icons.arrow_back)),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      decoration:BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.greyTransparent,
-                    ),
-                      child: TextFormField(
-                        onChanged: onChanged,
-                        style: AppTextStyle.cairoSemiBold17Black,
-                        cursorColor: AppColors.grey4,
-                        decoration: InputDecoration(
-                          hintText: AppStrings.search,
-                          hintStyle: AppTextStyle.cairoThin13Grey,
-                          border: InputBorder.none,
-                          suffixIcon: const FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Icon(Icons.search, color: AppColors.black),
-                          ),
-                        ),
+              IconButton(onPressed: (){
+                Navigator.pop(context);
+              }, icon: const Icon(Icons.arrow_back)),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  decoration:BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AppColors.greyTransparent,
+                  ),
+                  child: TextFormField(
+                    onChanged: onChanged,
+                    style: AppTextStyle.cairoSemiBold17Black,
+                    cursorColor: AppColors.grey4,
+                    decoration: InputDecoration(
+                      hintText: AppStrings.search,
+                      hintStyle: AppTextStyle.cairoThin13Grey,
+                      border: InputBorder.none,
+                      suffixIcon: const FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Icon(Icons.search, color: AppColors.black),
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-              SizedBox(height: 10.h,),
-              child??const SizedBox(),
             ],
-          )
-          : Text(
-              title,
-              softWrap: false,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyle.cairoBold16Blue,
-            ),
           ),
-      )):
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-
-          Text(
-            title,
-            softWrap: false,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyle.cairoMedium16Blue,
-          ),
-          IconButton(
-            icon: const Icon(Icons.arrow_back_rounded , color: AppColors.black,),
-            onPressed: () {
-              Navigator.pop(context, RouteName.mainScreen);
-            },
-          ),
-
+          SizedBox(height: 10.h,),
+          child??const SizedBox(),
         ],
+      )
+          : Text(
+        title,
+        softWrap: false,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: AppTextStyle.cairoBold16Blue,
       ),
     );
   }

@@ -31,7 +31,6 @@ class Assets {
   static const String imagesCarLoading = 'assets/images/carLoading.json';
   static const String imagesCart = 'assets/images/cart.png';
   static const String imagesChangeFilter = 'assets/images/changeFilter.jpg';
-  static const String imagesEmpty = 'assets/images/empty.jpg';
   static const String imagesEmptyAddress = 'assets/images/emptyAddress.jpg';
   static const String imagesEmptyCart = 'assets/images/emptyCart.png';
   static const String imagesFullWash = 'assets/images/fullWash.jpg';
@@ -39,15 +38,12 @@ class Assets {
   static const String imagesLike = 'assets/images/like.png';
   static const String imagesMinusBlue = 'assets/images/minusBlue.png';
   static const String imagesMinusWhite = 'assets/images/minusWhite.png';
-  static const String imagesNew = 'assets/images/new.png';
   static const String imagesOuterWash = 'assets/images/outerWash.jpg';
   static const String imagesPickup = 'assets/images/pickup.jpg';
   static const String imagesPlusBlue = 'assets/images/plusBlue.png';
   static const String imagesPlusWhite = 'assets/images/plusWhite.png';
-  static const String imagesProduct = 'assets/images/product.jpg';
   static const String imagesRecharge = 'assets/images/recharge.jpg';
   static const String imagesShare = 'assets/images/share.png';
-  static const String imagesSplash = 'assets/images/splash.gif';
   static const String imagesTrue = 'assets/images/true.jpg';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';

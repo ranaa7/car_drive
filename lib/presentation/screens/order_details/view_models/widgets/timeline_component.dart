@@ -5,7 +5,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 class TimelineComponent extends StatelessWidget {
   const TimelineComponent({
-    Key? key,
+    super.key,
     required this.color,
     required this.islast,
     required this.isfirst,
@@ -13,7 +13,7 @@ class TimelineComponent extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.iconcolor,
-  }) : super(key: key);
+  });
 
   final bool isfirst;
   final bool islast;

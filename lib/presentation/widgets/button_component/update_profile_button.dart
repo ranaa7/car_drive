@@ -8,7 +8,7 @@ import '../../../config/style/app_colors.dart';
 import '../../../config/style/text_styles.dart';
 
 class UpdateProfileButton extends StatelessWidget {
-  UpdateProfileButton({super.key, this.onPressed});
+  const UpdateProfileButton({super.key, this.onPressed});
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class UpdateProfileButton extends StatelessWidget {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
         ), onPressed: onPressed ,
-        child: Text(AppStrings.updateprofile,
+        child: Text(AppStrings.updateProfile,
           style: AppTextStyle.cairoSemiBold16white,),
 
       ),

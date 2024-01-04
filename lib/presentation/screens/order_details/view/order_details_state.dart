@@ -6,9 +6,9 @@ abstract class OrderDetailsState {}
 class OrderDetailsInitial extends OrderDetailsState {}
 class OrderDetailsLoading extends OrderDetailsInitial {}
 class OrderDetailsSuccess extends OrderDetailsInitial {
-  List<orderDetails> orderdetails =[];
+  final List<OrderDetails> orderDetail ;
 
-  OrderDetailsSuccess(this.orderdetails);
+  OrderDetailsSuccess(this.orderDetail);
 }
 class OrderDetailsFailure extends OrderDetailsInitial {
   final String errMessage;

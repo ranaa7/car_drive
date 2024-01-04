@@ -20,10 +20,10 @@ class DioHelper {
   /// get
   Future get(
       {required String endPoint,
-      Map<String, dynamic>? query,
-      Map<String, dynamic> data = const {},
-      String? token,
-      ProgressCallback? onReceiveProgress}) async {
+        Map<String, dynamic>? query,
+        Map<String, dynamic> data = const {},
+        String? token,
+        ProgressCallback? onReceiveProgress}) async {
     try {
       _dio.options.headers = {'Authorization': "Bearer $token"};
       return await _dio.get(endPoint,
@@ -33,7 +33,7 @@ class DioHelper {
     } on DioException catch (error) {
       if (error.response != null) {
         if (error.response!.data != null) {
-        throw ResponseModel.fromJson(error.response!.data);
+          throw ResponseModel.fromJson(error.response!.data);
         }
         throw Failure(error.response!.statusMessage!);
       } else {
@@ -51,10 +51,10 @@ class DioHelper {
   /// post
   Future postRaw(
       {required String endPoint,
-      Map<String, dynamic> data = const {},
-      Map<String, dynamic>? query,
-      String? token,
-      ProgressCallback? onSendProgress, required Map<String, Object> queryParameters}) async {
+        Map<String, dynamic> data = const {},
+        Map<String, dynamic>? query,
+        String? token,
+        ProgressCallback? onSendProgress}) async {
     try {
       _dio.options.headers = {
         'Authorization': "Bearer $token"
@@ -125,10 +125,10 @@ class DioHelper {
   /// put
   Future putData(
       {required String endPoint,
-      Map<String, dynamic> data = const {},
-      Map<String, dynamic>? query,
-      String? token,
-      ProgressCallback? onSendProgress}) async {
+        Map<String, dynamic> data = const {},
+        Map<String, dynamic>? query,
+        String? token,
+        ProgressCallback? onSendProgress}) async {
     try {
       _dio.options.headers = {
         'Content-Type': 'application/json',

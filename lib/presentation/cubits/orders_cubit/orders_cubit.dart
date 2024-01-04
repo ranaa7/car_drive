@@ -1,6 +1,4 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:more_2_drive/data/remote/dio_helper.dart';
 import 'package:more_2_drive/presentation/screens/order_screen/data/models/order_model.dart';
 import 'package:flutter/material.dart';
@@ -17,15 +15,15 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   List<PurchaseHistoryModel> myOrderList = [];
 
-  getOrders(int? page  , String payment_status , String delivery_status) async {
+  getOrders(int? page  , String paymentStatus , String deliveryStatus) async {
     emit(Ordersloadingstate());
     try {
       dynamic response = (
           await DioHelper().get(
               endPoint: EndPoints.getorders, token: token , query: {
             'page':page,
-            'payment_status': payment_status,
-            'delivery_status': delivery_status
+            'payment_status': paymentStatus,
+            'delivery_status': deliveryStatus
           }))
       ;
 
@@ -41,15 +39,15 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
 
-   getOrdersForPaymentandDelivery(int? page , String payment_status , String delivery_status) async {
+   getOrdersForPaymentandDelivery(int? page , String paymentStatus , String deliveryStatus) async {
     emit(Ordersloadingstate());
     try {
       dynamic response = (
           await DioHelper().get(
           endPoint: EndPoints.getorders, token: token , query: {
             'page':page,
-            'payment_status': payment_status,
-            'delivery_status': delivery_status
+            'payment_status': paymentStatus,
+            'delivery_status': deliveryStatus
           }))
           ;
 

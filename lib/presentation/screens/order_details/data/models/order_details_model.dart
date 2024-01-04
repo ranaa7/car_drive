@@ -1,4 +1,4 @@
-class orderDetails {
+class OrderDetails {
   int? id;
   String? code;
   int? userId;
@@ -22,7 +22,7 @@ class orderDetails {
   String? date;
 
 
-  orderDetails(
+  OrderDetails(
       {this.id,
         this.code,
         this.userId,
@@ -47,7 +47,7 @@ class orderDetails {
 
         });
 
-  orderDetails.fromJson(Map<String, dynamic> json) {
+  OrderDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     code = json['code'];
     userId = json['user_id'];
@@ -77,7 +77,7 @@ class orderDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['code'] = code;
     data['user_id'] = userId;
@@ -132,7 +132,7 @@ class PickupPoint {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['address'] = address;

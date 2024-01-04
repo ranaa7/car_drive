@@ -14,8 +14,8 @@ import '../view_models/counter/counter_cubit.dart';
 import 'column_profile.dart';
 import 'icon_container.dart';
 
-class profileScreenBody extends StatelessWidget {
-  const profileScreenBody({super.key});
+class ProfileScreenBody extends StatelessWidget {
+  const ProfileScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class profileScreenBody extends StatelessWidget {
       children: [
         Container(
           height: 370.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.deepDarkBlue,
             borderRadius: BorderRadius.only(
                 // topRight: Radius.circular(40.0),
@@ -54,13 +54,12 @@ class profileScreenBody extends StatelessWidget {
                             }
                           },
                           icon: Image.asset(Assets.imagesTranslateIcon)),
-                      Spacer(),
+                      const Spacer(),
                       BlocBuilder<LoginCubit, LoginState>(
                         builder: (context, state) {
                           return OutlinedButton(
                             onPressed: () {
                               LoginCubit.get(context).userLogOut(context);
-
                             },
                             style: OutlinedButton.styleFrom(
                               minimumSize: Size(20.w, 30.h),
@@ -100,7 +99,7 @@ class profileScreenBody extends StatelessWidget {
                                         .user
                                         ?.username ??
                                     "",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20, color: Colors.white),
                               ),
                               IconButton(
@@ -108,7 +107,7 @@ class profileScreenBody extends StatelessWidget {
                                     Navigator.pushNamed(
                                         context, RouteName.editProfilescreen);
                                   },
-                                  icon: FaIcon(
+                                  icon: const FaIcon(
                                     FontAwesomeIcons.penToSquare,
                                     color: AppColors.white,
                                   )),
@@ -118,7 +117,7 @@ class profileScreenBody extends StatelessWidget {
                               LoginCubit.get(context).loginModel.user?.email ??
                                   "",
                               style:
-                                  TextStyle(fontSize: 14, color: Colors.grey)),
+                                  const TextStyle(fontSize: 14, color: Colors.grey)),
                           // Text(LoginCubit.get(context).loginModel.user?.id?.toString() ??""),
                           SizedBox(
                             height: 20.h,
@@ -126,7 +125,7 @@ class profileScreenBody extends StatelessWidget {
                           Container(
                             width: 200.w,
                             height: 47.h,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: AppColors.white,
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(10),
@@ -136,16 +135,16 @@ class profileScreenBody extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                Text("668997"),
-                                Spacer(),
+                                const Text("668997"),
+                                const Spacer(),
                                 IconButton(
                                     onPressed: () {
                                       showModalBottomSheet(
                                           context: context,
                                           builder: (BuildContext bc) {
-                                            return Container(
+                                            return SizedBox(
                                               width: double.infinity,
-                                              child: new Wrap(
+                                              child: Wrap(
                                                 children: <Widget>[
                                                   Align(
                                                     alignment: Alignment.center,
@@ -160,7 +159,7 @@ class profileScreenBody extends StatelessWidget {
                                                           width: 200.w,
                                                           height: 47.h,
                                                           decoration:
-                                                              BoxDecoration(
+                                                              const BoxDecoration(
                                                             color:
                                                                 AppColors.white,
                                                             borderRadius: BorderRadius.only(
@@ -180,12 +179,12 @@ class profileScreenBody extends StatelessWidget {
                                                           ),
                                                           child: Row(
                                                             children: [
-                                                              Text("668997"),
-                                                              Spacer(),
+                                                              const Text("668997"),
+                                                              const Spacer(),
                                                               IconButton(
                                                                   onPressed:
                                                                       () {},
-                                                                  icon: Icon(Icons
+                                                                  icon: const Icon(Icons
                                                                       .copy_outlined)),
                                                             ],
                                                           ),
@@ -207,7 +206,7 @@ class profileScreenBody extends StatelessWidget {
                                                               IconButton(
                                                                   onPressed:
                                                                       () {},
-                                                                  icon: Icon(
+                                                                  icon: const Icon(
                                                                     Icons
                                                                         .facebook,
                                                                     color: Colors
@@ -216,7 +215,7 @@ class profileScreenBody extends StatelessWidget {
                                                               IconButton(
                                                                   onPressed:
                                                                       () {},
-                                                                  icon: FaIcon(
+                                                                  icon: const FaIcon(
                                                                     FontAwesomeIcons
                                                                         .whatsapp,
                                                                     color: Colors
@@ -236,16 +235,16 @@ class profileScreenBody extends StatelessWidget {
                                             );
                                           });
                                     },
-                                    icon: Icon(Icons.copy_outlined)),
+                                    icon: const Icon(Icons.copy_outlined)),
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
-                            AppStrings.ReferralCode,
-                            style: TextStyle(color: Colors.white),
+                            AppStrings.referralCode,
+                            style: const TextStyle(color: Colors.white),
                           )
                         ],
                       )
@@ -256,19 +255,17 @@ class profileScreenBody extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ProfileColumn(
               name: "wishlist",
               num: CounterCubit.get(context).wishlistItem.toString(),
-              left: 80,
             ),
-            SizedBox(
-              width: 20,
-            ),
+
             Container(
               height: 50.h,
               width: 0.4.w, // Adjust the width as needed
@@ -278,11 +275,8 @@ class profileScreenBody extends StatelessWidget {
             ProfileColumn(
               name: "Cart",
               num: CounterCubit.get(context).cartItem.toString(),
-              left: 20,
             ),
-            SizedBox(
-              width: 20.w,
-            ),
+
             Container(
               height: 50.h,
               width: 0.4.w, // Adjust the width as needed
@@ -292,29 +286,28 @@ class profileScreenBody extends StatelessWidget {
             ProfileColumn(
               name: "Order",
               num: CounterCubit.get(context).orderCount.toString(),
-              left: 20,
             ),
           ],
         ),
         SizedBox(
           height: 25.h,
         ),
-        Container(
+        SizedBox(
           height: 100.h,
           child: ListView(scrollDirection: Axis.horizontal, children: [
             SizedBox(
               width: 10.w,
             ),
-            IconContainer(text: AppStrings.MyWishlist, icon: Icons.favorite),
+            IconContainer(text: AppStrings.myWishlist, icon: Icons.favorite),
             SizedBox(
               width: 10.w,
             ),
             IconContainer(
-                text: AppStrings.MyOrders, icon: Icons.list_alt_outlined),
+                text: AppStrings.myOrders, icon: Icons.list_alt_outlined),
             SizedBox(
               width: 10.w,
             ),
-            IconContainer(text: AppStrings.MyWallet, icon: Icons.wallet),
+            IconContainer(text: AppStrings.myWallet, icon: Icons.wallet),
             SizedBox(
               width: 10.w,
             ),
@@ -323,7 +316,7 @@ class profileScreenBody extends StatelessWidget {
               width: 10.w,
             ),
             IconContainer(
-                text: AppStrings.EarnedPoints, icon: FontAwesomeIcons.coins),
+                text: AppStrings.earnedPoints, icon: FontAwesomeIcons.coins),
             SizedBox(
               width: 10.w,
             ),
@@ -347,7 +340,7 @@ class profileScreenBody extends StatelessWidget {
                     style: AppTextStyle.cairoSemiBold16black,
                   ),
                 )),
-            Spacer(),
+            const Spacer(),
             TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, RouteName.orderScreen);

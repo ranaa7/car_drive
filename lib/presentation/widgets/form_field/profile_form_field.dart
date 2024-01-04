@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 
 class ProfileFormField extends StatelessWidget {
@@ -12,9 +13,9 @@ class ProfileFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       Center(
-        child: Container(
+        child: SizedBox(
          // alignment: Alignment.center,
-          width: 370,
+          width: 370.w,
         child:
         TextFormField(
 
@@ -26,7 +27,7 @@ class ProfileFormField extends StatelessWidget {
             fillColor: AppColors.white,
             filled: true,
             isDense: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            contentPadding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10.w),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(7),
               borderSide: BorderSide.none, // No border to overlap with the shadow

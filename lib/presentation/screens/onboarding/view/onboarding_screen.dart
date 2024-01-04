@@ -42,7 +42,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           return Stack(
             children: [
               Container(
-                decoration: BoxDecoration(color: Colors.transparent),
+                decoration: const BoxDecoration(color: Colors.transparent),
                 child: Image.asset(
                   contents[index].image,
                   height: double.infinity,
@@ -96,8 +96,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       // width: 406,
                       //fit: BoxFit.fill,
                     ),
-                    const SizedBox(
-                      height: 10,
+                     SizedBox(
+                      height: 10.h,
                     ),
                     Text(contents[index].title,
                         style: AppTextStyle.cairoSemiBold24white),

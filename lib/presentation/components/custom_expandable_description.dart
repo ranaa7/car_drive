@@ -61,7 +61,7 @@ class ExpandableWidget extends StatelessWidget {
                   return TextButton(
                     child: Text(
                       !controller!.expanded ? AppStrings.showMore : AppStrings.showLess,
-                      style: AppTextStyle.cairoBold15White,
+                      style: AppTextStyle.cairoBold15white,
                     ),
                     onPressed: () {
                       controller.toggle();

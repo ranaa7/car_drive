@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:more_2_drive/presentation/screens/home_screen/home_screen.dart';
 import 'package:more_2_drive/presentation/screens/signup/view_models/signup_cubit.dart';
 import 'package:more_2_drive/presentation/screens/signup/views/widgets/phonetextfiled.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/email_formfield.dart';
+import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 
 import '../../../../config/style/app_colors.dart';
@@ -17,15 +17,15 @@ import '../../../register/view/widgets/image_component.dart';
 import '../../../widgets/form_field/first_name_formfield.dart';
 import '../../../widgets/form_field/last_name_formfield.dart';
 import '../../../widgets/form_field/password_formfield.dart';
- bool islogin = false;
+ bool isLogin = false;
 class SignupScreen extends StatelessWidget {
    SignupScreen({super.key});
-  static final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final email = TextEditingController();
   final password = TextEditingController();
-  final fname = TextEditingController();
-  final sname = TextEditingController();
+  final firstName = TextEditingController();
+  final secName = TextEditingController();
   final phone = TextEditingController();
 
 
@@ -46,7 +46,7 @@ class SignupScreen extends StatelessWidget {
           await CacheHelper.saveDate(key: 'user_id', value: userId);
 
           CacheHelper.saveDate(key: 'access_token', value: state.signupModel.token)
-              .then((value) => {Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()))});
+              .then((value) => {Navigator.pushNamed(context, RouteName.mainScreen)});
         } else if (state is SignupFailureState) {
           showToast(message: state.errMessage, bcColor: Colors.red);
         }
@@ -94,7 +94,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                   child: SingleChildScrollView(
                     child: Form(
-                      key: _formkey,
+                      key: _formKey,
                       child: (Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -111,7 +111,7 @@ class SignupScreen extends StatelessWidget {
                           SizedBox(
                             height: 12.h,
                           ),
-                          FirstNameFormfield(fname: fname,),
+                          FirstNameFormfield(fname: firstName,),
                           SizedBox(
                             height: 15.h,
                           ),
@@ -125,7 +125,7 @@ class SignupScreen extends StatelessWidget {
                           SizedBox(
                             height: 12.h,
                           ),
-                          LastNameFormfield(lname: sname,),
+                          LastNameFormfield(lname: secName,),
                           SizedBox(
                             height: 15.h,
                           ),
@@ -169,7 +169,7 @@ class SignupScreen extends StatelessWidget {
                           SizedBox(
                             height: 12.h,
                           ),
-                          phoneFormField(phone: phone),
+                          PhoneFormField(phone: phone),
 
                           SizedBox(
                             height: 30.h,
@@ -182,9 +182,9 @@ class SignupScreen extends StatelessWidget {
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10))),
                             ), onPressed: () async{
-                            if (_formkey.currentState!.validate()) {
-                              islogin=true;
-                              await SignupCubit.get(context).Signup(fname: fname.text, secname: sname.text, email: email.text, password: password.text, phone: phone.text);
+                            if (_formKey.currentState!.validate()) {
+                              isLogin=true;
+                              await SignupCubit.get(context).signUp(firstName: firstName.text, secName: secName.text, email: email.text, password: password.text, phone: phone.text);
 
                               String? token =
                               CacheHelper.getData(key: 'access_token');

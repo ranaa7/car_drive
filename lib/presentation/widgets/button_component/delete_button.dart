@@ -6,8 +6,8 @@ import '../../../config/style/app_colors.dart';
 import '../../../config/style/text_styles.dart';
 
 class DeleteButton extends StatelessWidget {
-  DeleteButton({super.key , required this.onPressed});
-  void Function()? onPressed;
+  const DeleteButton({super.key , required this.onPressed});
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {

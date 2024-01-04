@@ -6,7 +6,7 @@ abstract class OrderItemState {}
 class OrderItemInitial extends OrderItemState {}
 class OrderItemLoading extends OrderItemInitial {}
 class OrderItemSuccess extends OrderItemInitial {
- List<OrderDetailsItem> orderItems =[];
+ final List<OrderDetailsItem> orderItems ;
 
   OrderItemSuccess(this.orderItems);
 }

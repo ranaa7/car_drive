@@ -25,6 +25,23 @@ class WishlistRepo{
       return Right(failure);
     }
   }
+  Future<Either<dynamic, Failure>> removeProductFromWishlist(int? productId) async {
+    try {
+      Response response = await _dio.get(
+        query: {
+          "product_id":productId
+        },
+        token: Constants.token,
+        endPoint: EndPoints.removeProductFromWishlist,
+      );
+      print(response.data.toString());
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
   Future<Either<dynamic, Failure>> checkIfProductIsInWishlist(int? productId) async {
     try {
       Response response = await _dio.get(

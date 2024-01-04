@@ -16,26 +16,6 @@ class AppBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      shape:const CircularNotchedRectangle(),
-      notchMargin: 2,
-      color: AppColors.white,
-      height: 80.h,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _bottomNavItem(text: AppStrings.home, icon: Assets.svgHome, index: 0),
-          _bottomNavItem(
-              text: AppStrings.category, icon: Assets.svgCategory, index: 1),
-          SizedBox(width: 40.w,),
-          _bottomNavItem(
-              text: AppStrings.notification,
-              icon: Assets.svgNotification,
-              index: 2),
-          _bottomNavItem(
-              text: AppStrings.profile, icon: Assets.svgProfile, index: 3),
-        ],
-      ),
 
     final iconList = [
       Assets.svgHome,
@@ -99,9 +79,9 @@ class AppBottomNavBar extends StatelessWidget {
           fit: BoxFit.contain,
         ),
         Text(text,
-                style: isSelected
-                    ? AppTextStyle.cairoSemiBold15Red
-                    : AppTextStyle.cairoSemiBold15Grey)
+            style: isSelected
+                ? AppTextStyle.cairoSemiBold15Red
+                : AppTextStyle.cairoSemiBold15Grey)
             .animate()
             .fit()
       ],
