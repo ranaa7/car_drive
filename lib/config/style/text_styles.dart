@@ -94,6 +94,9 @@ class AppTextStyle {
   static final TextStyle cairoBold20black =
   cairoBold.merge(fontSize20).copyWith(color: AppColors.black);
 
+  static final TextStyle cairoBold20red =
+  cairoBold.merge(fontSize20).copyWith(color: AppColors.red);
+
   static final TextStyle cairoBold15black =
   cairoBold.merge(fontSize15).copyWith(color: AppColors.black);
 
@@ -118,6 +121,11 @@ class AppTextStyle {
 
   static final TextStyle cairoBoldgrey20 =
   cairoBold.merge(fontSize20).copyWith(color: AppColors.grey2);
+
+  static final TextStyle cairoBoldgrey17 =
+  cairoBold.merge(fontSize17).copyWith(color: AppColors.grey2);
+  static final TextStyle cairoBoldred17 =
+  cairoBold.merge(fontSize17).copyWith(color: AppColors.red);
   static final TextStyle cairoSemiBold17Red =
   cairoSemiBold.merge(fontSize17).copyWith(color: AppColors.red);
   static final TextStyle cairoSemiBold15Red =

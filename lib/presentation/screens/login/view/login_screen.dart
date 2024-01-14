@@ -196,7 +196,9 @@ class LoginScreen extends StatelessWidget {
                         ),
 
                         OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           style: OutlinedButton.styleFrom(
                             minimumSize: Size(332.w, 46.h),
                             shape: RoundedRectangleBorder(

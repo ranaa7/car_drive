@@ -95,47 +95,11 @@ RegisterScreen({super.key});
                         SizedBox(
                           height: 12.h,
                         ),
-                        Padding(
-                          padding:const EdgeInsets.only(right: 0, left: 130).r,
-                          child: Text(
-                            "الاسم الاول",
-                            style: AppTextStyle.cairoSemiBold16DarkBlue,
-                          ),
-                        ),
-                         SizedBox(
-                          height: 12.h,
-                        ),
-                        FirstNameFormfield(fname: fname,),
-                         SizedBox(
-                          height: 15.h,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0, left: 130).r,
-                          child: Text(
-                            "الاسم التاني",
-                            style: AppTextStyle.cairoSemiBold16DarkBlue,
-                          ),
-                        ),
-                         SizedBox(
-                          height: 12.h,
-                        ),
-                        LastNameFormfield(lname: sname,),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0, left: 130).r,
-                          child: Text(
-                            "رقم الهاتف",
-                            style: AppTextStyle.cairoSemiBold16DarkBlue,
-                          ),
-                        ),
-                         SizedBox(
-                          height: 12.h,
-                        ),
+
                        // PhoneFormfield(phone: phone,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             PhoneNumberFormField(phone: phone),
                             const CountryCodePicker(initialSelection: "EG", showCountryOnly: true,)
@@ -156,7 +120,7 @@ RegisterScreen({super.key});
                             borderRadius: BorderRadius.all(Radius.circular(10))),
                       ), onPressed: () async{
                       if (_formKey.currentState!.validate()) {
-                        await PhoneRegisterCubit.get(context).phoneLogin(fname: fname.text, secname: sname.text, phone: phone.text);
+                        await PhoneRegisterCubit.get(context).phoneLogin( phone: phone.text);
 
                         String? token =
                         CacheHelper.getData(key: 'access_token');

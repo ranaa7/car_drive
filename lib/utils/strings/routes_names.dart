@@ -33,6 +33,10 @@ class RouteName {
   static const String addOrEditCarScreen='/addOrEditCarScreen';
   static const String addOrEditAddressScreen='/addOrEditAddressScreen';
 
+  static const String clubPointsScreen='/ClubPointScreen';
+  static const String wishlistScreen='/WishlistScreen';
+  static const String walletScreen='/WalletScreen';
+
 
 
 

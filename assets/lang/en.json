@@ -20,12 +20,13 @@
   "shopNow": "Shop now ➝",
   "loadMoreProduct": "Loading More Products",
   "signIn": "Sign In",
-  "ReferralCode": "copy your referral code to start sharing",
-  "MyWishlist": "My wishlist",
-  "MyOrders": "My orders",
-  "MyWallet":"My wallet",
+  "referralCode": "copy your referral code to start sharing",
+  "myWishlist": "My wishlist",
+  "myOrders": "My orders",
+  "myWallet":"My wallet",
   "messages": "Messages",
-  "EarnedPoints": "Earned points",
+  "earnedPoints": "Earned points",
+  "collectPoints": "Collect points",
   "toActivateAllFeatures": "to activate all features",
   "bookYourDate": "Book your date",
   "doYourServices":"Do your services",
@@ -113,6 +114,9 @@
   "showLess": "Show Less",
   "showMore": "Show More",
   "noAvailableProduct": "No Available Product",
-  "minMaxWarning": "Please Enter Valid Range"
+  "minMaxWarning": "Please Enter Valid Range",
+  "lastRecharged": "Last recharged",
+  "walletBalance": "Wallet Balance",
+  "walletCharging": "Wallet charging"
 
 }

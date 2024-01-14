@@ -16,7 +16,7 @@ class Themes {
         scrolledUnderElevation: 0.0,
         elevation: 0.0,
       ),
-      scaffoldBackgroundColor: AppColors.white1,
+      scaffoldBackgroundColor: AppColors.scaffoldGround,
       colorScheme: ColorScheme.fromSwatch()
           .copyWith(secondary: AppColors.blue)
           .copyWith(background: AppColors.blue));

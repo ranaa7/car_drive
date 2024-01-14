@@ -22,12 +22,13 @@
   "shopNow": "تسوق الان ⬅",
   "loadMoreProduct": "عرض المزيد من المنتجات",
   "signIn": "تسجيل دخول",
-  "ReferralCode": "انسخ رمز الإحالة الخاص بك لبدء المشاركة",
-  "MyWishlist": "رغباتي",
-  "MyOrders": "طلباتي",
-  "MyWallet":"محفظتي",
+  "referralCode": "انسخ رمز الإحالة الخاص بك لبدء المشاركة",
+  "myWishlist": "رغباتي",
+  "myOrders": "طلباتي",
+  "myWallet":"محفظتي",
   "messages": "رسايل",
-  "EarnedPoints": "النقاط المكتسبة",
+  "earnedPoints": "النقاط المكتسبة",
+  "collectPoints": "تحصيل النقاط",
   "toActivateAllFeatures":"لتفعيل جميع المميزات",
   "bookYourDate": "احجز معادك",
   "doYourServices": "اعمل خدماتك",
@@ -115,7 +116,10 @@
 
   "showLess": "عرض اقل",
   "noAvailableProduct": "لا يوجد المزيد من هذا المنتج",
-  "minMaxWarning": "برجاء ادخال حدود صحيحة"
+  "minMaxWarning": "برجاء ادخال حدود صحيحة",
+  "walletCharging": "شحن المحفظة",
+  "walletBalance": "رصيد المحفظة",
+  "lastRecharged": "الشحن الاخير"
 
 
 }

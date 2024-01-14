@@ -9,7 +9,9 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
 import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:more_2_drive/core/network/local/cache_helper.dart';
+import 'package:more_2_drive/domain/repositories/clubpoints_repo/clubpoints_repo.dart';
 import 'package:more_2_drive/presentation/cubits/orders_cubit/orders_cubit.dart';
+import 'package:more_2_drive/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:more_2_drive/presentation/otp/view_model/otp_cubit.dart';
 import 'package:more_2_drive/domain/repositories/banner_repo/banner_repo.dart';
 import 'package:more_2_drive/domain/repositories/brands_repo/brands_repo.dart';
@@ -109,17 +111,18 @@ class MyApp extends StatelessWidget {
               create: (_) => CartCubit(sl<CartRepo>())..getCartCount()),
           BlocProvider(create: (_) => CarCubit(sl<CarRepo>())),
           BlocProvider(create: (_) => OrderCubit(sl<OrderRepo>())),
-          BlocProvider(create: (_) => WishlistCubit(sl<WishlistRepo>())),
+          BlocProvider(create: (_) => WishlistCubit(sl<WishlistRepo>())..getWishlists()),
           BlocProvider(create: (_) => AppCubit()),
-          BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => LoginCubit()..getUserDataByToken()),
           BlocProvider(create: (context) => SignupCubit()),
           BlocProvider(create: (context) => PhoneRegisterCubit()),
+          BlocProvider(create: (context) => UpdateProfileCubit()),
           BlocProvider(create: (context) => OtpCubit()),
-          BlocProvider(create: (context) => CounterCubit()),
+          BlocProvider(create: (context) => CounterCubit()..getProfileCount()),
           BlocProvider(create: (context) => OrdersCubit()),
           BlocProvider(create: (context) => OrderDetailsCubit()),
           BlocProvider(create: (context) => OrderItemCubit()),
-          BlocProvider(create: (context) => UpdateProfileCubit()),
+          BlocProvider(create: (context) => WalletCubit(sl<WalletRepo>())..getWalletBalance()),
         ],
         child: ScreenUtilInit(
         designSize: const Size(430, 932),

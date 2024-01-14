@@ -10,12 +10,12 @@ import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_state.d
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+class WishlistScreen extends StatelessWidget {
+  const WishlistScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List notification = [];
+
     return Scaffold(
       backgroundColor: AppColors.scaffoldGround,
       appBar: DefaultAppBar(
@@ -40,13 +40,16 @@ class NotificationScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
 
-                      IconButton(onPressed: () {},
+                      IconButton(onPressed: () {
+                        WishlistCubit.get(context).removeProductFromWishlist(WishlistCubit.get(context).wishlist[index].product?.id ?? 0) ;
+                      },
                           icon: Icon(
                             Icons.favorite, color: AppColors.red2, size: 30,)),
 
 
+
                       Padding(
-                        padding: const EdgeInsets.only(left: 150),
+                        padding: EdgeInsets.only(left: 150.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [

@@ -17,7 +17,7 @@ class PhoneRegisterCubit extends Cubit<PhoneRegisterState> {
 
 
 
-  Future<void> phoneLogin({required String fname , required String secname ,required String phone}) async {
+  Future<void> phoneLogin({required String phone}) async {
   emit(PhoneRegisterLoadingState());
   print("23");
 
@@ -25,8 +25,6 @@ class PhoneRegisterCubit extends Cubit<PhoneRegisterState> {
   var response = await DioHelper.postData(
   endPoint:EndPoints.loginPhone,
   queryParameters: {
-  'name': fname,
-  'secondname': secname,
   'phone': phone,
   },
 

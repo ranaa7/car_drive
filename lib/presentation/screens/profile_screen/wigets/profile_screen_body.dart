@@ -32,7 +32,7 @@ class ProfileScreenBody extends StatelessWidget {
                 bottomLeft: Radius.circular(40.0)),
           ),
           child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 30.h),
+            padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 70.h),
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -94,10 +94,8 @@ class ProfileScreenBody extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                LoginCubit.get(context)
-                                        .loginModel
-                                        .user
-                                        ?.username ??
+                                LoginCubit.get(context).userDataByAccessToken.name
+                                         ??
                                     "",
                                 style: const TextStyle(
                                     fontSize: 20, color: Colors.white),
@@ -114,7 +112,7 @@ class ProfileScreenBody extends StatelessWidget {
                             ],
                           ),
                           Text(
-                              LoginCubit.get(context).loginModel.user?.email ??
+                              LoginCubit.get(context).userDataByAccessToken.email ??
                                   "",
                               style:
                                   const TextStyle(fontSize: 14, color: Colors.grey)),
@@ -293,36 +291,48 @@ class ProfileScreenBody extends StatelessWidget {
           height: 25.h,
         ),
         SizedBox(
-          height: 100.h,
-          child: ListView(scrollDirection: Axis.horizontal, children: [
+          height: 110.h,
+          child: ListView(
+              scrollDirection: Axis.horizontal, children: [
             SizedBox(
               width: 10.w,
             ),
-            IconContainer(text: AppStrings.myWishlist, icon: Icons.favorite),
+            IconContainer(text: AppStrings.myWishlist, icon: Icons.favorite, onPressed: () {
+              Navigator.pushNamed(context, RouteName.wishlistScreen);
+            },),
             SizedBox(
-              width: 10.w,
-            ),
-            IconContainer(
-                text: AppStrings.myOrders, icon: Icons.list_alt_outlined),
-            SizedBox(
-              width: 10.w,
-            ),
-            IconContainer(text: AppStrings.myWallet, icon: Icons.wallet),
-            SizedBox(
-              width: 10.w,
-            ),
-            IconContainer(text: AppStrings.address, icon: Icons.location_on),
-            SizedBox(
-              width: 10.w,
+              width: 30.w,
             ),
             IconContainer(
-                text: AppStrings.earnedPoints, icon: FontAwesomeIcons.coins),
+                text: AppStrings.myOrders, icon: Icons.list_alt_outlined, onPressed: () {
+              Navigator.pushNamed(context, RouteName.orderScreen);
+
+            },),
             SizedBox(
-              width: 10.w,
+              width: 30.w,
             ),
-            IconContainer(text: AppStrings.messages, icon: Icons.chat_rounded),
+            IconContainer(text: AppStrings.myWallet, icon: Icons.wallet, onPressed: () {
+              Navigator.pushNamed(context, RouteName.walletScreen);
+
+            },),
             SizedBox(
-              width: 10.w,
+              width: 30.w,
+            ),
+            IconContainer(text: AppStrings.address, icon: Icons.location_on, onPressed: () {  },),
+            SizedBox(
+              width: 30.w,
+            ),
+            IconContainer(
+                text: AppStrings.earnedPoints, icon: FontAwesomeIcons.coins, onPressed: () {
+              Navigator.pushNamed(context, RouteName.clubPointsScreen);
+
+            },),
+            SizedBox(
+              width: 30.w,
+            ),
+            IconContainer(text: AppStrings.messages, icon: Icons.chat_rounded, onPressed: () {  },),
+            SizedBox(
+              width: 30.w,
             ),
           ]),
         ),

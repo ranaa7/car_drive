@@ -26,4 +26,5 @@ class ProfileCounterRepo {
       return Right(failure);
     }
   }
+
 }

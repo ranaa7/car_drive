@@ -35,6 +35,8 @@ class AppStrings{
   static String get  myWallet=> "myWallet".tr();
   static String get messages=> "messages".tr();
   static String get earnedPoints=> "earnedPoints".tr();
+
+  static String get collectPoints=> "collectPoints".tr();
   static String get address=> "address".tr();
 
   static String get activate=> "toActivateAllFeatures".tr();
@@ -130,5 +132,9 @@ class AppStrings{
   static String get shippingCost  => "shippingCost".tr();
   static String get discount  => "discount".tr();
   static String get totalOutput  => "totalOutput".tr();
+
+  static String get walletBalance  => "walletBalance".tr();
+  static String get walletCharging  => "walletCharging".tr();
+  static String get lastRecharged  => "lastRecharged".tr();
 
 }

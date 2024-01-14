@@ -13,6 +13,8 @@ class EndPoints{
 
   static const String register = 'auth/signup';
 
+  static const String socialLogin = 'auth/social-login';
+
   static const String updateProfile = 'profile/update';
 
   static const String deleteProfile = 'auth/account-deletion';
@@ -21,6 +23,7 @@ class EndPoints{
   static const String confirmOtp = 'auth/enterotp';
   static const String resendOtp = 'auth/resendotp';
   static const String logOut = 'auth/logout';
+  static const String getUserDataByToken = 'get-user-by-access_token';
   static const String counters = 'profile/counters';
 
   static const String getorders = 'purchase-history';
@@ -55,6 +58,17 @@ class EndPoints{
   static const String addProductToWishlist = 'wishlists-add-product';
   static const String removeProductFromWishlist = 'wishlists-remove-product';
 
+  static const String getWishlist = 'wishlists';
   static const String checkIfProductIsInWishlist = 'wishlists-check-product';
+
+
+
+  static const String convertIntoWallet = 'clubpoint/convert-into-wallet';
+  static const String getClubpoints = 'clubpoint/get-list';
+
+
+  static const String walletBalance = 'wallet/balance';
+
+  static const String walletHistory = 'wallet/history';
 
 }

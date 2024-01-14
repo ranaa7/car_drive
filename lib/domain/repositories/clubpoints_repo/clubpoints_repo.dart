@@ -7,16 +7,17 @@ import 'package:more_2_drive/domain/models/response_model.dart';
 import 'package:more_2_drive/utils/strings/constants.dart';
 import 'package:more_2_drive/utils/strings/end_points.dart';
 
-class WishlistRepo{
+class WalletRepo{
   final DioHelper _dio = DioHelper();
-  Future<Either<dynamic, Failure>> addProductToWishlist(int? productId) async {
+
+  Future<Either<dynamic, Failure>> getClubpoints(int? page) async {
     try {
       Response response = await _dio.get(
-        query: {
-          "product_id":productId
-        },
-        token: Constants.token,
-        endPoint: EndPoints.addProductToWishlist,
+        token: token,
+        endPoint: EndPoints.getClubpoints, query: {
+      'page':page,
+
+      }
       );
       print(response.data.toString());
       return Left(ResponseModel.fromJson(response.data));
@@ -27,45 +28,31 @@ class WishlistRepo{
     }
   }
 
-  Future<Either<dynamic, Failure>> getWishlists() async {
+
+  Future<Either<dynamic, Failure>> addClubpointsToWallet(int? productId) async {
+    try {
+      Response response = await _dio.get(
+        query: {
+          "id":productId
+        },
+        token:token,
+        endPoint: EndPoints.convertIntoWallet,
+      );
+      print(response.data.toString());
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
+
+
+  Future<Either<dynamic, Failure>> getWalletBalance() async {
     try {
       Response response = await _dio.get(
         token: token,
-        endPoint: EndPoints.getWishlist,
-      );
-      print(response.data.toString());
-      return Left(ResponseModel.fromJson(response.data));
-    } on ResponseModel catch (responseModel) {
-      return Left(responseModel);
-    } on Failure catch (failure) {
-      return Right(failure);
-    }
-  }
-  Future<Either<dynamic, Failure>> removeProductFromWishlist(int? productId) async {
-    try {
-      Response response = await _dio.get(
-        query: {
-          "product_id":productId
-        },
-        token: Constants.token,
-        endPoint: EndPoints.removeProductFromWishlist,
-      );
-      print(response.data.toString());
-      return Left(ResponseModel.fromJson(response.data));
-    } on ResponseModel catch (responseModel) {
-      return Left(responseModel);
-    } on Failure catch (failure) {
-      return Right(failure);
-    }
-  }
-  Future<Either<dynamic, Failure>> checkIfProductIsInWishlist(int? productId) async {
-    try {
-      Response response = await _dio.get(
-        query: {
-          "product_id":productId
-        },
-        token: Constants.token,
-        endPoint: EndPoints.checkIfProductIsInWishlist,
+        endPoint: EndPoints.walletBalance,
       );
       print(response.data.toString());
       return Left(response.data);
@@ -75,4 +62,24 @@ class WishlistRepo{
       return Right(failure);
     }
   }
+
+
+  Future<Either<dynamic, Failure>> getWalletHistory(int? page) async {
+    try {
+      Response response = await _dio.get(
+          token: token,
+          endPoint: EndPoints.walletHistory, query: {
+        'page':page,
+
+      }
+      );
+      print(response.data.toString());
+      return Left(ResponseModel.fromJson(response.data));
+    } on ResponseModel catch (responseModel) {
+      return Left(responseModel);
+    } on Failure catch (failure) {
+      return Right(failure);
+    }
+  }
+
 }

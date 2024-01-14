@@ -64,6 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   }
                 },
               ),
+          SizedBox(height: 30.h,),
 
           BlocBuilder<LoginCubit, LoginState>(
             builder: (context, state) {
@@ -74,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               );
             },
           ),
-          SizedBox(height: 20.h,)
+          SizedBox(height: 40.h,)
 
         ],
       ),

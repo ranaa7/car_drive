@@ -26,6 +26,7 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.deepDarkBlue,
       body: Form(
         key: _key,
         child: Stack(children: [

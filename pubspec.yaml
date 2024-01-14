@@ -83,6 +83,7 @@ dependencies:
   lottie: ^2.7.0
   one_context: ^2.1.0
   dropdown_search: ^5.0.6
+  google_sign_in: ^6.2.1
 
 
 dev_dependencies:

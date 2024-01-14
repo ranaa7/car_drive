@@ -22,6 +22,19 @@ class LoginFailureState extends LoginState {
   LoginFailureState({required this.errMessage});
 }
 
+
+
+
+class SocialLoginLoadingState extends LoginState {}
+
+class SocialLoginSuccessState extends LoginState {}
+
+class SocialLoginFailureState extends LoginState {
+  final String errMessage;
+
+  SocialLoginFailureState({required this.errMessage});
+}
+
 class LogoutLoadingState extends LoginState {}
 
 class LogoutSuccessState extends LoginState {}
@@ -29,4 +42,21 @@ class LogoutSuccessState extends LoginState {}
 class LogoutFailureState extends LoginState {
   final String errMessage;
   LogoutFailureState({required this.errMessage});
+}
+
+
+
+
+class getUserDataByTokenLoadingState extends LoginState {}
+
+class getUserDataByTokenSuccessState extends LoginState {
+
+  final UserDataByAccessToken userDataByAccessToken;
+  getUserDataByTokenSuccessState(this.userDataByAccessToken);
+}
+
+class getUserDataByTokenFailureState extends LoginState {
+  final String errMessage;
+
+  getUserDataByTokenFailureState({required this.errMessage});
 }

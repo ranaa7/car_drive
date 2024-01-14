@@ -12,7 +12,7 @@ class PhoneNumberFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150.w,
+      width: 200.w,
       child: TextFormField(
         controller: phone,
         validator: ValidationForm.nameValidator,

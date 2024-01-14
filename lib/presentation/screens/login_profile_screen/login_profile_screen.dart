@@ -15,6 +15,7 @@ class LoginProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.deepDarkBlue,
       body: SafeArea(
+
         child: Align(
           alignment: Alignment.center,
           

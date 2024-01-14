@@ -3,8 +3,12 @@ import 'package:more_2_drive/domain/models/wishlist_model/wislist_add_response_m
 import 'package:more_2_drive/domain/repositories/wishlist_repo/wishlist_repo.dart';
 import 'package:more_2_drive/presentation/cubits/wishlist_cubit/wishlist_state.dart';
 
+import '../../../domain/models/wishlist_model/wishlist_model.dart';
+
 class WishlistCubit extends Cubit<WishlistState> {
   final WishlistRepo _wishlistRepo;
+
+  List<WishlistModel> wishlist =[];
 
   WishlistCubit(this._wishlistRepo) : super(InitState());
 
@@ -20,13 +24,30 @@ class WishlistCubit extends Cubit<WishlistState> {
       emit(AddProductToWishlistSuccessState());
     }, (r) => emit(AddProductToWishlistErrorState()));
   }
+
+
+
+  getWishlists() async {
+    emit(GetWishlistLoadingState());
+    final result = await _wishlistRepo.getWishlists();
+    result.fold((l) {
+      final allWishlists = l.data["data"];
+      if (allWishlists != null) {
+        wishlist = allWishlists
+            .map<WishlistModel>((e) => WishlistModel.fromJson(e))
+            .toList();
+      }
+      print(wishlist.toString());
+      emit(GetWishlistSuccessState());
+    }, (r) => emit(GetWishlistErrorState()));
+  }
   removeProductFromWishlist(int productId) async {
-    emit(AddProductToWishlistLoadingState());
+    emit(RemoveWishlistLoadingState());
     final result = await _wishlistRepo.removeProductFromWishlist(productId);
     result.fold((l) {
       addResponseModel?.isInWishlist=false;
-      emit(AddProductToWishlistSuccessState());
-    }, (r) => emit(AddProductToWishlistErrorState()));
+      emit(RemoveWishlistSuccessState());
+    }, (r) => emit(RemoveWishlistErrorState()));
   }
   checkIfProductIsInWishlist(int? productId) async {
     emit(CheckIfProductInWishlistLoadingState());

@@ -23,6 +23,9 @@ import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.
 import 'package:more_2_drive/presentation/screens/search_screen/search_screen.dart';
 import 'package:more_2_drive/presentation/screens/signup/views/signup_screen.dart';
 import 'package:more_2_drive/presentation/screens/splash_screen/splash_screen.dart';
+import 'package:more_2_drive/presentation/screens/wallet_screen/clubpoint_screen.dart';
+import 'package:more_2_drive/presentation/screens/wallet_screen/wallet_screen.dart';
+import 'package:more_2_drive/presentation/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 import '../../presentation/screens/login/view/login_screen.dart';
@@ -87,6 +90,13 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => const AddOrEditCarScreen());
         case RouteName.addOrEditAddressScreen:
           return MaterialPageRoute(builder: (_) => const AddOrEditAddressScreen());
+
+        case RouteName.clubPointsScreen:
+          return MaterialPageRoute(builder: (_) => const ClubPointScreen());
+        case RouteName.wishlistScreen:
+          return MaterialPageRoute(builder: (_) => const WishlistScreen());
+        case RouteName.walletScreen:
+          return MaterialPageRoute(builder: (_) => const WalletScreen());
         default:
           return _errorRoute();
       }

@@ -4,15 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/style/app_colors.dart';
 
 class IconContainer extends StatelessWidget {
-  const IconContainer({super.key , required this.text , required this.icon });
+  const IconContainer({super.key , required this.text , required this.icon , required this.onPressed });
   final IconData icon;
   final String text;
+
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:100.h,
-      width: 73.w,
+      height:120.h,
+      width: 80.w,
       decoration: const BoxDecoration(
         color: AppColors.deepDarkBlue,
         borderRadius: BorderRadius.only(
@@ -26,7 +28,7 @@ class IconContainer extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Icon(icon , color: Colors.white,),
+            IconButton(icon: Icon(icon , size: 40.w,) , color: Colors.white, onPressed: onPressed,),
             const Spacer(),
             Text(text,style: const TextStyle(fontSize: 9 , color: Colors.white),)
           ],),
