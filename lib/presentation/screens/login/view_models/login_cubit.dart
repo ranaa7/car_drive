@@ -49,32 +49,11 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  Future<void> getUserDataByToken() async {
-    emit(getUserDataByTokenLoadingState());
-    try {
-      var response = await DioHelper().post(
-          endPoint: EndPoints.getUserDataByToken,
-          data: {'access_token': token});
-
-      if (response.data != null) {
-        userDataByAccessToken = UserDataByAccessToken.fromJson(response.data);
-
-        emit(getUserDataByTokenSuccessState(userDataByAccessToken));
-      } else {
-        emit(getUserDataByTokenFailureState(
-            errMessage: "Response data is null."));
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e.toString());
-      }
-      emit(getUserDataByTokenFailureState(errMessage: e.toString()));
-    }
-  }
 
 
 
-  Future<void> getSocialLoginResponse(
+
+  getSocialLoginResponse(
     String social_provider,
     String name,
     String email,
@@ -83,7 +62,7 @@ class LoginCubit extends Cubit<LoginState> {
     secret_token = "",
   }) async {
     email = email == ("null") ? "" : email;
-    emit(SocialLoginLoadingState());
+    emit(LoginLoadingState());
     try {
       var response =
           await DioHelper().post(endPoint: EndPoints.socialLogin, data: {
@@ -94,12 +73,18 @@ class LoginCubit extends Cubit<LoginState> {
         "access_token": "$access_token",
         "secret_token": "$secret_token"
       });
-      emit(SocialLoginSuccessState());
+      if (response.data != null) {
+        loginModel = LoginModel.fromJson(response.data);
+
+        emit(LoginSuccessState(loginModel));
+      } else {
+        emit(LoginFailureState(errMessage: "Response data is null."));
+      }
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
       }
-      emit(SocialLoginFailureState(errMessage: e.toString()));
+      emit(LoginFailureState(errMessage: e.toString()));
     }
   }
 

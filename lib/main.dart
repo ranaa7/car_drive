@@ -108,12 +108,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (_) => BrandsCubit(sl<BrandsRepo>())..getBrands()),
           BlocProvider(
-              create: (_) => CartCubit(sl<CartRepo>())..getCartCount()),
+              create: (_) => CartCubit(sl<CartRepo>())),
           BlocProvider(create: (_) => CarCubit(sl<CarRepo>())),
           BlocProvider(create: (_) => OrderCubit(sl<OrderRepo>())),
           BlocProvider(create: (_) => WishlistCubit(sl<WishlistRepo>())..getWishlists()),
           BlocProvider(create: (_) => AppCubit()),
-          BlocProvider(create: (context) => LoginCubit()..getUserDataByToken()),
+          BlocProvider(create: (context) => LoginCubit()),
           BlocProvider(create: (context) => SignupCubit()),
           BlocProvider(create: (context) => PhoneRegisterCubit()),
           BlocProvider(create: (context) => UpdateProfileCubit()),

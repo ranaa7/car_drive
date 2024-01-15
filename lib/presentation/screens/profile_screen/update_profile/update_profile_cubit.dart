@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:more_2_drive/presentation/screens/login/data/models/login_model.dart';
+import 'package:more_2_drive/presentation/screens/login/data/models/user_data_by_token_model.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/data/models/update_profile_model.dart';
 
 import '../../../../core/app_constants/constants.dart';
@@ -15,6 +16,8 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   static UpdateProfileCubit get(BuildContext context) => BlocProvider.of(context);
 
   UpdateProfileModel updateProfileModel = UpdateProfileModel();
+  UserDataByAccessToken userDataByAccessToken = UserDataByAccessToken();
+
   LoginModel loginModel = LoginModel();
   Future<void> updateProfile(
       {  required String name, required String password}) async {
@@ -51,4 +54,34 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       emit(UpdateProfileFailure(e.toString()));
     }
   }
+
+
+
+
+  getUserDataByToken() async {
+    emit(getUserDataByTokenLoadingState());
+    try {
+      var response = await DioHelper().post(
+          endPoint: EndPoints.getUserDataByToken,
+          data: {'access_token': token});
+
+      if (response.data != null) {
+        userDataByAccessToken = UserDataByAccessToken.fromJson(response.data);
+
+        emit(getUserDataByTokenSuccessState(userDataByAccessToken));
+      } else {
+        emit(getUserDataByTokenFailureState(
+            errMessage: "Response data is null."));
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      emit(getUserDataByTokenFailureState(errMessage: e.toString()));
+    }
+  }
+
+
+
+
 }

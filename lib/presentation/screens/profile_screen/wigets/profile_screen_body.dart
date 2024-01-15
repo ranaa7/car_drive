@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
+import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
 
 import '../../../../config/style/app_colors.dart';
 import '../../../../config/style/text_styles.dart';
@@ -87,14 +88,16 @@ class ProfileScreenBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(Assets.imagesCarLogo),
-                      Column(
+                      BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
+  builder: (context, state) {
+    return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
                               Text(
-                                LoginCubit.get(context).userDataByAccessToken.name
+                                UpdateProfileCubit.get(context).userDataByAccessToken.name
                                          ??
                                     "",
                                 style: const TextStyle(
@@ -112,7 +115,7 @@ class ProfileScreenBody extends StatelessWidget {
                             ],
                           ),
                           Text(
-                              LoginCubit.get(context).userDataByAccessToken.email ??
+                              UpdateProfileCubit.get(context).userDataByAccessToken.email ??
                                   "",
                               style:
                                   const TextStyle(fontSize: 14, color: Colors.grey)),
@@ -245,7 +248,9 @@ class ProfileScreenBody extends StatelessWidget {
                             style: const TextStyle(color: Colors.white),
                           )
                         ],
-                      )
+                      );
+  },
+)
                     ],
                   )
                 ],

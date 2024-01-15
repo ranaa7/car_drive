@@ -6,6 +6,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/presentation/cubits/orders_cubit/orders_cubit.dart';
 import 'package:more_2_drive/presentation/screens/login/view_models/login_cubit.dart';
 import 'package:more_2_drive/presentation/screens/order_screen/views/widgets/order_container.dart';
+import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/view_models/counter/counter_cubit.dart';
 
 import 'package:more_2_drive/presentation/screens/profile_screen/wigets/profile_screen_body.dart';
@@ -26,6 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     CounterCubit.get(context).getProfileCount();
     OrdersCubit.get(context).getOrders(1 , '' , '');
+    UpdateProfileCubit.get(context).getUserDataByToken();
 
     super.initState();
   }

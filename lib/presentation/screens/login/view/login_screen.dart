@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
@@ -29,22 +30,45 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) async {
-        if (state is LoginSuccessState) {
+
+        // if (state is LoginSuccessState ) {
+        //   if (kDebugMode) {
+        //     print('TOOKKEEN ${state.loginModel.token}');
+        //   }
+        //   showToast(
+        //       message: state.loginModel.message ?? 'Successfully logged in',
+        //       bcColor: Colors.green);
+        //   // token = state.loginModel.token!;
+        //   // print('Token before saving: $token');
+        //   userId = state.loginModel.user!.id!.toString();
+        //   await CacheHelper.saveDate(key: 'user_id', value: userId);
+        //   CacheHelper.saveDate(
+        //       key: 'access_token', value: state.loginModel.token)
+        //       .then((value) =>
+        //   {Navigator.pushNamed(context, RouteName.mainScreen)});
+        // }
+
+        if (state is LoginSuccessState || state is SocialLoginSuccessState) {
           if (kDebugMode) {
-            print('TOOKKEEN ${state.loginModel.token}');
+            print('TOKEN: ${(state as dynamic).loginModel.token}');
           }
+
           showToast(
-              message: state.loginModel.message ?? 'Successfully logged in',
-              bcColor: Colors.green);
-          // token = state.loginModel.token!;
-          // print('Token before saving: $token');
-          userId = state.loginModel.user!.id!.toString();
+            message: (state as dynamic).loginModel.message ?? 'Successfully logged in',
+            bcColor: Colors.green,
+          );
+
+          userId = (state as dynamic).loginModel.user?.id?.toString() ?? ''; // Safely retrieve user ID
           await CacheHelper.saveDate(key: 'user_id', value: userId);
-          CacheHelper.saveDate(
-                  key: 'access_token', value: state.loginModel.token)
-              .then((value) =>
-                  {Navigator.pushNamed(context, RouteName.mainScreen)});
+
+          String? accessToken = state is LoginSuccessState
+              ? state.loginModel.token
+              : (state as SocialLoginSuccessState).loginModel.token;
+
+          CacheHelper.saveDate(key: 'access_token', value: accessToken)
+              .then((value) => Navigator.pushNamed(context, RouteName.mainScreen));
         }
+
       },
       child: Scaffold(
         backgroundColor: AppColors.darkBlue,
@@ -196,9 +220,42 @@ class LoginScreen extends StatelessWidget {
                         ),
 
                         OutlinedButton(
-                          onPressed: () {
+                          onPressed: ()  async{
+                            try {
+                              GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-                          },
+                              if (googleUser != null) {
+                                print("displayName ${googleUser.displayName}");
+                                print("email ${googleUser.email}");
+                                print("googleUser.id ${googleUser.id}");
+
+                                GoogleSignInAuthentication googleSignInAuthentication =
+                                await googleUser.authentication;
+                                String? accessToken = googleSignInAuthentication.accessToken;
+                                print("accessToken $accessToken");
+
+
+
+                                LoginCubit.get(context).getSocialLoginResponse(
+                                  "google",
+                                  googleUser.displayName ?? "",
+                                  googleUser.email,
+                                  googleUser.id,
+                                  access_token: accessToken,
+                                );
+
+                                // Disconnect to sign out the user (optional)
+                                await GoogleSignIn().disconnect();
+                              } else {
+                                // Handle case when the user cancels the sign-in process
+                                print("Google Sign-In canceled");
+                              }
+                            } catch (error) {
+                              print("Google Sign-In error: $error");
+                              // Handle the error
+                            }
+                           },
+
                           style: OutlinedButton.styleFrom(
                             minimumSize: Size(332.w, 46.h),
                             shape: RoundedRectangleBorder(

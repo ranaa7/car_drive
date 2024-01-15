@@ -15,3 +15,20 @@ class UpdateProfileFailure extends UpdateProfileInitial {
 
   UpdateProfileFailure(this.errMessage);
 }
+
+
+
+
+class getUserDataByTokenLoadingState extends UpdateProfileInitial {}
+
+class getUserDataByTokenSuccessState extends UpdateProfileInitial {
+
+  final UserDataByAccessToken userDataByAccessToken;
+  getUserDataByTokenSuccessState(this.userDataByAccessToken);
+}
+
+class getUserDataByTokenFailureState extends UpdateProfileInitial {
+  final String errMessage;
+
+  getUserDataByTokenFailureState({required this.errMessage});
+}
