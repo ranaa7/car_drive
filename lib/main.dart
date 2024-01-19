@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +9,11 @@ import 'package:more_2_drive/blocobserve.dart';
 import 'package:more_2_drive/config/router/router.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/themes.dart';
+import 'package:more_2_drive/core/network/remote/firebase_api.dart';
 import 'package:more_2_drive/data/localization/localization_helper.dart';
 import 'package:more_2_drive/core/network/local/cache_helper.dart';
 import 'package:more_2_drive/domain/repositories/clubpoints_repo/clubpoints_repo.dart';
+import 'package:more_2_drive/firebase_options.dart';
 import 'package:more_2_drive/presentation/cubits/orders_cubit/orders_cubit.dart';
 import 'package:more_2_drive/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:more_2_drive/presentation/otp/view_model/otp_cubit.dart';
@@ -46,12 +50,29 @@ import 'package:more_2_drive/presentation/register/view_models/phone_register_cu
 import 'core/network/remote/dio_helper.dart';
 import 'utils/variables/routerkeys.dart';
 
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('Got a message whilst in the background!');
+  if (message.notification != null) {
+    print('Message data: ${message.data}');
+    print('Notification Title: ${message.notification?.title}');
+    print('Notification Body: ${message.notification?.body}');
+
+    showToast("on background");
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   ServiceLocator.init();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  await FirebaseApi().initToken();
   await AppLocalization.init();
-  DioHelper.init();
+  DioHelperr.init();
   Bloc.observer = MyBlocObserver();
   Widget widget;
 

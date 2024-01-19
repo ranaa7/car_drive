@@ -22,7 +22,7 @@ class OtpCubit extends Cubit<OtpState> {
       {required String otp}) async {
     emit(OtpLoading());
     try {
-      var response = await DioHelper.postData(
+      var response = await DioHelperr.postData(
         endPoint:EndPoints.confirmOtp,
         queryParameters: {
           'otp': otp
@@ -53,7 +53,7 @@ class OtpCubit extends Cubit<OtpState> {
       {required int? id}) async {
     emit(ResendLoading());
     try {
-      var response = await DioHelper.postData(
+      var response = await DioHelperr.postData(
         endPoint:EndPoints.resendOtp,
         queryParameters: {
           'id': id

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:more_2_drive/presentation/cubits/orders_cubit/orders_cubit.dart';
 import 'package:more_2_drive/presentation/screens/order_screen/views/widgets/order_container.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/order_shimmer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../config/style/app_colors.dart';
@@ -208,7 +209,10 @@ class _OrderScreenState extends State<OrderScreen> {
                 },
                 controller: _refreshController,
                 child: isLoading
-                    ? const Center(child: CircularProgressIndicator())
+                    ? Padding(
+                      padding:  EdgeInsets.only(bottom: 550.h),
+                      child: const Center(child: OrderShimmer()),
+                    )
                     : OrderItem(ordermodel: OrdersCubit.get(context).myOrderList, index: OrdersCubit.get(context).myOrderList.length)
               ),
           ),

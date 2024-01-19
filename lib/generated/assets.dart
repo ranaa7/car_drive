@@ -19,6 +19,7 @@ class Assets {
   static const String imagesEmptyAddress = 'assets/images/emptyAddress.jpg';
   static const String imagesEmptyCart = 'assets/images/emptyCart.png';
   static const String imagesFullWash = 'assets/images/fullWash.jpg';
+  static const String imagesGoogleImg = 'assets/images/googleImg.png';
   static const String imagesImage = 'assets/images/image.jpg';
   static const String imagesInnerWash = 'assets/images/innerWash.jpg';
   static const String imagesLibreGiftlogo = 'assets/images/libre-gift logo.png';

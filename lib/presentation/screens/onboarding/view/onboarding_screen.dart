@@ -22,7 +22,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   void initState() {
-    controller = PageController(initialPage: 4);
+    controller = PageController(initialPage: 0);
     super.initState();
   }
 
@@ -35,26 +35,52 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
-        controller: controller,
-        itemCount: contents.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Stack(
-            children: [
-              Container(
-                decoration: const BoxDecoration(color: Colors.transparent),
-                child: Image.asset(
-                  contents[index].image,
-                  height: double.infinity,
-                  width: double.infinity,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    gradient: LinearGradient(
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () {
+          // If the current index is not the last page, animate to the next page
+          if (currentIndex < contents.length - 1) {
+            controller?.animateToPage(
+              currentIndex + 1,
+              duration: Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
+          } else {
+            // Handle the last page, e.g., navigate to another screen
+            CacheHelper.saveDate(key: "onboarding", value: true).then((value) {
+              if ((value)) {
+                Navigator.pushNamed(context, RouteName.signupScreen);
+              }
+            });
+          }
+        },
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: PageView.builder(
+            controller: controller,
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            itemCount: contents.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Stack(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(color: Colors.transparent),
+                    child: Image.asset(
+                      contents[index].image,
+                      height: double.infinity,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Container(
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      gradient: LinearGradient(
                         begin: FractionalOffset.topCenter,
                         end: FractionalOffset.bottomCenter,
                         colors: [
@@ -63,123 +89,108 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ],
                         stops: const [
                           0.0,
-                          1.0
-                        ])),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 56.h, left: 19.w, right: 10.w),
-                child: SmoothPageIndicator(
-                  controller: controller!,
-                  count: 4,
-                  axisDirection: Axis.horizontal,
-                  effect: SlideEffect(
-                      spacing: 5,
-                      radius: 15,
-                      dotWidth: 90.w,
-                      dotHeight: 4.h,
-                      paintStyle: PaintingStyle.stroke,
-                      strokeWidth: 1.w,
-                      dotColor: Colors.grey,
-                      activeDotColor: Colors.white),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: 520.h, left: 9.w, right: 20.w, bottom: 60.h),
-                child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      Assets.imagesMore2driveLogo,
-                      // height: 154,
-                      // width: 406,
-                      //fit: BoxFit.fill,
+                          1.0,
+                        ],
+                      ),
                     ),
-                     SizedBox(
-                      height: 10.h,
-                    ),
-                    Text(contents[index].title,
-                        style: AppTextStyle.cairoSemiBold24white),
-                    Text(contents[index].discription,
-                        style: AppTextStyle.cairoSemiBold24white),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Row(
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: 520.h, left: 9.w, right: 20.w, bottom: 60.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Image.asset(
+                          Assets.imagesMore2driveLogo,
+                        ),
                         SizedBox(
-                          child: OutlinedButton(
-                            onPressed: () {
-                              CacheHelper.saveDate(
+                          height: 10.h,
+                        ),
+                        Text(contents[index].title,
+                            style: AppTextStyle.cairoSemiBold24white),
+                        Text(contents[index].discription,
+                            style: AppTextStyle.cairoSemiBold24white),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  CacheHelper.saveDate(
                                       key: "onboarding", value: true)
-                                  .then((value) {
-                                if ((value)) {
-                                  Navigator.pushNamed(
-                                      context, RouteName.signupScreen);
-                                }
-                              });
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size(0.w, 36.h),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
+                                      .then((value) {
+                                    if ((value)) {
+                                      Navigator.pushNamed(
+                                          context, RouteName.signupScreen);
+                                    }
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: Size(0.w, 36.h),
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
+                                ),
+                                child: Text(
+                                  'انشاء حساب',
+                                  style: AppTextStyle.cairoSemiBold16white,
+                                ),
+                              ),
                             ),
-                            child: Text(
-                              'انشاء حساب',
-                              style: AppTextStyle.cairoSemiBold16white,
+                            SizedBox(
+                              width: 10.w,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(0.w, 36.h),
-                            backgroundColor: AppColors.blueButton,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(0.w, 36.h),
+                                backgroundColor: AppColors.blueButton,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
-                          ),
-                          onPressed: () {
-                            CacheHelper.saveDate(key: "onboarding", value: true)
-                                .then((value) {
-                              if ((value)) {
-                                Navigator.pushNamed(
-                                    context, RouteName.loginScreen);
-                              }
-                            });
-                          },
-                          child: Text(
-                            'تسجيل دخول',
-                            style: AppTextStyle.cairoSemiBold16white,
-                          ),
+                              ),
+                              onPressed: () {
+                                CacheHelper.saveDate(
+                                    key: "onboarding", value: true)
+                                    .then((value) {
+                                  if ((value)) {
+                                    Navigator.pushNamed(
+                                        context, RouteName.loginScreen);
+                                  }
+                                });
+                              },
+                              child: Text(
+                                'تسجيل دخول',
+                                style: AppTextStyle.cairoSemiBold16white,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                CacheHelper.saveDate(
+                                    key: "onboarding", value: true)
+                                    .then((value) {
+                                  if ((value)) {
+                                    Navigator.pushNamed(
+                                        context, RouteName.mainScreen);
+                                  }
+                                });
+                              },
+                              child: Text(
+                                'تخطي',
+                                style: AppTextStyle.cairoSemiBold16white,
+                              ),
+                            ),
+                          ],
                         ),
-                        TextButton(
-                            onPressed: () {
-                              CacheHelper.saveDate(
-                                      key: "onboarding", value: true)
-                                  .then((value) {
-                                if ((value)) {
-                                  Navigator.pushNamed(
-                                      context, RouteName.mainScreen);
-                                }
-                              });
-                            },
-                            child: Text(
-                              'تخطي',
-                              style: AppTextStyle.cairoSemiBold16white,
-                            ))
                       ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          );
-        },
+                  )
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }

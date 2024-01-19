@@ -7,6 +7,7 @@ import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/order_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -136,7 +137,7 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
                     },
                     controller: _refreshController,
                     child: isLoading
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(child: OrderShimmer())
                         : SizedBox(
                       width: 500.w,
                       child: ListView.builder(

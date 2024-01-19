@@ -13,7 +13,7 @@ import 'package:more_2_drive/presentation/screens/order_item/view_models/widgets
 import '../../../../config/style/text_styles.dart';
 import '../../../../utils/strings/app_strings.dart';
 import '../../../widgets/default_appbar/default_appbar.dart';
-
+int? orderid;
 class OrderDetailsScreen extends StatefulWidget {
   const OrderDetailsScreen({super.key , required this.id});
 
@@ -28,6 +28,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   void initState() {
     OrderItemCubit.get(context).getOrdersItems(widget.id);
+    OrderDetailsCubit.get(context).sendNotifications();
     super.initState();
   }
 
@@ -43,7 +44,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           child: BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
             builder: (context, state) {
               if (state is OrderDetailsSuccess) {
+
                 List<OrderDetails> orderdetailsList = state.orderDetail;
+                orderid = orderdetailsList[0].id;
                 return SingleChildScrollView(
                   child: Column(
                     children: [

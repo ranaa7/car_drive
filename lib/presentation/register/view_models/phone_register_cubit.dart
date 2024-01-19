@@ -22,7 +22,7 @@ class PhoneRegisterCubit extends Cubit<PhoneRegisterState> {
   print("23");
 
   try {
-  var response = await DioHelper.postData(
+  var response = await DioHelperr.postData(
   endPoint:EndPoints.loginPhone,
   queryParameters: {
   'phone': phone,

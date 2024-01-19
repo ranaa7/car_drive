@@ -24,7 +24,9 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(
+  create: (context) => UpdateProfileCubit()..getUserDataByToken(),
+  child: Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.scaffoldGround,
       ),
@@ -41,7 +43,9 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
+          BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
+  builder: (context, state) {
+    return Positioned(
             left: 0.w,
             right: 0.w,
             bottom: 0.h,
@@ -77,10 +81,7 @@ class EditProfileScreen extends StatelessWidget {
                       ProfileFormField(
                         name: firstName,
                         validator: ValidationForm.nameValidator,
-                        text: LoginCubit.get(context)
-                            .loginModel
-                            .user
-                            ?.username ??
+                        text: UpdateProfileCubit.get(context).loginModel.user?.username ??
                             "",
                       ),
                       SizedBox(
@@ -100,7 +101,7 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       ProfileFormField(
                         name: email,
-                        text: LoginCubit.get(context).loginModel.user?.email ??
+                        text: UpdateProfileCubit.get(context).loginModel.user?.email ??
                             "",
                       ),
                       SizedBox(
@@ -120,7 +121,7 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       ProfileFormField(
                         name: phone,
-                        text: LoginCubit.get(context).loginModel.user?.mobileNumber ??
+                        text: UpdateProfileCubit.get(context).loginModel.user?.mobileNumber ??
                             "",
                       ),
                       SizedBox(
@@ -146,9 +147,7 @@ class EditProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: 70.h,
                       ),
-                      BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
-                        builder: (context, state) {
-                          return UpdateProfileButton(
+                          UpdateProfileButton(
                             onPressed: () async {
                               if (_key.currentState!.validate()) {
                                 await UpdateProfileCubit.get(context)
@@ -156,18 +155,20 @@ class EditProfileScreen extends StatelessWidget {
                                         name: firstName.text, password: pass.text);
                               }
                             },
-                          );
-                        },
-                      ),
+                          ),
+
 
                     ],
                   ),
                 ),
               )),
             ),
-          ),
+          );
+  },
+),
         ],
       ),
-    );
+    ),
+);
   }
 }

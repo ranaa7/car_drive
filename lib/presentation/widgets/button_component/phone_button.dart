@@ -19,7 +19,14 @@ class PhoneButton extends StatelessWidget {
       ), onPressed: () {
       Navigator.pushNamed(context, RouteName.registerScreen);
     },
-      child: Text("سجل برقم الهاتف" , style: AppTextStyle.cairoSemiBold16white ,),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.phone_android),
+
+          Text("سجل برقم الهاتف" , style: AppTextStyle.cairoSemiBold16white ,),
+        ],
+      ),
       //onPressed: isLoading ? null : function ,
     );
   }

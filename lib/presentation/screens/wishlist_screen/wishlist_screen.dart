@@ -19,7 +19,7 @@ class WishlistScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldGround,
       appBar: DefaultAppBar(
-        title: AppStrings.notification,
+        title: AppStrings.myWishlist,
       ),
       body: BlocBuilder<WishlistCubit, WishlistState>(
         builder: (context, state) {

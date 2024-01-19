@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1097474489410",
+    "project_id": "riseup-d61e4",
+    "storage_bucket": "riseup-d61e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097474489410:android:ea9b3a50322ebba13f41db",
+        "android_client_info": {
+          "package_name": "com.example.more_2_drive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097474489410-vksuaba7do6gil17np4v5uo88oaanjuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkApNvxxyAzXxBv9UbGNH1Yzf40M1PhOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097474489410-vksuaba7do6gil17np4v5uo88oaanjuh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

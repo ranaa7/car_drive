@@ -11,6 +11,7 @@ import 'package:more_2_drive/presentation/screens/profile_screen/view_models/cou
 
 import 'package:more_2_drive/presentation/screens/profile_screen/wigets/profile_screen_body.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/delete_button.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/order_shimmer.dart';
 
 import '../order_screen/views/widgets/empty_order_list.dart';
 
@@ -61,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: OrderItem(ordermodel: state.ordermodel, index: 1));
                   } else {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: OrderShimmer(),
                     );
                   }
                 },

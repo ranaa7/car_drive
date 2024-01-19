@@ -48,6 +48,7 @@ RegisterScreen({super.key});
   child: DefaultTabController(
       length: 4,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.darkBlue,
         body: Stack(
           children: [
@@ -66,7 +67,7 @@ RegisterScreen({super.key});
             Positioned(
               left: 20.w,
               right: 20.w,
-              bottom: 90.h,
+              bottom: 370.h,
               top: 259.h,
               child: Container(
                 padding: const EdgeInsets.only(

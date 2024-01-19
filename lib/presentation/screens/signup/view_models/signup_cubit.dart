@@ -25,7 +25,7 @@ class SignupCubit extends Cubit<SignupState> {
     emit(SignupLoadingState());
 
     try {
-      var response = await DioHelper.postData(
+      var response = await DioHelperr.postData(
         endPoint:EndPoints.register,
         queryParameters: {
           'name': firstName,

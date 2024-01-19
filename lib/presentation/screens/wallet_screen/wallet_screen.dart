@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/presentation/cubits/wallet_cubit/wallet_cubit.dart';
+import 'package:more_2_drive/presentation/widgets/shimmer/order_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -185,7 +186,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         },
                         controller: _refreshController,
                         child: isLoading
-                            ? const Center(child: CircularProgressIndicator())
+                            ? const Center(child: OrderShimmer())
                             : SizedBox(
                           width: 500.w,
                           child: ListView.builder(
@@ -203,35 +204,48 @@ class _WalletScreenState extends State<WalletScreen> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
 
-                                    Column(
-                                      children: [
-                                        Text(
-                                          walletCubit.clubpoints[index].points.toString() ?? "",
-                                          style: AppTextStyle.cairoBoldred17,
-                                        ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            walletCubit.wallethistory[index].amount ?? "",
+                                            style: AppTextStyle.cairoBoldred17,
+                                          ),
 
-                                        // ElevatedButton(
-                                        //   style: ElevatedButton.styleFrom(
-                                        //     minimumSize: const Size(150, 36),
-                                        //     backgroundColor: AppColors.darkRed,
-                                        //     shape: const RoundedRectangleBorder(
-                                        //         borderRadius: BorderRadius.all(Radius.circular(10))),
-                                        //   ), onPressed: (){
-                                        //   walletCubit.addClubpointsToWallet(walletCubit.clubpoints[index].id ?? 0);
-                                        // },
-                                        //   child: Text(AppStrings.collectPoints , style: AppTextStyle.cairoSemiBold16white ,),
-                                        //   //onPressed: isLoading ? null : function ,
-                                        // ),
-                                      ],
+                                          Text(
+                                            walletCubit.wallethistory[index].approvalString??"",
+                                            style: AppTextStyle.cairoSemiBold17Black,
+                                          ),
+
+                                        ],
+                                      ),
                                     ),
 
 
 
 
-                                    Text(
-                                      walletCubit.clubpoints[index].orderCode ??"",
-                                      style: AppTextStyle.cairoSemiBold17Black,
+                                    Padding(
+                                        padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            walletCubit.wallethistory[index].date ??"",
+                                            style: AppTextStyle.cairoSemiBold17Black,
+                                          ),
+
+                                          Text(
+                                            "Payment Method",
+                                            style: AppTextStyle.cairoSemiBold17Black,
+                                          ),
+                                          Text(
+                                            walletCubit.wallethistory[index].paymentMethod ??"",
+                                            style: AppTextStyle.cairoSemiBold17Black,
+                                          ),
+                                        ],
+                                      ),
                                     ),
+
 
                                   ],
                                 ),

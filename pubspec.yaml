@@ -84,6 +84,8 @@ dependencies:
   one_context: ^2.1.0
   dropdown_search: ^5.0.6
   google_sign_in: ^6.2.1
+  firebase_messaging: ^14.7.10
+
 
 
 dev_dependencies:

@@ -19,7 +19,13 @@ class SignupButton extends StatelessWidget {
       ), onPressed: () {
       Navigator.pushNamed(context, RouteName.signupScreen);
     },
-      child: Text("سجل عن طريق البريد الالكتروني" , style: AppTextStyle.cairoSemiBold16white ,),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.email_outlined),
+          Text("سجل عن طريق البريد الالكتروني" , style: AppTextStyle.cairoSemiBold16white ,),
+        ],
+      ),
       //onPressed: isLoading ? null : function ,
     );
   }

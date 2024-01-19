@@ -71,4 +71,6 @@ class EndPoints{
 
   static const String walletHistory = 'wallet/history';
 
+  static const String pushNotification = 'https://fcm.googleapis.com/fcm/send';
+
 }

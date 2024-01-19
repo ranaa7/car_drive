@@ -89,8 +89,8 @@ class ProfileScreenBody extends StatelessWidget {
                     children: [
                       Image.asset(Assets.imagesCarLogo),
                       BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
-  builder: (context, state) {
-    return Column(
+                        builder: (context, state) {
+                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -261,7 +261,9 @@ class ProfileScreenBody extends StatelessWidget {
         const SizedBox(
           height: 40,
         ),
-        Row(
+        BlocBuilder<CounterCubit, CounterState>(
+  builder: (context, state) {
+    return Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ProfileColumn(
@@ -291,7 +293,9 @@ class ProfileScreenBody extends StatelessWidget {
               num: CounterCubit.get(context).orderCount.toString(),
             ),
           ],
-        ),
+        );
+  },
+),
         SizedBox(
           height: 25.h,
         ),

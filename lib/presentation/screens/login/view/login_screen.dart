@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
+import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/register/view/widgets/image_component.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/phone_button.dart';
 import 'package:more_2_drive/presentation/widgets/button_component/signup_button.dart';
@@ -72,6 +73,7 @@ class LoginScreen extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: AppColors.darkBlue,
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Positioned(
@@ -265,9 +267,15 @@ class LoginScreen extends StatelessWidget {
                             ),
                             side: const BorderSide(color: Colors.black),
                           ),
-                          child: Text(
-                            'قم بتسجيل الدخول باستخدام Google',
-                            style: AppTextStyle.cairoSemiBold16black,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(Assets.imagesGoogleImg),
+                              Text(
+                                'قم بتسجيل الدخول باستخدام Google',
+                                style: AppTextStyle.cairoSemiBold16black,
+                              ),
+                            ],
                           ),
                         ),
                       ],
