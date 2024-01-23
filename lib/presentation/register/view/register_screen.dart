@@ -17,12 +17,21 @@ import '../../../core/app_constants/constants.dart';
 import '../../../core/functions/show_toast.dart';
 import '../../../core/network/local/cache_helper.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   static final _formKey = GlobalKey<FormState>();
-  final fname = TextEditingController();
-  final sname = TextEditingController();
-  final phone = TextEditingController();
+
 RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final fname = TextEditingController();
+
+  final sname = TextEditingController();
+
+  final phone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +98,7 @@ RegisterScreen({super.key});
                 ),
                 child: SingleChildScrollView(
                   child: Form(
-                    key: _formKey,
+                    key: RegisterScreen._formKey,
                     child: (Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -120,7 +129,7 @@ RegisterScreen({super.key});
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10))),
                       ), onPressed: () async{
-                      if (_formKey.currentState!.validate()) {
+                      if (RegisterScreen._formKey.currentState!.validate()) {
                         await PhoneRegisterCubit.get(context).phoneLogin( phone: phone.text);
 
                         String? token =

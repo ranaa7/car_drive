@@ -18,16 +18,24 @@ import '../../../widgets/form_field/first_name_formfield.dart';
 import '../../../widgets/form_field/last_name_formfield.dart';
 import '../../../widgets/form_field/password_formfield.dart';
  bool isLogin = false;
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
    SignupScreen({super.key});
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final firstName = TextEditingController();
-  final secName = TextEditingController();
-  final phone = TextEditingController();
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
 
+class _SignupScreenState extends State<SignupScreen> {
+  final email = TextEditingController();
+
+  final password = TextEditingController();
+
+  final firstName = TextEditingController();
+
+  final secName = TextEditingController();
+
+  final phone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -97,12 +105,12 @@ class SignupScreen extends StatelessWidget {
                    ).w,
                  ),
                  child: Form(
-                   key: _formKey,
+                   key: SignupScreen._formKey,
                    child: (Column(
                      mainAxisAlignment: MainAxisAlignment.start,
                      //crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
-       
+
                        Padding(
                          padding: EdgeInsets.only(right: 0, left: 250.w),
                          child: Text(
@@ -156,11 +164,11 @@ class SignupScreen extends StatelessWidget {
                          height: 12.h,
                        ),
                        PasswordFormField(password: password),
-       
+
                        SizedBox(
                          height: 12.h,
                        ),
-       
+
                        Padding(
                          padding:  EdgeInsets.only(right: 0, left: 250.w),
                          child: Text(
@@ -172,11 +180,11 @@ class SignupScreen extends StatelessWidget {
                          height: 12.h,
                        ),
                        PhoneFormField(phone: phone),
-       
+
                        SizedBox(
                          height: 30.h,
                        ),
-       
+
                        ElevatedButton(
                          style: ElevatedButton.styleFrom(
                            minimumSize: const Size(332, 46),
@@ -184,23 +192,23 @@ class SignupScreen extends StatelessWidget {
                            shape: const RoundedRectangleBorder(
                                borderRadius: BorderRadius.all(Radius.circular(10))),
                          ), onPressed: () async{
-                         if (_formKey.currentState!.validate()) {
+                         if (SignupScreen._formKey.currentState!.validate()) {
                            isLogin=true;
                            await SignupCubit.get(context).signUp(firstName: firstName.text, secName: secName.text, email: email.text, password: password.text, phone: phone.text);
-       
+
                            String? token =
                            CacheHelper.getData(key: 'access_token');
                            if (kDebugMode) {
                              print('UserTOOK $token');
                            }
-       
+
                          }},
-       
+
                          child: Text("انشاء حساب" , style: AppTextStyle.cairoSemiBold16white ,),
-       
+
                        ),
-       
-       
+
+
                      ],
                    )),
                  ),

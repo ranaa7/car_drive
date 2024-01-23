@@ -19,13 +19,20 @@ import '../../../../core/network/local/cache_helper.dart';
 import '../../signup/views/signup_screen.dart';
 import '../view_models/login_cubit.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-  final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
 
   LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final emailcontroller = TextEditingController();
+
+  final passwordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
                   child: Form(
-                    key: _key,
+                    key: LoginScreen._key,
                     child: (Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -164,7 +171,7 @@ class LoginScreen extends StatelessWidget {
                               onPressed: state is LoginLoadingState
                                   ? null
                                   : ()  {
-                                      if (_key.currentState!.validate()) {
+                                      if (LoginScreen._key.currentState!.validate()) {
                                         isLogin = true;
                                          LoginCubit.get(context).userLogin(
                                             email: emailcontroller.text,

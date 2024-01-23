@@ -12,23 +12,27 @@ import 'package:more_2_drive/utils/strings/routes_names.dart';
 import '../../../core/functions/show_toast.dart';
 import '../../screens/signup/views/signup_screen.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   final int? id;
-  final pinController = TextEditingController();
-
 
   OtpScreen({super.key ,  this.id});
 
 
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  final pinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.deepDarkBlue,
       body: Form(
-        key: _key,
+        key: OtpScreen._key,
         child: Stack(children: [
 
           const ImageOtpComponent(),
@@ -89,7 +93,7 @@ class OtpScreen extends StatelessWidget {
                               borderRadius: BorderRadius.all(
                                   Radius.circular(10.r))),
                         ), onPressed: () async {
-                      if (_key.currentState!.validate()) {
+                      if (OtpScreen._key.currentState!.validate()) {
                         isLogin=true;
                         await OtpCubit.get(context).verifyOtp(
                             otp: pinController.text);
@@ -133,7 +137,7 @@ class OtpScreen extends StatelessWidget {
                       child: OutlinedButton(
                         onPressed: () {
 
-                         OtpCubit.get(context).resendOtp(id: id );
+                         OtpCubit.get(context).resendOtp(id: widget.id );
                         },
                         style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
