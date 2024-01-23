@@ -13,31 +13,7 @@ class CounterCubit extends Cubit<CounterState> {
 
   ProfileCountersResponse profileCountersResponse = ProfileCountersResponse();
 Map<String , ProfileCountersResponse>? data;
-  // Future<void>  getCounters() async{
-  //   emit(CounterLoading());
-  //   try {
-  //
-  //     var response = await DioHelper.getData(endPoint: EndPoints.counters , token: token);
-  //     print("profile counter before");
-  //     if (response.data != null) {
-  //      profileCountersResponse = response.data;
-  //       emit(CounterSuccess(profileCountersResponse));
-  //       print("counter after");
-  //     }
-  //     else {
-  //       print("40");
-  //       emit(CounterFailure("Response data is null."));
-  //       print("42");
-  //     }
-  //
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print(e.toString());
-  //     }
-  //     print("48");
-  //   }
-  //
-  // }
+
 
 int cartItem =0;
 int wishlistItem =0;

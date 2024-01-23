@@ -28,10 +28,6 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
               endPoint: EndPoints.getOrderDetails(id), token: token , ))
       ;
 
-
-      // for (var i in response['data']) {
-      //   myOrderList.add(PurchaseHistoryModel.fromJson(i));
-      // }
       orderdetails = List<OrderDetails>.from(response.data["data"].map((e)=>OrderDetails.fromJson(e))).toList();
       emit(OrderDetailsSuccess(orderdetails));
     } catch (e) {
