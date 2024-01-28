@@ -12,15 +12,23 @@ import 'package:more_2_drive/utils/strings/app_strings.dart';
 import '../../../config/style/app_colors.dart';
 import '../login/view_models/login_cubit.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   EditProfileScreen({super.key});
 
-  final TextEditingController firstName = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController phone = TextEditingController();
-  final TextEditingController pass = TextEditingController();
-
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  final TextEditingController firstName = TextEditingController();
+
+  final TextEditingController email = TextEditingController();
+
+  final TextEditingController phone = TextEditingController();
+
+  final TextEditingController pass = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +68,12 @@ class EditProfileScreen extends StatelessWidget {
               ),
               child: (
                   Form(
-                key: _key,
+                key: EditProfileScreen._key,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                  
+
                       Padding(
                         padding: context.isRTL
                             ? EdgeInsets.only(right: 15.w)
@@ -149,7 +157,7 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                           UpdateProfileButton(
                             onPressed: () async {
-                              if (_key.currentState!.validate()) {
+                              if (EditProfileScreen._key.currentState!.validate()) {
                                 await UpdateProfileCubit.get(context)
                                     .updateProfile(
                                         name: firstName.text, password: pass.text);

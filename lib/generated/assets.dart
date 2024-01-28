@@ -18,6 +18,7 @@ class Assets {
   static const String imagesEmpty = 'assets/images/empty.jpg';
   static const String imagesEmptyAddress = 'assets/images/emptyAddress.jpg';
   static const String imagesEmptyCart = 'assets/images/emptyCart.png';
+  static const String imagesFacebookImg = 'assets/images/facebook_img.png';
   static const String imagesFullWash = 'assets/images/fullWash.jpg';
   static const String imagesGoogleImg = 'assets/images/googleImg.png';
   static const String imagesImage = 'assets/images/image.jpg';
@@ -34,6 +35,7 @@ class Assets {
   static const String imagesNew = 'assets/images/new.png';
   static const String imagesOtpLogo = 'assets/images/otp_logo.png';
   static const String imagesOuterWash = 'assets/images/outerWash.jpg';
+  static const String imagesPersonImg = 'assets/images/person_img.png';
   static const String imagesPickup = 'assets/images/pickup.jpg';
   static const String imagesPlusBlue = 'assets/images/plusBlue.png';
   static const String imagesPlusWhite = 'assets/images/plusWhite.png';
@@ -42,11 +44,14 @@ class Assets {
   static const String imagesServiceNow = 'assets/images/serviceNow.jpg';
   static const String imagesShare = 'assets/images/share.png';
   static const String imagesSplash = 'assets/images/splash.gif';
+  static const String imagesSquareImg = 'assets/images/square_img.png';
   static const String imagesTextotpLogo = 'assets/images/textotp_logo.png';
   static const String imagesTranslateIcon = 'assets/images/translate_icon.png';
   static const String imagesTranslateLogo = 'assets/images/translate_logo.png';
   static const String imagesTrue = 'assets/images/true.jpg';
   static const String imagesW = 'assets/images/w.jpg';
+  static const String imagesWalletImgg = 'assets/images/wallet_imgg.png';
+  static const String imagesWpImg = 'assets/images/wp_img.png';
   static const String imagesLogin= 'assets/images/تسجيل_الدخول.png';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';

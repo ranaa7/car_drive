@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
+import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/order_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
@@ -78,9 +79,12 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            AppStrings.walletBalance,
-                            style: AppTextStyle.cairoSemiBold24white,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              AppStrings.walletBalance,
+                              style: AppTextStyle.cairoSemiBold24white,
+                            ),
                           ),
                           Text(
                             WalletCubit.get(context).balance,
@@ -102,17 +106,9 @@ class _WalletScreenState extends State<WalletScreen> {
 
                   ),
                   SizedBox(height: 16.0.h),
-                  CircleAvatar(
-                    radius: 70.r,
-                    backgroundColor: AppColors.red4, // Change the color as needed
-                    child: IconButton(
-                      icon: Icon(Icons.add, size: 60, color: AppColors.darkRed ,),
-                      onPressed: () {
-                        // Add your onPressed functionality here
-                        print('Add button pressed!');
-                      },
-                    ),
-                  ),
+                  IconButton(onPressed: (){}, icon: Image.asset(Assets.imagesWalletImgg , ) , iconSize: 70,),
+
+
                   Text(
                     AppStrings.walletCharging,
                     style: AppTextStyle.cairoSemiBold23black,

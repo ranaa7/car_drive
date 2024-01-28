@@ -58,8 +58,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     return state.ordermodel.isEmpty
                         ? const EmptyOrdersView()
                         : SizedBox(
-                        height: 170.h,
-                        child: OrderItem(ordermodel: state.ordermodel, index: 1));
+                        height: 160.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: OrderItem(ordermodel: state.ordermodel, index: 1),
+                        ));
                   } else {
                     return const Center(
                       child: OrderShimmer(),

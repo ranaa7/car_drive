@@ -1,5 +1,7 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,7 +101,13 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp( MyApp(startWidget: widget)));
+  ]).then((value) => runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(startWidget: widget), // Wrap your app
+      ),
+
+     ));
 }
 
 class MyApp extends StatelessWidget {

@@ -30,7 +30,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.deepDarkBlue,
+      backgroundColor: AppColors.otpBlue,
       body: Form(
         key: OtpScreen._key,
         child: Stack(children: [
@@ -134,24 +134,24 @@ class _OtpScreenState extends State<OtpScreen> {
                     // Show the button for ResendSuccess and ResendLoading
                     return Padding(
                       padding: const EdgeInsets.only(left: 100, right: 100).w,
-                      child: OutlinedButton(
-                        onPressed: () {
-
-                         OtpCubit.get(context).resendOtp(id: widget.id );
-                        },
-                        style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30.r),
-                            ),
-                          ),
-                          side: const BorderSide(color: Colors.grey),
+                      child:
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                        //  minimumSize: const Size(332, 46),
+                          backgroundColor: AppColors.buttonOtp,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(30))),
                         ),
+                        onPressed: (){}
+                       ,
                         child: Text(
                           'اعادة ارسال الرمز',
                           style: AppTextStyle.cairoSemiBold16white,
                         ),
                       ),
+
+
                     );
                   }
                 },
@@ -170,3 +170,4 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
 }
+

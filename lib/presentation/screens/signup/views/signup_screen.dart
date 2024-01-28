@@ -108,76 +108,61 @@ class _SignupScreenState extends State<SignupScreen> {
                    key: SignupScreen._formKey,
                    child: (Column(
                      mainAxisAlignment: MainAxisAlignment.start,
-                     //crossAxisAlignment: CrossAxisAlignment.start,
+                     crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
 
-                       Padding(
-                         padding: EdgeInsets.only(right: 0, left: 250.w),
-                         child: Text(
-                           "الاسم الاول",
-                           style: AppTextStyle.cairoSemiBold16DarkBlue,
-                         ),
+                       Text(
+                         "الاسم الاول",
+                         style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
-                         height: 12.h,
+                         height: 3.h,
                        ),
                        FirstNameFormfield(fname: firstName,),
                        SizedBox(
-                         height: 15.h,
+                         height: 10.h,
                        ),
-                       Padding(
-                         padding: EdgeInsets.only(right: 0, left: 250.w),
-                         child: Text(
-                           "الاسم التاني",
-                           style: AppTextStyle.cairoSemiBold16DarkBlue,
-                         ),
+                       Text(
+                         "الاسم التاني",
+                         style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
-                         height: 12.h,
+                         height: 3.h,
                        ),
                        LastNameFormfield(lname: secName,),
                        SizedBox(
-                         height: 15.h,
+                         height: 10.h,
                        ),
-                       Padding(
-                         padding:  EdgeInsets.only(right: 0, left: 220.w),
-                         child: Text(
-                           "البريد الالكتروني",
-                           style: AppTextStyle.cairoSemiBold16DarkBlue,
-                         ),
+                       Text(
+                         "البريد الالكتروني",
+                         style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
-                         height: 12.h,
+                         height: 3.h,
                        ),
                        EmailFormField(email: email),
                        SizedBox(
-                         height: 12.h,
+                         height: 10.h,
                        ),
-                       Padding(
-                         padding: EdgeInsets.only(right: 0, left: 260.w),
-                         child: Text(
-                           "كلمة السر",
-                           style: AppTextStyle.cairoSemiBold16DarkBlue,
-                         ),
+                       Text(
+                         "كلمة السر",
+                         style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
-                         height: 12.h,
+                         height: 3.h,
                        ),
                        PasswordFormField(password: password),
 
                        SizedBox(
-                         height: 12.h,
+                         height: 10.h,
                        ),
 
-                       Padding(
-                         padding:  EdgeInsets.only(right: 0, left: 250.w),
-                         child: Text(
-                           "رقم الهاتف",
-                           style: AppTextStyle.cairoSemiBold16DarkBlue,
-                         ),
+                       Text(
+                         "رقم الهاتف",
+                         style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
-                         height: 12.h,
+                         height: 3.h,
                        ),
                        PhoneFormField(phone: phone),
 

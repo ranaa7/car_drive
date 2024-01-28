@@ -66,7 +66,7 @@ dependencies:
   timer_count_down: ^2.2.0
   dio: ^5.4.0
   fluttertoast: ^8.2.4
-  #  sign_in_with_apple: ^5.0.0
+  sign_in_with_apple: ^5.0.0
   country_code_picker: ^3.0.0
   pinput: ^3.0.1
   font_awesome_flutter: ^10.6.0
@@ -85,6 +85,10 @@ dependencies:
   dropdown_search: ^5.0.6
   google_sign_in: ^6.2.1
   firebase_messaging: ^14.7.10
+  device_preview: ^1.1.0
+
+
+
 
 
 

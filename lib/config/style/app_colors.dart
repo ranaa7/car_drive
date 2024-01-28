@@ -13,6 +13,8 @@ class AppColors {
   static  const Color greyTransparent =  Color(0xCCD9D9D9);
   static const  Color backGround =  Color(0xff205599);
 
+  static const  Color buttonOtp =  Color(0xff204D82);
+
   static  const Color scaffoldGround =  Color(0xffF4F7FB);
   static  const Color red =  Color(0xffFF0000);
   static  const Color red2 =  Color(0xffe40613);
@@ -24,6 +26,7 @@ class AppColors {
   static const Color blueButton = Color(0xff1B7BEB);
   static const Color blueCielButton = Color(0xff0083CC);
   static const Color darkBlue = Color(0xff1B4E89);
+  static const Color otpBlue = Color(0xff205593);
   static const Color deepDarkBlue = Color(0xff053B6A);
 
 
@@ -51,6 +54,9 @@ class AppColors {
   static  const Color lightGray = Color(0xff232F3E);
 
   static const Color red4 = Color(0x80E52E04);
+
+  static const Color redWallet = Color.fromRGBO(229, 46, 4, 0.29);
+
 
 
 }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/presentation/screens/profile_screen/update_profile/update_profile_cubit.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../config/style/app_colors.dart';
 import '../../../../config/style/text_styles.dart';
@@ -15,15 +16,35 @@ import '../view_models/counter/counter_cubit.dart';
 import 'column_profile.dart';
 import 'icon_container.dart';
 
-class ProfileScreenBody extends StatelessWidget {
+class ProfileScreenBody extends StatefulWidget {
   const ProfileScreenBody({super.key});
 
+  @override
+  State<ProfileScreenBody> createState() => _ProfileScreenBodyState();
+}
+
+class _ProfileScreenBodyState extends State<ProfileScreenBody> {
+
+  late PageController pageController;
+  int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 370.h,
+          height: 350.h,
           decoration: const BoxDecoration(
             color: AppColors.deepDarkBlue,
             borderRadius: BorderRadius.only(
@@ -32,73 +53,83 @@ class ProfileScreenBody extends StatelessWidget {
                 //topLeft: Radius.circular(40.0),
                 bottomLeft: Radius.circular(40.0)),
           ),
-          child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 70.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
+              SizedBox(
+                height: 60.h,
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: context.isRTL
+                        ? EdgeInsets.only(right: 20.0.w)
+                        : EdgeInsets.only(left: 10.0.w),
+                    child: IconButton(
+                        onPressed: () {
+                          if (LocalizeAndTranslate.getLanguageCode() == 'ar') {
+                            LocalizeAndTranslate.setLanguageCode('en');
+                            print(
+                                'new lang: en -- context.locale: ${context.locale}');
+                          } else {
+                            LocalizeAndTranslate.setLanguageCode('ar');
+                            print(
+                                'new lang: ar -- context.locale: ${context.locale}');
+                          }
+                        },
+                        icon: Image.asset(Assets.imagesTranslateIcon)),
+                  ),
+                  const Spacer(),
+                  BlocBuilder<LoginCubit, LoginState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: context.isRTL
+                            ? EdgeInsets.only(right: 20.0.w)
+                            : EdgeInsets.only(left: 20.0.w),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            LoginCubit.get(context).userLogOut(context);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: Size(20.w, 30.h),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5.r),
+                              ),
+                            ),
+                            side: const BorderSide(color: Colors.white),
+                          ),
+                          child: Text(
+                            'Logout',
+                            style: AppTextStyle.cairoSemiBold16white,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            if (LocalizeAndTranslate.getLanguageCode() ==
-                                'ar') {
-                              LocalizeAndTranslate.setLanguageCode('en');
-                              print(
-                                  'new lang: en -- context.locale: ${context.locale}');
-                            } else {
-                              LocalizeAndTranslate.setLanguageCode('ar');
-                              print(
-                                  'new lang: ar -- context.locale: ${context.locale}');
-                            }
-                          },
-                          icon: Image.asset(Assets.imagesTranslateIcon)),
-                      const Spacer(),
-                      BlocBuilder<LoginCubit, LoginState>(
-                        builder: (context, state) {
-                          return OutlinedButton(
-                            onPressed: () {
-                              LoginCubit.get(context).userLogOut(context);
-                            },
-                            style: OutlinedButton.styleFrom(
-                              minimumSize: Size(20.w, 30.h),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.r),
-                                ),
-                              ),
-                              side: const BorderSide(color: Colors.white),
-                            ),
-                            child: Text(
-                              'Logout',
-                              style: AppTextStyle.cairoSemiBold16white,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(Assets.imagesCarLogo),
-                      BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
-                        builder: (context, state) {
-                       return Column(
+                  Image.asset(Assets.imagesCarLogo),
+                  BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
+                    builder: (context, state) {
+                      return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
                               Text(
-                                UpdateProfileCubit.get(context).userDataByAccessToken.name
-                                         ??
+                                UpdateProfileCubit.get(context)
+                                        .userDataByAccessToken
+                                        .name ??
                                     "",
                                 style: const TextStyle(
                                     fontSize: 20, color: Colors.white),
@@ -115,16 +146,18 @@ class ProfileScreenBody extends StatelessWidget {
                             ],
                           ),
                           Text(
-                              UpdateProfileCubit.get(context).userDataByAccessToken.email ??
+                              UpdateProfileCubit.get(context)
+                                      .userDataByAccessToken
+                                      .email ??
                                   "",
-                              style:
-                                  const TextStyle(fontSize: 14, color: Colors.grey)),
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.grey)),
                           // Text(LoginCubit.get(context).loginModel.user?.id?.toString() ??""),
                           SizedBox(
-                            height: 20.h,
+                            height: 10.h,
                           ),
                           Container(
-                            width: 200.w,
+                            width: 280.w,
                             height: 47.h,
                             decoration: const BoxDecoration(
                               color: AppColors.white,
@@ -136,7 +169,12 @@ class ProfileScreenBody extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                const Text("668997"),
+                                Padding(
+                                  padding: context.isRTL
+                                      ? EdgeInsets.only(right: 15.0.w)
+                                      : EdgeInsets.only(left: 15.0.w),
+                                  child: const Text("668997"),
+                                ),
                                 const Spacer(),
                                 IconButton(
                                     onPressed: () {
@@ -157,36 +195,49 @@ class ProfileScreenBody extends StatelessWidget {
                                                           height: 20.h,
                                                         ),
                                                         Container(
-                                                          width: 200.w,
+                                                          width: 300.w,
                                                           height: 47.h,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                              BoxDecoration(
+                                                            border: Border.all(
+                                                                width: 1),
                                                             color:
                                                                 AppColors.white,
-                                                            borderRadius: BorderRadius.only(
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            10),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        10)),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              topRight: Radius
+                                                                  .circular(20),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          20),
+                                                              topLeft: Radius
+                                                                  .circular(20),
+                                                              bottomLeft: Radius
+                                                                  .circular(20),
+                                                            ),
                                                           ),
                                                           child: Row(
                                                             children: [
-                                                              const Text("668997"),
+                                                              Padding(
+                                                                padding:
+                                                                context.isRTL
+                                                                    ? EdgeInsets.only(right: 15.0.w)
+                                                                    : EdgeInsets.only(left: 15.0.w),
+                                                                child: Text(
+                                                                  "668997",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                              .blue[
+                                                                          900]),
+                                                                ),
+                                                              ),
                                                               const Spacer(),
                                                               IconButton(
                                                                   onPressed:
                                                                       () {},
-                                                                  icon: const Icon(Icons
-                                                                      .copy_outlined)),
+                                                                  icon: Image.asset(Assets.imagesSquareImg),)
                                                             ],
                                                           ),
                                                         ),
@@ -207,27 +258,21 @@ class ProfileScreenBody extends StatelessWidget {
                                                               IconButton(
                                                                   onPressed:
                                                                       () {},
-                                                                  icon: const Icon(
-                                                                    Icons
-                                                                        .facebook,
-                                                                    color: Colors
-                                                                        .blue,
-                                                                  )),
+                                                                  icon:
+                                                                       Image.asset(Assets.imagesFacebookImg),
+                                                                iconSize:55,
+
+                                                                  ),
                                                               IconButton(
                                                                   onPressed:
                                                                       () {},
-                                                                  icon: const FaIcon(
-                                                                    FontAwesomeIcons
-                                                                        .whatsapp,
-                                                                    color: Colors
-                                                                        .greenAccent,
-                                                                  )),
+                                                                  icon:
+                                                                  Image.asset(Assets.imagesWpImg) , iconSize: 70,),
                                                             ],
                                                           ),
                                                         ),
-                                                        SizedBox(
-                                                          height: 15.h,
-                                                        ),
+                                                        Text("Invite Your Friends" , style: AppTextStyle.cairoSemiBold17Black,),
+                                                        SizedBox(height: 10.h,),
                                                       ],
                                                     ),
                                                   )
@@ -236,7 +281,7 @@ class ProfileScreenBody extends StatelessWidget {
                                             );
                                           });
                                     },
-                                    icon: const Icon(Icons.copy_outlined)),
+                                    icon: Image.asset(Assets.imagesSquareImg),),
                               ],
                             ),
                           ),
@@ -249,9 +294,7 @@ class ProfileScreenBody extends StatelessWidget {
                           )
                         ],
                       );
-  },
-)
-                    ],
+                    },
                   )
                 ],
               )
@@ -262,98 +305,129 @@ class ProfileScreenBody extends StatelessWidget {
           height: 40,
         ),
         BlocBuilder<CounterCubit, CounterState>(
-  builder: (context, state) {
-    return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ProfileColumn(
-              name: "wishlist",
-              num: CounterCubit.get(context).wishlistItem.toString(),
-            ),
-
-            Container(
-              height: 50.h,
-              width: 0.4.w, // Adjust the width as needed
-              color: Colors.red,
-              margin: const EdgeInsets.symmetric(vertical: 10),
-            ),
-            ProfileColumn(
-              name: "Cart",
-              num: CounterCubit.get(context).cartItem.toString(),
-            ),
-
-            Container(
-              height: 50.h,
-              width: 0.4.w, // Adjust the width as needed
-              color: Colors.red,
-              margin: const EdgeInsets.symmetric(vertical: 10),
-            ),
-            ProfileColumn(
-              name: "Order",
-              num: CounterCubit.get(context).orderCount.toString(),
-            ),
-          ],
-        );
-  },
-),
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ProfileColumn(
+                  name: "wishlist",
+                  num: CounterCubit.get(context).wishlistItem.toString(),
+                ),
+                Container(
+                  height: 50.h,
+                  width: 0.4.w, // Adjust the width as needed
+                  color: Colors.red,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                ),
+                ProfileColumn(
+                  name: "Cart",
+                  num: CounterCubit.get(context).cartItem.toString(),
+                ),
+                Container(
+                  height: 50.h,
+                  width: 0.4.w, // Adjust the width as needed
+                  color: Colors.red,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                ),
+                ProfileColumn(
+                  name: "Order",
+                  num: CounterCubit.get(context).orderCount.toString(),
+                ),
+              ],
+            );
+          },
+        ),
         SizedBox(
           height: 25.h,
         ),
         SizedBox(
-          height: 110.h,
-          child: ListView(
-              scrollDirection: Axis.horizontal, children: [
+          height: 95.h,
+          child: ListView(scrollDirection: Axis.horizontal,
+              controller: pageController,
+              children: [
             SizedBox(
               width: 10.w,
             ),
-            IconContainer(text: AppStrings.myWishlist, icon: Icons.favorite, onPressed: () {
-              Navigator.pushNamed(context, RouteName.wishlistScreen);
-            },),
+            IconContainer(
+              text: AppStrings.myWishlist,
+              icon: Icons.favorite,
+              onPressed: () {
+                Navigator.pushNamed(context, RouteName.wishlistScreen);
+              },
+            ),
             SizedBox(
               width: 30.w,
             ),
             IconContainer(
-                text: AppStrings.myOrders, icon: Icons.list_alt_outlined, onPressed: () {
-              Navigator.pushNamed(context, RouteName.orderScreen);
-
-            },),
-            SizedBox(
-              width: 30.w,
+              text: AppStrings.myOrders,
+              icon: Icons.list_alt_outlined,
+              onPressed: () {
+                Navigator.pushNamed(context, RouteName.orderScreen);
+              },
             ),
-            IconContainer(text: AppStrings.myWallet, icon: Icons.wallet, onPressed: () {
-              Navigator.pushNamed(context, RouteName.walletScreen);
-
-            },),
-            SizedBox(
-              width: 30.w,
-            ),
-            IconContainer(text: AppStrings.address, icon: Icons.location_on, onPressed: () {  },),
             SizedBox(
               width: 30.w,
             ),
             IconContainer(
-                text: AppStrings.earnedPoints, icon: FontAwesomeIcons.coins, onPressed: () {
-              Navigator.pushNamed(context, RouteName.clubPointsScreen);
-
-            },),
+              text: AppStrings.myWallet,
+              icon: Icons.wallet,
+              onPressed: () {
+                Navigator.pushNamed(context, RouteName.walletScreen);
+              },
+            ),
             SizedBox(
               width: 30.w,
             ),
-            IconContainer(text: AppStrings.messages, icon: Icons.chat_rounded, onPressed: () {  },),
+            IconContainer(
+              text: AppStrings.address,
+              icon: Icons.location_on,
+              onPressed: () {},
+            ),
+            SizedBox(
+              width: 30.w,
+            ),
+            IconContainer(
+              text: AppStrings.earnedPoints,
+              icon: FontAwesomeIcons.coins,
+              onPressed: () {
+                Navigator.pushNamed(context, RouteName.clubPointsScreen);
+              },
+            ),
+            SizedBox(
+              width: 30.w,
+            ),
+            IconContainer(
+              text: AppStrings.messages,
+              icon: Icons.chat_rounded,
+              onPressed: () {},
+            ),
             SizedBox(
               width: 30.w,
             ),
           ]),
+
         ),
-        SizedBox(
-          height: 40.h,
+
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: SmoothPageIndicator(
+              controller: pageController,
+              count: 2, // Replace with the total number of pages
+              effect: ColorTransitionEffect(activeDotColor: AppColors.deepDarkBlue), // Change color as needed
+            ),
+          ),
         ),
+
         Row(
           children: [
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 10.w),
+                  padding: context.isRTL
+                      ? EdgeInsets.only(right: 20.0.w)
+                      : EdgeInsets.only(left: 10.0.w),
                   child: Text(
                     AppStrings.yourOrders,
                     style: AppTextStyle.cairoSemiBold16black,

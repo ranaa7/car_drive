@@ -13,7 +13,7 @@ class IconContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:120.h,
+      height:90.h,
       width: 80.w,
       decoration: const BoxDecoration(
         color: AppColors.deepDarkBlue,
@@ -24,15 +24,12 @@ class IconContainer extends StatelessWidget {
             bottomLeft: Radius.circular(10)),
       ),
 
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            IconButton(icon: Icon(icon , size: 40.w,) , color: Colors.white, onPressed: onPressed,),
-            const Spacer(),
-            Text(text,style: const TextStyle(fontSize: 9 , color: Colors.white),)
-          ],),
-      ),
+      child: Column(
+        children: [
+          IconButton(icon: Icon(icon , size: 30.w,) , color: Colors.white, onPressed: onPressed,),
+       //   const Spacer(),
+          Text(text,style: const TextStyle(fontSize: 9 , color: Colors.white),)
+        ],),
     );
   }
 }

@@ -76,6 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
           CacheHelper.saveDate(key: 'access_token', value: accessToken)
               .then((value) => Navigator.pushNamed(context, RouteName.mainScreen));
         }
+        else if(state is LoginFailureState){
+          showToast(
+            message:  'You are not logged before',
+            bcColor: Colors.red,
+          );
+        }
 
       },
       child: Scaffold(
@@ -100,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
               top: 259.h,
               child: Container(
                 padding: const EdgeInsets.only(
-                        left: 34, right: 30, top: 10, bottom: 10)
+                    left: 34, right: 30, top: 10, bottom: 10)
                     .r,
                 decoration: BoxDecoration(
                   boxShadow: const [
@@ -156,42 +162,42 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         BlocBuilder<LoginCubit, LoginState>(
                           buildWhen: (previous, current) =>
-                              current is LoginLoadingState ||
+                          current is LoginLoadingState ||
                               current is LoginFailureState ||
                               current is LoginSuccessState,
                           builder: (context, state) {
-                            return ElevatedButton(
+                            return
+                              ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(332, 46),
                                 backgroundColor: AppColors.deepDarkBlue,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
+                                    BorderRadius.all(Radius.circular(10))),
                               ),
                               onPressed: state is LoginLoadingState
                                   ? null
                                   : ()  {
-                                      if (LoginScreen._key.currentState!.validate()) {
-                                        isLogin = true;
-                                         LoginCubit.get(context).userLogin(
-                                            email: emailcontroller.text,
-                                            password: passwordcontroller.text);
-                                        //await CacheHelper.saveDate(key: 'access_token', value: token);
+                                if (LoginScreen._key.currentState!.validate()) {
+                                  isLogin = true;
+                                  LoginCubit.get(context).userLogin(
+                                      email: emailcontroller.text,
+                                      password: passwordcontroller.text);
+                                  //await CacheHelper.saveDate(key: 'access_token', value: token);
 
-                                        String? token = CacheHelper.getData(
-                                            key: 'access_token');
+                                  String? token = CacheHelper.getData(
+                                      key: 'access_token');
 
-                                        CacheHelper.saveDate(
-                                            key: 'islogged', value: islogged);
+                                  CacheHelper.saveDate(
+                                      key: 'islogged', value: islogged);
 
-                                        print('Retrieved Token: $token');
-                                        if (kDebugMode) {
-                                          print('UserTOOK $token');
-                                        }
-                                        Navigator.pushNamed(
-                                            context, RouteName.mainScreen);
-                                      }
-                                    },
+                                  print('Retrieved Token: $token');
+                                  if (kDebugMode) {
+                                    print('UserTOOK $token');
+                                  }
+
+                                }
+                              },
                               child: Text(
                                 "تسجيل دخول",
                                 style: AppTextStyle.cairoSemiBold16white,
@@ -263,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               print("Google Sign-In error: $error");
                               // Handle the error
                             }
-                           },
+                          },
 
                           style: OutlinedButton.styleFrom(
                             minimumSize: Size(332.w, 46.h),

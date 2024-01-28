@@ -52,8 +52,9 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
 
         final WalletCubit walletCubit = WalletCubit.get(context);
         return Scaffold(
-          backgroundColor: AppColors.scaffoldGround,
-          appBar: AppBar(title: Text(AppStrings.earnedPoints , style: AppTextStyle.cairoSemiBold16white, ),backgroundColor:AppColors.deepDarkBlue ,),
+       backgroundColor: AppColors.scaffoldGround,
+    appBar: AppBar(title: Text(AppStrings.earnedPoints , style: AppTextStyle.cairoSemiBold16white, ),backgroundColor:AppColors.deepDarkBlue ,),
+
           body:  Column(
             children: [
               Container(
@@ -144,55 +145,62 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
                         physics: const BouncingScrollPhysics(),
                         itemCount: walletCubit.clubpoints.length,
                         itemBuilder: (context, index) {
-                          return Card(
-                            elevation: 2,
-                            surfaceTintColor: Colors.transparent,
-                            color: AppColors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              elevation: 2,
+                              surfaceTintColor: Colors.blueAccent,
+                              color: AppColors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
 
-                                Column(
-                                  children: [
-                                    Text(
-                                      walletCubit.clubpoints[index].points.toString() ?? "",
-                                      style: AppTextStyle.cairoBoldred17,
-                                    ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        walletCubit.clubpoints[index].points.toString() ?? "",
+                                        style: AppTextStyle.cairoBoldred17,
+                                      ),
 
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        minimumSize: const Size(150, 36),
-                                        backgroundColor: AppColors.darkRed,
-                                        shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(Radius.circular(10))),
-                                      ), onPressed: (){
-                                      walletCubit.addClubpointsToWallet(walletCubit.clubpoints[index].id ?? 0);
-                                    },
-                                      child: Text(AppStrings.collectPoints , style: AppTextStyle.cairoSemiBold16white ,),
-                                      //onPressed: isLoading ? null : function ,
-                                    ),
-                                  ],
-                                ),
-
-
-
-
-                                Text(
-                                  walletCubit.clubpoints[index].orderCode ??"",
-                                  style: AppTextStyle.cairoSemiBold17Black,
-                                ),
-
-                                Flexible(
-                                  child: Image.asset(
-                                    Assets.imagesProduct,
-                                    height: 130.h,
-                                    // color: AppColors.Scaffoldfground,
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            minimumSize: const Size(90, 36),
+                                            backgroundColor: AppColors.darkRed,
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(10))),
+                                          ), onPressed: (){
+                                          walletCubit.addClubpointsToWallet(walletCubit.clubpoints[index].id ?? 0);
+                                        },
+                                          child: Text(AppStrings.collectPoints , style: AppTextStyle.cairoSemiBold16white ,),
+                                          //onPressed: isLoading ? null : function ,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
+
+
+
+
+                                  Text(
+                                    walletCubit.clubpoints[index].orderCode ??"",
+                                    style: AppTextStyle.cairoSemiBold17Black,
+                                  ),
+
+                                  Flexible(
+                                    child: Image.asset(
+                                      Assets.imagesProduct,
+                                      height: 130.h,
+                                      width: 90.w,
+                                      // color: AppColors.Scaffoldfground,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },

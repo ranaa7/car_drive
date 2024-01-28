@@ -16,9 +16,9 @@ class OrderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400.w,
+    width: 400.w,
       child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
+        //physics: const BouncingScrollPhysics(),
         itemCount: index,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -27,18 +27,19 @@ class OrderItem extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderDetailsScreen(id: ordermodel[index].id)));
             },
             child: Card(
-             elevation: 2,
-              surfaceTintColor: Colors.transparent,
+             //elevation: 2,
+              //surfaceTintColor: Colors.transparent,
 
               color: AppColors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(17),
               ),
               child: Row(
                 children: [
                   Image.asset(
                     Assets.imagesProduct,
                     height: 130.h,
+                   width: 90,
                    // color: AppColors.Scaffoldfground,
                   ),
 
