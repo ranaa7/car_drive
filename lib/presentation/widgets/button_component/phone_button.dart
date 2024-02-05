@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
@@ -22,9 +25,14 @@ class PhoneButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.phone_android),
+          Padding(
+            padding: context.isRTL
+                ? EdgeInsets.only(right: 0.w)
+                : EdgeInsets.only(left: 0.w),
+            child: Icon(Icons.phone_android),
+          ),
 
-          Text("سجل برقم الهاتف" , style: AppTextStyle.cairoSemiBold16white ,),
+          Text(AppStrings.signInWithPhone , style: AppTextStyle.cairoSemiBold16white ,),
         ],
       ),
       //onPressed: isLoading ? null : function ,

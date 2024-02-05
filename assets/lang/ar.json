@@ -39,6 +39,24 @@
   "name": "الاسم",
   "phoneNumber": "رقم الهاتف",
   "password": "كلمة السر",
+  "firstName": "الاسم الاول",
+  "secName": "الاسم الثاني",
+  "enterPhoneNumber": "أدخل رقم الهاتف",
+  "register": "انشاء حساب",
+  "skip": "تخطي",
+  "signInWithPhone": "سجل برقم الهاتف",
+  "signInWithEmail": "سجل عن طريق البريد الإلكتروني",
+  "signInWithGoogle": "قم بتسجيل الدخول باستخدام google ",
+  "registrationOptions": "خيارات التسجيل",
+  "onboardingTitle1": "لو ده وقت صيانتك",
+  "onboardingdesc1": " متقلقش !",
+  "onboardingTitle2": "احجز الآن",
+  "onboardingdesc2": "مع More2drive",
+  "onboardingTitle3": "أكثر من",
+  "onboardingdesc3": "20 محطة في 4 محافظات",
+  "onboardingTitle4": "موجودين في اكثر",
+  "onboardingdesc4": "من ٢٠ محطة في ٤ محافظات",
+
   "basicInformation": "المعلومات الرئيسية",
   "updateProfile": "تحديث الملف الشخصي",
   "deleteAccount" : "الغاء الحساب",
@@ -110,16 +128,34 @@
   "filter": "تنقية",
   "products": "المنتجات",
   "choosePaymentMethod": "اختر طريقة الدفع",
-
   "showMore": "عرض المزيد",
   "selectAddress": "تحديد العنوان",
-
   "showLess": "عرض اقل",
   "noAvailableProduct": "لا يوجد المزيد من هذا المنتج",
   "minMaxWarning": "برجاء ادخال حدود صحيحة",
   "walletCharging": "شحن المحفظة",
   "walletBalance": "رصيد المحفظة",
-  "lastRecharged": "الشحن الاخير"
+  "lastRecharged": "الشحن الاخير",
+
+
+  "totalPoints": "اجمالي النقاط",
+  "wishlist": "رغبات",
+  "orders": "طلبات",
+  "all": "جميع",
+  "logout": "تسجيل خروج",
+  "inviteYourFriends": "اعزم أصحابك",
+  "subTotal": "المجموع الفرعي",
+  "grandTotal": "المجموع الإجمالي",
+  "enterCode": "ادخل الكود",
+  "codeSent": "تم إرسال رمز مكون من 6  أرقام إلي",
+  "submit": "تأكيد",
+  "codeVerification": "التحقق من الكود",
+  "resendCode": "اعادة ارسال الرمز",
+  "codeIsnotArrived": "في حالة عدم وصول الرمز اتصل بخدمة العملاء"
+
+
+
+
 
 
 }

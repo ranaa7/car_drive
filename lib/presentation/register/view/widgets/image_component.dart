@@ -22,7 +22,7 @@ class ImageComponent extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(Assets.imagesLoginLogo,fit: BoxFit.cover,height: 122.h,width: 318.w,),
-                Text(AppStrings.signIn,style: AppTextStyle.cairoSemiBold24white,),
+                Text(AppStrings.register,style: AppTextStyle.cairoSemiBold24white,),
               ],
             ),
           ),

@@ -12,6 +12,7 @@ import 'package:more_2_drive/presentation/register/view_models/phone_register_cu
 import 'package:more_2_drive/presentation/widgets/form_field/first_name_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/last_name_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/phonenum_textfield.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 import '../../../core/app_constants/constants.dart';
 import '../../../core/functions/show_toast.dart';
@@ -141,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       }
                     },
-                      child: Text("انشاء حساب" , style: AppTextStyle.cairoSemiBold16white ,),
+                      child: Text(AppStrings.register , style: AppTextStyle.cairoSemiBold16white ,),
 
                     ),
 

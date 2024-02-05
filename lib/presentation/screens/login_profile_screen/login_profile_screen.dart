@@ -32,7 +32,7 @@ class LoginProfileScreen extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
             ), onPressed: () {
-            Navigator.pushNamed(context, RouteName.signupScreen);
+            Navigator.pushNamed(context, RouteName.loginScreen);
           },
             child: Text( AppStrings.signIn , style: AppTextStyle.cairoSemiBold16black,),
             //onPressed: isLoading ? null : function ,

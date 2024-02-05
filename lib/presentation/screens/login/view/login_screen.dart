@@ -11,6 +11,7 @@ import 'package:more_2_drive/presentation/widgets/button_component/phone_button.
 import 'package:more_2_drive/presentation/widgets/button_component/signup_button.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/email_formfield.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/password_formfield.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 import '../../../../core/app_constants/constants.dart';
@@ -134,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 12.h,
                         ),
                         Text(
-                          "البريد الالكتروني",
+                          AppStrings.email,
                           style: AppTextStyle.cairoSemiBold16DarkBlue,
                         ),
                         SizedBox(
@@ -147,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 15.h,
                         ),
                         Text(
-                          "كلمة السر",
+                          AppStrings.password,
                           style: AppTextStyle.cairoSemiBold16DarkBlue,
                         ),
                         const SizedBox(
@@ -199,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                               },
                               child: Text(
-                                "تسجيل دخول",
+                                AppStrings.signIn,
                                 style: AppTextStyle.cairoSemiBold16white,
                               ),
                             );
@@ -209,10 +210,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 4.h,
                         ),
-                        const Row(
+                        Row(
                           children: [
                             Expanded(child: Divider()),
-                            Text("خيارات التسجيل"),
+                            Text(AppStrings.registrationOptions),
                             Expanded(child: Divider())
                           ],
                         ),
@@ -285,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Image.asset(Assets.imagesGoogleImg),
                               Text(
-                                'قم بتسجيل الدخول باستخدام Google',
+                                AppStrings.signInWithGoogle,
                                 style: AppTextStyle.cairoSemiBold16black,
                               ),
                             ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 
@@ -12,15 +14,26 @@ class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Center(
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(332, 46),
-          backgroundColor: AppColors.darkRed,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-        ), onPressed: onPressed,
-        child: Text(AppStrings.deleteAccount , style: AppTextStyle.cairoSemiBold16white ,),
-        //onPressed: isLoading ? null : function ,
+      child: Padding(
+        padding: const EdgeInsets.only(top:10 , bottom: 10, left:40 , right: 40),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(332, 46),
+            backgroundColor: AppColors.darkRed,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+          ), onPressed: onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Image.asset(Assets.imagesPersonImg),
+              SizedBox(width: 5.w),
+              Text(AppStrings.deleteAccount , style: AppTextStyle.cairoSemiBold16white ,),
+            ],
+          ),
+          //onPressed: isLoading ? null : function ,
+        ),
       ),
     );
   }

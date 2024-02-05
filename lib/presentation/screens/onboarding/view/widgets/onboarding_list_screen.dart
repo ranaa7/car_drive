@@ -1,4 +1,5 @@
 import 'package:more_2_drive/generated/assets.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 class OnBoardingContent {
   String image;
@@ -9,24 +10,28 @@ class OnBoardingContent {
 }
 
 List<OnBoardingContent> contents = [
+
   OnBoardingContent(
-      title: 'موجودين في اكثر ',
-      image: Assets.imagesImage,
-      discription: "من ٢٠ محطة في ٤ محافظات "
-  ),
-  OnBoardingContent(
-      title: 'أكثر من',
-      image: Assets.imagesW,
-      discription: " 20 محطة في 4 محافظات"
-  ),
-  OnBoardingContent(
-      title: 'احجز الآن',
-      image: Assets.imagesMaleMechanicWorkingShopCar,
-      discription: "مع More2drive "
-  ),
-  OnBoardingContent(
-      title: 'لو ده وقت صيانتك',
+      title: AppStrings.onboardingTitle1,
       image: Assets.imagesServiceNow,
-      discription: " متقلقش !"
+      discription: AppStrings.onboardingdesc1
   ),
+  OnBoardingContent(
+      title: AppStrings.onboardingTitle2,
+      image: Assets.imagesMaleMechanicWorkingShopCar,
+      discription: AppStrings.onboardingdesc2
+  ),
+  OnBoardingContent(
+      title: AppStrings.onboardingTitle3,
+      image: Assets.imagesW,
+      discription: AppStrings.onboardingdesc3
+  ),
+  OnBoardingContent(
+      title: AppStrings.onboardingTitle4,
+      image: Assets.imagesImage,
+      discription: AppStrings.onboardingdesc4
+  ),
+
+
+
 ];

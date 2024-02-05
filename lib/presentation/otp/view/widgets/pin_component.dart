@@ -25,7 +25,7 @@ class PinComponent extends StatelessWidget {
     );
     return
          Padding(
-           padding: const EdgeInsets.all(8.0),
+           padding:  EdgeInsets.only(left: 20.w , right: 20.w),
            child: Pinput(
              length: 6,
 

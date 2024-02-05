@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/presentation/screens/order_details/view/order_details_cubit.dart';
 import 'package:more_2_drive/presentation/screens/order_details/view_models/order_details_screen.dart';
@@ -51,6 +52,7 @@ class OrderItem extends StatelessWidget {
                           style: AppTextStyle.cairoBold17DarkRed
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                               ordermodel[index].date?? "",
@@ -58,7 +60,9 @@ class OrderItem extends StatelessWidget {
                           ),
 
                          Padding(
-                           padding: const EdgeInsets.only(left: 60),
+                           padding: context.isRTL
+                               ? EdgeInsets.only(right: 70.w)
+                               : EdgeInsets.only(left: 70.w),
                            child: Text(
                                ordermodel[index].grandTotal?? "",
                                style: AppTextStyle.cairoBold17DarkRed

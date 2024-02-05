@@ -61,6 +61,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                 height: 60.h,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: context.isRTL
@@ -78,21 +79,24 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                                 'new lang: ar -- context.locale: ${context.locale}');
                           }
                         },
-                        icon: Image.asset(Assets.imagesTranslateIcon)),
+                        icon: Image.asset(Assets.imagesTranslateIcon , ),iconSize: 40,
+                    ),
+
                   ),
-                  const Spacer(),
+
+                   // Spacer(),
                   BlocBuilder<LoginCubit, LoginState>(
                     builder: (context, state) {
                       return Padding(
-                        padding: context.isRTL
-                            ? EdgeInsets.only(right: 20.0.w)
-                            : EdgeInsets.only(left: 20.0.w),
+                        padding:  context.isRTL
+                            ? EdgeInsets.only(left: 15.0.w)
+                            : EdgeInsets.only(right: 15.0.w),
                         child: OutlinedButton(
                           onPressed: () {
                             LoginCubit.get(context).userLogOut(context);
                           },
                           style: OutlinedButton.styleFrom(
-                            minimumSize: Size(20.w, 30.h),
+                           minimumSize: Size(20.w, 30.h),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.r),
@@ -101,7 +105,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                             side: const BorderSide(color: Colors.white),
                           ),
                           child: Text(
-                            'Logout',
+                            AppStrings.logout,
                             style: AppTextStyle.cairoSemiBold16white,
                           ),
                         ),
@@ -157,7 +161,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                             height: 10.h,
                           ),
                           Container(
-                            width: 280.w,
+                            width: 220.w,
                             height: 47.h,
                             decoration: const BoxDecoration(
                               color: AppColors.white,
@@ -189,8 +193,11 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                                                     alignment: Alignment.center,
                                                     child: Column(
                                                       children: [
+                                                        SizedBox(
+                                                          height: 5.h,
+                                                        ),
                                                         Image.asset(Assets
-                                                            .imagesLibreGiftlogo),
+                                                            .imagesNewGift),
                                                         SizedBox(
                                                           height: 20.h,
                                                         ),
@@ -259,7 +266,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                                                                   onPressed:
                                                                       () {},
                                                                   icon:
-                                                                       Image.asset(Assets.imagesFacebookImg),
+                                                                       Image.asset(Assets.imagesNewFacebook),
                                                                 iconSize:55,
 
                                                                   ),
@@ -267,11 +274,11 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                                                                   onPressed:
                                                                       () {},
                                                                   icon:
-                                                                  Image.asset(Assets.imagesWpImg) , iconSize: 70,),
+                                                                  Image.asset(Assets.imagesNewWp) , iconSize: 70,),
                                                             ],
                                                           ),
                                                         ),
-                                                        Text("Invite Your Friends" , style: AppTextStyle.cairoSemiBold17Black,),
+                                                        Text(AppStrings.inviteYourFriends , style: AppTextStyle.cairoSemiBold17Black,),
                                                         SizedBox(height: 10.h,),
                                                       ],
                                                     ),
@@ -290,7 +297,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                           ),
                           Text(
                             AppStrings.referralCode,
-                            style: const TextStyle(color: Colors.white),
+                            style: AppTextStyle.cairoNormal13white,
                           )
                         ],
                       );
@@ -310,7 +317,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ProfileColumn(
-                  name: "wishlist",
+                  name:AppStrings.wishlist,
                   num: CounterCubit.get(context).wishlistItem.toString(),
                 ),
                 Container(
@@ -320,7 +327,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                   margin: const EdgeInsets.symmetric(vertical: 10),
                 ),
                 ProfileColumn(
-                  name: "Cart",
+                  name: AppStrings.cart,
                   num: CounterCubit.get(context).cartItem.toString(),
                 ),
                 Container(
@@ -330,7 +337,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                   margin: const EdgeInsets.symmetric(vertical: 10),
                 ),
                 ProfileColumn(
-                  name: "Order",
+                  name: AppStrings.orders,
                   num: CounterCubit.get(context).orderCount.toString(),
                 ),
               ],
@@ -439,7 +446,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                   Navigator.pushNamed(context, RouteName.orderScreen);
                 },
                 child: Text(
-                  "All",
+                  AppStrings.all,
                   style: AppTextStyle.cairoSemiBold17Red,
                 ))
           ],

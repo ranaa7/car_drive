@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:more_2_drive/presentation/screens/signup/view_models/signup_cubit.dart';
 import 'package:more_2_drive/presentation/screens/signup/views/widgets/phonetextfiled.dart';
 import 'package:more_2_drive/presentation/widgets/form_field/email_formfield.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
 
@@ -112,7 +113,7 @@ class _SignupScreenState extends State<SignupScreen> {
                      children: [
 
                        Text(
-                         "الاسم الاول",
+                         AppStrings.firstName,
                          style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
@@ -123,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
                          height: 10.h,
                        ),
                        Text(
-                         "الاسم التاني",
+                         AppStrings.secName,
                          style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
@@ -134,7 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
                          height: 10.h,
                        ),
                        Text(
-                         "البريد الالكتروني",
+                         AppStrings.email,
                          style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
@@ -145,7 +146,7 @@ class _SignupScreenState extends State<SignupScreen> {
                          height: 10.h,
                        ),
                        Text(
-                         "كلمة السر",
+                         AppStrings.password,
                          style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
@@ -158,7 +159,7 @@ class _SignupScreenState extends State<SignupScreen> {
                        ),
 
                        Text(
-                         "رقم الهاتف",
+                         AppStrings.phone,
                          style: AppTextStyle.cairoSemiBold16DarkBlue,
                        ),
                        SizedBox(
@@ -189,7 +190,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                          }},
 
-                         child: Text("انشاء حساب" , style: AppTextStyle.cairoSemiBold16white ,),
+                         child: Text(AppStrings.register , style: AppTextStyle.cairoSemiBold16white ,),
 
                        ),
 

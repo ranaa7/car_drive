@@ -50,6 +50,25 @@ class AppStrings{
   static String get email=> "email".tr();
   static String get phone=> "phoneNumber".tr();
   static String get password=> "password".tr();
+  static String get firstName=> "firstName".tr();
+  static String get secName=> "secName".tr();
+  static String get enterPhoneNumber=> "enterPhoneNumber".tr();
+  static String get register=> "register".tr();
+  static String get skip=> "skip".tr();
+  static String get signInWithPhone=> "signInWithPhone".tr();
+  static String get signInWithEmail=> "signInWithEmail".tr();
+  static String get signInWithGoogle=> "signInWithGoogle".tr();
+  static String get registrationOptions=> "registrationOptions".tr();
+  static String get onboardingTitle1=> "onboardingTitle1".tr();
+  static String get onboardingdesc1=> "onboardingdesc1".tr();
+  static String get onboardingTitle2=> "onboardingTitle2".tr();
+  static String get onboardingdesc2=> "onboardingdesc2".tr();
+  static String get onboardingTitle3=> "onboardingTitle3".tr();
+  static String get onboardingdesc3=> "onboardingdesc3".tr();
+  static String get onboardingTitle4=> "onboardingTitle4".tr();
+  static String get onboardingdesc4=> "onboardingdesc4".tr();
+
+
 
 
   static String get updateProfile=> "updateProfile".tr();
@@ -136,5 +155,20 @@ class AppStrings{
   static String get walletBalance  => "walletBalance".tr();
   static String get walletCharging  => "walletCharging".tr();
   static String get lastRecharged  => "lastRecharged".tr();
+  static String get totalPoints  => "totalPoints".tr();
+  static String get wishlist  => "wishlist".tr();
+  static String get orders  => "orders".tr();
+  static String get all  => "all".tr();
+  static String get logout  => "logout".tr();
+  static String get inviteYourFriends   => "inviteYourFriends".tr();
+  static String get subTotal   => "subTotal".tr();
+  static String get grandTotal   => "grandTotal".tr();
+  static String get enterCode   => "enterCode".tr();
+  static String get codeSent   => "codeSent".tr();
+  static String get submit   => "submit".tr();
+  static String get codeVerification   => "codeVerification".tr();
+  static String get resendCode   => "resendCode".tr();
+  static String get codeIsnotArrived  => "codeIsnotArrived".tr();
+
 
 }

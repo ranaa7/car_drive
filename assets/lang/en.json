@@ -38,9 +38,30 @@
   "name": "Name",
   "phoneNumber": "Phone number",
   "password": "Password",
+
+
+  "firstName": "First name",
+  "secName": "Second name",
+  "enterPhoneNumber": "Enter phone number",
+  "register": "Register",
+  "skip": "Skip",
+  "signInWithPhone": "Sign in with phone",
+  "signInWithEmail": "Sign in with email",
+  "signInWithGoogle": "Sign in with google",
+  "registrationOptions": "Registration options",
+  "onboardingTitle1": "If this is the time for your maintenance",
+  "onboardingdesc1": "Don't worry!",
+  "onboardingTitle2": "Book Now",
+  "onboardingdesc2": "With More2drive",
+  "onboardingTitle3": "more than",
+  "onboardingdesc3": "20 stations in 4 governorates",
+  "onboardingTitle4": "They are present in more",
+  "onboardingdesc4": "From 20 stations in 4 governorates",
+
+
   "basicInformation": "Basic Information",
   "updateProfile": "Update Profile",
-  "deleteAccount" : "Delete profile",
+  "deleteAccount" : "Delete Account",
   "orderPlaced": "Order Placed",
   "Confirmed": "Confirmed",
   "onDelivery":"On delivery",
@@ -117,6 +138,26 @@
   "minMaxWarning": "Please Enter Valid Range",
   "lastRecharged": "Last recharged",
   "walletBalance": "Wallet Balance",
-  "walletCharging": "Wallet charging"
+  "walletCharging": "Wallet charging",
+
+
+
+
+  "totalPoints": "Total points",
+  "wishlist": "Wishlist",
+  "orders": "Orders",
+  "all": "All",
+  "logout": "Logout",
+  "inviteYourFriends": "Invite your friends",
+  "subTotal": "Sub Total",
+  "grandTotal": "Grand Total",
+  "allDeliveries": "All Deliveries",
+  "allPayments": "All Payments",
+  "enterCode": "Enter Code",
+  "codeSent": "A 6-digit code was sent to",
+  "submit": "Submit",
+  "codeVerification": "Code verification",
+  "resendCode": "Resend the code",
+  "codeIsnotArrived": "If the code does not arrive, contact customer service"
 
 }

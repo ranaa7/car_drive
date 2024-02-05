@@ -14,6 +14,7 @@ class Assets {
   static const String imagesCarLogo = 'assets/images/car_logo.png';
   static const String imagesCart = 'assets/images/cart.png';
   static const String imagesChangeFilter = 'assets/images/changeFilter.jpg';
+  static const String imagesCoinsGroup = 'assets/images/coinsGroup.png';
   static const String imagesCoinsImg = 'assets/images/coinsImg.png';
   static const String imagesEmpty = 'assets/images/empty.jpg';
   static const String imagesEmptyAddress = 'assets/images/emptyAddress.jpg';
@@ -33,6 +34,9 @@ class Assets {
   static const String imagesMinusWhite = 'assets/images/minusWhite.png';
   static const String imagesMore2driveLogo = 'assets/images/more2drive_logo.png';
   static const String imagesNew = 'assets/images/new.png';
+  static const String imagesNewFacebook = 'assets/images/newFacebook.png';
+  static const String imagesNewGift = 'assets/images/newGift.png';
+  static const String imagesNewWp = 'assets/images/newWp.png';
   static const String imagesOtpLogo = 'assets/images/otp_logo.png';
   static const String imagesOuterWash = 'assets/images/outerWash.jpg';
   static const String imagesPersonImg = 'assets/images/person_img.png';

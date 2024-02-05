@@ -80,9 +80,12 @@ class _OrderScreenState extends State<OrderScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       isExpanded: true,
-                      hint: Text(
-                        'All Payments',
-                        style: AppTextStyle.cairoSemiBold17Black
+                      hint: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          'All Payments',
+                          style: AppTextStyle.cairoSemiBold17Black
+                        ),
                       ),
                       items: paymentStatusItems.map((String item) {
                         return DropdownMenuItem<String>(
@@ -117,9 +120,12 @@ class _OrderScreenState extends State<OrderScreen> {
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         isExpanded: true,
-                        hint: Text(
-                            'All Deliveries',
-                            style: AppTextStyle.cairoSemiBold17Black
+                        hint: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                              'All Deliveries',
+                              style: AppTextStyle.cairoSemiBold17Black
+                          ),
                         ),
                         items: deliveryStatusItems.map((String item) {
                           return DropdownMenuItem<String>(

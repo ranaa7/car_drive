@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_2_drive/utils/strings/app_strings.dart';
 
 import 'package:more_2_drive/utils/strings/routes_names.dart';
 
@@ -23,7 +24,7 @@ class SignupButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.email_outlined),
-          Text("سجل عن طريق البريد الالكتروني" , style: AppTextStyle.cairoSemiBold16white ,),
+          Text(AppStrings.signInWithEmail , style: AppTextStyle.cairoSemiBold16white ,),
         ],
       ),
       //onPressed: isLoading ? null : function ,

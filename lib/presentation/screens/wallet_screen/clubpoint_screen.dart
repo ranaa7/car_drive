@@ -6,6 +6,7 @@ import 'package:more_2_drive/config/style/app_colors.dart';
 import 'package:more_2_drive/config/style/text_styles.dart';
 import 'package:more_2_drive/generated/assets.dart';
 import 'package:more_2_drive/presentation/cubits/wallet_cubit/wallet_cubit.dart';
+import 'package:more_2_drive/presentation/screens/wallet_screen/widgets/dark_blue_container.dart';
 import 'package:more_2_drive/presentation/widgets/default_appbar/default_appbar.dart';
 import 'package:more_2_drive/presentation/widgets/shimmer/order_shimmer.dart';
 import 'package:more_2_drive/utils/strings/app_strings.dart';
@@ -19,12 +20,11 @@ class ClubPointScreen extends StatefulWidget {
 }
 
 class _ClubPointScreenState extends State<ClubPointScreen> {
+  int page = 1;
 
-  int page =1;
   bool isLoading = true;
 
   final RefreshController _refreshController = RefreshController();
-
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
 
   fetchData() async {
     try {
-     // await OrdersCubit.get(context).getOrders(page ,  selectedPaymentStatus ?? '', selectedDeliveryStatus ?? '');
+      // await OrdersCubit.get(context).getOrders(page ,  selectedPaymentStatus ?? '', selectedDeliveryStatus ?? '');
       await WalletCubit.get(context).getClubpoints(page);
       setState(() {
         isLoading = false;
@@ -45,33 +45,26 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
       print('Error fetching orders: $e');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WalletCubit, WalletState>(
       builder: (context, state) {
-
         final WalletCubit walletCubit = WalletCubit.get(context);
         return Scaffold(
-       backgroundColor: AppColors.scaffoldGround,
-    appBar: AppBar(title: Text(AppStrings.earnedPoints , style: AppTextStyle.cairoSemiBold16white, ),backgroundColor:AppColors.deepDarkBlue ,),
+          backgroundColor: AppColors.scaffoldGround,
+          appBar:
+          AppBar(
+            title: Text(
+              AppStrings.earnedPoints,
+              style: AppTextStyle.cairoSemiBold16white,
+            ),
+            backgroundColor: AppColors.deepDarkBlue,
 
-          body:  Column(
+          ),
+          body: Column(
             children: [
-              Container(
-                color: AppColors.deepDarkBlue,
-                child: Column(children: [
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(Assets.imagesCoinsImg),
-                  ),
-
-                ],),
-                height: 350.h,
-                width: double.infinity,
-              ),
-
-
+              DarkBlueContainer(),
               Expanded(
                 child: SmartRefresher(
                     footer: CustomFooter(
@@ -140,73 +133,93 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
                     child: isLoading
                         ? const Center(child: OrderShimmer())
                         : SizedBox(
-                      width: 500.w,
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: walletCubit.clubpoints.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              elevation: 2,
-                              surfaceTintColor: Colors.blueAccent,
-                              color: AppColors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
+                            width: 500.w,
+                            child: ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: walletCubit.clubpoints.length,
+                              itemBuilder: (context, index) {
 
-                                  Column(
-                                    children: [
-                                      Text(
-                                        walletCubit.clubpoints[index].points.toString() ?? "",
-                                        style: AppTextStyle.cairoBoldred17,
-                                      ),
-
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            minimumSize: const Size(90, 36),
-                                            backgroundColor: AppColors.darkRed,
-                                            shape: const RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(Radius.circular(10))),
-                                          ), onPressed: (){
-                                          walletCubit.addClubpointsToWallet(walletCubit.clubpoints[index].id ?? 0);
-                                        },
-                                          child: Text(AppStrings.collectPoints , style: AppTextStyle.cairoSemiBold16white ,),
-                                          //onPressed: isLoading ? null : function ,
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Card(
+                                    elevation: 2,
+                                    surfaceTintColor: Colors.blueAccent,
+                                    color: AppColors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text(
+                                              walletCubit
+                                                      .clubpoints[index].points
+                                                      .toString() ??
+                                                  "",
+                                              style:
+                                                  AppTextStyle.cairoBoldred17,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  minimumSize:
+                                                      const Size(90, 36),
+                                                  backgroundColor:
+                                                      AppColors.red3,
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                ),
+                                                onPressed: () {
+                                                  walletCubit
+                                                      .addClubpointsToWallet(
+                                                          walletCubit
+                                                                  .clubpoints[
+                                                                      index]
+                                                                  .id ??
+                                                              0);
+                                                },
+                                                child: Text(
+                                                  AppStrings.collectPoints,
+                                                  style: AppTextStyle
+                                                      .cairoSemiBold16white,
+                                                ),
+                                                //onPressed: isLoading ? null : function ,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ],
-                                  ),
-
-
-
-
-                                  Text(
-                                    walletCubit.clubpoints[index].orderCode ??"",
-                                    style: AppTextStyle.cairoSemiBold17Black,
-                                  ),
-
-                                  Flexible(
-                                    child: Image.asset(
-                                      Assets.imagesProduct,
-                                      height: 130.h,
-                                      width: 90.w,
-                                      // color: AppColors.Scaffoldfground,
+                                        Text(
+                                          walletCubit.clubpoints[index]
+                                                  .orderCode ??
+                                              "",
+                                          style:
+                                              AppTextStyle.cairoSemiBold17Black,
+                                        ),
+                                        Flexible(
+                                          child: Image.asset(
+                                            Assets.imagesProduct,
+                                            height: 130.h,
+                                            width: 90.w,
+                                            // color: AppColors.Scaffoldfground,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
-                    )
-                ),
+                          )),
               ),
             ],
           ),
@@ -215,10 +228,3 @@ class _ClubPointScreenState extends State<ClubPointScreen> {
     );
   }
 }
-
-
-
-
-
-
-

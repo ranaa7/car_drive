@@ -80,7 +80,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Text(
                               AppStrings.walletBalance,
                               style: AppTextStyle.cairoSemiBold24white,
