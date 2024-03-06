@@ -21,7 +21,7 @@ class OtpScreen extends StatefulWidget {
 
   OtpScreen({Key? key, this.id}) : super(key: key);
 
-  static final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  static final GlobalKey<FormState> _Otpkey = GlobalKey<FormState>();
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -72,7 +72,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       backgroundColor: AppColors.otpBlue,
       body: Form(
-        key: OtpScreen._key,
+        key: OtpScreen._Otpkey,
         child: Stack(
           children: [
             const ImageOtpComponent(),
@@ -154,7 +154,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                         ),
                         onPressed: () async {
-                          if (OtpScreen._key.currentState!.validate()) {
+                          if (OtpScreen._Otpkey.currentState!.validate()) {
                             isLogin = true;
                             await OtpCubit.get(context).verifyOtp(otp: pinController.text);
                           }

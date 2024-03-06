@@ -86,13 +86,14 @@ void main() async {
     if (token != null) {
       print('Going to homescreen');
       widget = const MainScreen();
-    } else {
+    }
+    else {
       print('Going to LoginScreen');
       widget = const SplashScreen();
     }
   } else {
     print('Going to OnBoardingScreen');
-    widget = const OnBoardingScreen();
+    widget = const SplashScreen();
   }
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.dark,
@@ -161,7 +162,7 @@ class MyApp extends StatelessWidget {
                 theme: Themes.defaultTheme,
                 color: AppColors.white,
                 title: 'More2Drive',
-                home: startWidget,
+                home: SplashScreen(),
                 onGenerateRoute: RouterApp.generateRoute,
                 builder: LocalizeAndTranslate.directionBuilder,
                 navigatorKey: RouterKeys.mainNavigatorKey,

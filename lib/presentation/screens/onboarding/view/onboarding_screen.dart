@@ -69,7 +69,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 // Handle the last page, e.g., navigate to another screen
                 CacheHelper.saveDate(key: "onboarding", value: true).then((value) {
                   if ((value)) {
-                    Navigator.pushNamed(context, RouteName.signupScreen);
+                    Navigator.pushNamed(context, RouteName.loginScreen);
                   }
                 });
               }

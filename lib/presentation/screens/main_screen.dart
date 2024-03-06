@@ -18,6 +18,7 @@ import 'package:more_2_drive/presentation/screens/profile_screen/profile_screen.
 import 'package:more_2_drive/presentation/screens/wallet_screen/clubpoint_screen.dart';
 import 'package:more_2_drive/presentation/widgets/custom_bottom_navigation/bottome_nav_bar.dart';
 import 'package:more_2_drive/utils/strings/routes_names.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 
 class MainScreen extends StatelessWidget {
@@ -34,7 +35,7 @@ class MainScreen extends StatelessWidget {
           const HomeScreen(),
           const CategoriesScreen(),
            ClubPointScreen(),
-          islogged != null  ? const ProfileScreen(): const LoginProfileScreen(),
+          token.isEmptyOrNull ?  LoginProfileScreen():ProfileScreen()  ,
         ][appCubit.currentIndex],
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Stack(

@@ -21,8 +21,7 @@ import '../../signup/views/signup_screen.dart';
 import '../view_models/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
-  static final GlobalKey<FormState> _key = GlobalKey<FormState>();
-
+  static final GlobalKey<FormState> _loginkey = GlobalKey<FormState>();
 
   LoginScreen({super.key});
 
@@ -39,51 +38,59 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) async {
-
-        // if (state is LoginSuccessState ) {
-        //   if (kDebugMode) {
-        //     print('TOOKKEEN ${state.loginModel.token}');
-        //   }
-        //   showToast(
-        //       message: state.loginModel.message ?? 'Successfully logged in',
-        //       bcColor: Colors.green);
-        //   // token = state.loginModel.token!;
-        //   // print('Token before saving: $token');
-        //   userId = state.loginModel.user!.id!.toString();
-        //   await CacheHelper.saveDate(key: 'user_id', value: userId);
-        //   CacheHelper.saveDate(
-        //       key: 'access_token', value: state.loginModel.token)
-        //       .then((value) =>
-        //   {Navigator.pushNamed(context, RouteName.mainScreen)});
-        // }
-
-        if (state is LoginSuccessState || state is SocialLoginSuccessState) {
+        if (state is LoginSuccessState ) {
           if (kDebugMode) {
-            print('TOKEN: ${(state as dynamic).loginModel.token}');
+            print('TOOKKEEN ${state.loginModel.token}');
           }
-
           showToast(
-            message: (state as dynamic).loginModel.message ?? 'Successfully logged in',
-            bcColor: Colors.green,
-          );
+              message: state.loginModel.message ?? 'Successfully logged in',
+              bcColor: Colors.green);
 
-          userId = (state as dynamic).loginModel.user?.id?.toString() ?? ''; // Safely retrieve user ID
+          userId = state.loginModel.user!.id!.toString();
           await CacheHelper.saveDate(key: 'user_id', value: userId);
-
-          String? accessToken = state is LoginSuccessState
-              ? state.loginModel.token
-              : (state as SocialLoginSuccessState).loginModel.token;
-
-          CacheHelper.saveDate(key: 'access_token', value: accessToken)
-              .then((value) => Navigator.pushNamed(context, RouteName.mainScreen));
-        }
-        else if(state is LoginFailureState){
-          showToast(
-            message:  'You are not logged before',
-            bcColor: Colors.red,
-          );
+          CacheHelper.saveDate(
+              key: 'onboarding', value: onboarding);
+          CacheHelper.saveDate(
+              key: 'access_token', value: state.loginModel.token)
+              .then((value) {
+                token = state.loginModel.token!;
+            Navigator.pushNamed(context, RouteName.mainScreen);
+          }
+         );
         }
 
+        // if (state is LoginSuccessState || state is SocialLoginSuccessState) {
+        //   if (kDebugMode) {
+        //     print('TOKEN: ${(state as dynamic).loginModel.token}');
+        //   }
+        //
+        //   showToast(
+        //     message: (state as dynamic).loginModel.message ??
+        //         'Successfully logged in',
+        //     bcColor: Colors.green,
+        //   );
+        //
+        //   userId = (state as dynamic).loginModel.user?.id?.toString() ??
+        //       ''; // Safely retrieve user ID
+        //   await CacheHelper.saveDate(key: 'user_id', value: userId);
+        //
+        //   String? accessToken = state is LoginSuccessState
+        //       ? state.loginModel.token
+        //       : (state as SocialLoginSuccessState).loginModel.token;
+        //
+        //   CacheHelper.saveDate(key: 'access_token', value: accessToken).then(
+        //       (value) {
+        //        // token = state.
+        //         Navigator.pushNamed(context, RouteName.mainScreen);
+        //       } );
+        //
+        //
+        // } else if (state is LoginFailureState) {
+        //   showToast(
+        //     message: 'You are not logged before',
+        //     bcColor: Colors.red,
+        //   );
+        // }
       },
       child: Scaffold(
         backgroundColor: AppColors.darkBlue,
@@ -107,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
               top: 259.h,
               child: Container(
                 padding: const EdgeInsets.only(
-                    left: 34, right: 30, top: 10, bottom: 10)
+                        left: 34, right: 30, top: 10, bottom: 10)
                     .r,
                 decoration: BoxDecoration(
                   boxShadow: const [
@@ -127,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
                   child: Form(
-                    key: LoginScreen._key,
+                    key: LoginScreen._loginkey,
                     child: (Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -163,42 +170,41 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         BlocBuilder<LoginCubit, LoginState>(
                           buildWhen: (previous, current) =>
-                          current is LoginLoadingState ||
+                              current is LoginLoadingState ||
                               current is LoginFailureState ||
                               current is LoginSuccessState,
                           builder: (context, state) {
-                            return
-                              ElevatedButton(
+                            return ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(332, 46),
                                 backgroundColor: AppColors.deepDarkBlue,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                                        BorderRadius.all(Radius.circular(10))),
                               ),
                               onPressed: state is LoginLoadingState
                                   ? null
-                                  : ()  {
-                                if (LoginScreen._key.currentState!.validate()) {
-                                  isLogin = true;
-                                  LoginCubit.get(context).userLogin(
-                                      email: emailcontroller.text,
-                                      password: passwordcontroller.text);
-                                  //await CacheHelper.saveDate(key: 'access_token', value: token);
+                                  : () {
+                                      if (LoginScreen._loginkey.currentState!
+                                          .validate()) {
+                                        isLogin = true;
+                                        LoginCubit.get(context).userLogin(
+                                            email: emailcontroller.text,
+                                            password: passwordcontroller.text);
+                                        //await CacheHelper.saveDate(key: 'access_token', value: token);
 
-                                  String? token = CacheHelper.getData(
-                                      key: 'access_token');
+                                        String? token = CacheHelper.getData(
+                                            key: 'access_token');
 
-                                  CacheHelper.saveDate(
-                                      key: 'islogged', value: islogged);
+                                        CacheHelper.saveDate(
+                                            key: 'islogged', value: islogged);
 
-                                  print('Retrieved Token: $token');
-                                  if (kDebugMode) {
-                                    print('UserTOOK $token');
-                                  }
-
-                                }
-                              },
+                                        print('Retrieved Token: $token');
+                                        if (kDebugMode) {
+                                          print('UserTOOK $token');
+                                        }
+                                      }
+                                    },
                               child: Text(
                                 AppStrings.signIn,
                                 style: AppTextStyle.cairoSemiBold16white,
@@ -236,21 +242,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
 
                         OutlinedButton(
-                          onPressed: ()  async{
+                          onPressed: () async {
                             try {
-                              GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+                              GoogleSignInAccount? googleUser =
+                                  await GoogleSignIn().signIn();
 
                               if (googleUser != null) {
                                 print("displayName ${googleUser.displayName}");
                                 print("email ${googleUser.email}");
                                 print("googleUser.id ${googleUser.id}");
 
-                                GoogleSignInAuthentication googleSignInAuthentication =
-                                await googleUser.authentication;
-                                String? accessToken = googleSignInAuthentication.accessToken;
+                                GoogleSignInAuthentication
+                                    googleSignInAuthentication =
+                                    await googleUser.authentication;
+                                String? accessToken =
+                                    googleSignInAuthentication.accessToken;
                                 print("accessToken $accessToken");
-
-
 
                                 LoginCubit.get(context).getSocialLoginResponse(
                                   "google",
@@ -271,7 +278,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               // Handle the error
                             }
                           },
-
                           style: OutlinedButton.styleFrom(
                             minimumSize: Size(332.w, 46.h),
                             shape: RoundedRectangleBorder(

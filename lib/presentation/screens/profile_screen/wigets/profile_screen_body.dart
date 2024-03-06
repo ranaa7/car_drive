@@ -92,8 +92,10 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                             ? EdgeInsets.only(left: 15.0.w)
                             : EdgeInsets.only(right: 15.0.w),
                         child: OutlinedButton(
-                          onPressed: () {
-                            LoginCubit.get(context).userLogOut(context);
+                          onPressed: () async {
+                           await LoginCubit.get(context).userLogOut(context);
+                           //Navigator.of(context).pushNamed(RouteName.loginScreen);
+
                           },
                           style: OutlinedButton.styleFrom(
                            minimumSize: Size(20.w, 30.h),

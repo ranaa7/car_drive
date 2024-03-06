@@ -148,9 +148,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LogoutLoadingState());
     try {
       await DioHelper().get(endPoint: EndPoints.logOut, token: token);
-      CacheHelper.removeData(key: 'access_token').then((value) {
+     await CacheHelper.removeData(key: 'onboarding');
+     await CacheHelper.removeData(key: 'access_token').then((value) {
         if (value) {
-          Navigator.pushNamed(
+          Navigator.popAndPushNamed(
             context,
             RouteName.loginScreen,
           );
